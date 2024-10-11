@@ -445,10 +445,10 @@ GameObject:
   - component: {fileID: 6404154255027343441}
   - component: {fileID: 4579579911420513898}
   - component: {fileID: 5163247660122189133}
-  - component: {fileID: 6270886971567808928}
   - component: {fileID: 2694248460360559639}
   - component: {fileID: 5969553197981910875}
   - component: {fileID: 2956378859949425409}
+  - component: {fileID: 640310546142152484}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -564,18 +564,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: f71278c64e47ecf4aac229cccb443f58, type: 2}
---- !u!114 &6270886971567808928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8794734137529011175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 189444d0e3e1aac45b3aad3e9740fd1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2694248460360559639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,3 +602,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splineContainer: {fileID: 0}
   speed: 5
+--- !u!114 &640310546142152484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8794734137529011175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e273266447fc5409c6002fd9d4e46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
