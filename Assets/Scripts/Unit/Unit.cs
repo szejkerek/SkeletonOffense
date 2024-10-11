@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    public UnitConfig Config => config;
+    [SerializeField] UnitConfig config;
 }
