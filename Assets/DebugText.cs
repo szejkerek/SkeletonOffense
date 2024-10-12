@@ -3,18 +3,24 @@ using UnityEngine;
 
 public class DebugText : MonoBehaviour
 {
-    [SerializeField] GameObject textCanvas;
-    [SerializeField] TMP_Text mainText;
-    [SerializeField] bool autoRotateTowardsCamera = true;
-    Camera targetCamera;
+    [SerializeField] private GameObject textCanvas;
+    [SerializeField] private TMP_Text mainText;
+    [SerializeField] private bool autoRotateTowardsCamera = true;
+    private Camera targetCamera;
 
-    private float fadeDuration = 0; 
-    private Color defaultColor = Color.white;
+    private float fadeDuration = 0;
     private bool fadingOut = false;
 
     private void Start()
     {
         targetCamera = Camera.main;
+
+        if (targetCamera == null)
+        {
+            Debug.LogError("Main Camera not found. Please tag the main camera.");
+            autoRotateTowardsCamera = false;
+        }
+        textCanvas.SetActive(true);
     }
 
     private void Update()
@@ -27,27 +33,40 @@ public class DebugText : MonoBehaviour
         if (fadingOut && fadeDuration > 0)
         {
             fadeDuration -= Time.deltaTime;
+            fadeDuration = Mathf.Max(fadeDuration, 0);
+
             if (fadeDuration <= 0)
             {
                 textCanvas.SetActive(false);
+                fadingOut = false;
             }
         }
     }
 
     public void SetText(string text, Color? color = null, float duration = 0)
     {
-        mainText.text = text;
-        mainText.color = color ?? defaultColor;
-        textCanvas.SetActive(true);
+        if (!string.IsNullOrEmpty(text))
+        {
+            mainText.text = text;
+            mainText.color = color ?? Color.white;
+            textCanvas.SetActive(true);
 
-        fadeDuration = duration > 0 ? duration : 0;
-        fadingOut = fadeDuration > 0;
+            fadeDuration = duration > 0 ? duration : 0;
+            fadingOut = fadeDuration > 0;
+        }
+        else
+        {
+            ResetText();
+        }
     }
 
     public void ResetText()
     {
         mainText.text = "";
-        mainText.color = defaultColor;
+        mainText.color = Color.white;
         textCanvas.SetActive(false);
+
+        fadeDuration = 0;
+        fadingOut = false;
     }
 }

@@ -5,6 +5,9 @@ public class UnitWalkingState : UnitState
     UnitWalkManager walkManager;
     public UnitWalkingState(UnitStateMachine stateMachine) : base(stateMachine) 
     {
+        StateName = "Walking";
+        StateColor = Color.blue;
+
         walkManager = stateMachine.WalkManager;
     }
 

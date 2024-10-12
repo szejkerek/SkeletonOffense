@@ -3,23 +3,25 @@ using UnityEngine.Splines;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    UnitState currentState;
-
     #region Managers
     public UnitWalkManager WalkManager => walkManager;
     UnitWalkManager walkManager;
     #endregion
 
+    DebugText UnitDebugText;
+    UnitState currentState;
+
     private void Awake()
     {
         walkManager = GetComponent<UnitWalkManager>();
         walkManager.SetSpline(FindFirstObjectByType<SplineContainer>()); //TODO: Przenieść do StageManagera i ustawiać podczas respu jednostki.
+
+        UnitDebugText = GetComponentInChildren<DebugText>();
     }
 
     private void Start()
     {
-        currentState = new UnitWalkingState(this);
-        currentState.Enter();
+        ChangeState(new UnitWalkingState(this));
     }
 
     private void Update()
@@ -29,11 +31,11 @@ public class UnitStateMachine : MonoBehaviour
 
     public void ChangeState(UnitState newState)
     {
-        if(currentState != null) 
-            currentState.Exit();
-        
+        currentState?.Exit();   
         currentState = newState; 
         currentState.Enter();
+
+        UnitDebugText?.SetText(currentState.StateName, currentState.StateColor);
     }
 
 }
