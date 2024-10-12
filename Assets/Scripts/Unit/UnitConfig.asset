@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d00476e7dbcb842914c45c025e7fa2, type: 3}
   m_Name: UnitConfig
   m_EditorClassIdentifier: 
+  height: 4.36
+  walkSpeed: 10
+  damage: 5
+  health: 100
