@@ -1,8 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Splines;
 
 public class UnitStateMachine : MonoBehaviour
 {
     UnitState currentState;
+
+    #region Managers
+    public UnitWalkManager WalkManager => walkManager;
+    UnitWalkManager walkManager;
+    #endregion
+
+    private void Awake()
+    {
+        walkManager = GetComponent<UnitWalkManager>();
+        walkManager.SetSpline(FindFirstObjectByType<SplineContainer>()); //TODO: Przenieść do StageManagera i ustawiać podczas respu jednostki.
+    }
 
     private void Start()
     {

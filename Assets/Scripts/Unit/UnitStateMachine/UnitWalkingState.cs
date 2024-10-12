@@ -5,7 +5,7 @@ public class UnitWalkingState : UnitState
     UnitWalkManager walkManager;
     public UnitWalkingState(UnitStateMachine stateMachine) : base(stateMachine) 
     {
-        walkManager = stateMachine.GetComponent<UnitWalkManager>();
+        walkManager = stateMachine.WalkManager;
     }
 
     public override void Enter()
@@ -15,7 +15,7 @@ public class UnitWalkingState : UnitState
 
     public override void LogicUpdate()
     {
-        Debug.Log("Walk");
+        walkManager.WalkAlongSpline();  
     }
 
     public override void Exit()

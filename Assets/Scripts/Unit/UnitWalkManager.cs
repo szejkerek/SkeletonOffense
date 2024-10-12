@@ -1,29 +1,48 @@
 using UnityEngine;
-using UnityEngine.Splines;  // Import the Spline namespace
+using UnityEngine.Splines;
 
 public class UnitWalkManager : MonoBehaviour
 {
-    public SplineContainer splineContainer;   // Reference to the Spline Container component
-    public float speed = 5f;                  // Movement speed along the spline
-    private float splinePosition = 0f;        
+    SplineContainer splineContainer;
 
-    void Update()
+    float splinePosition = 0f;        
+    UnitConfig config;
+
+    private void Awake()
     {
-        if (splineContainer != null)
+        config = GetComponent<Unit>().Config;
+    }
+
+    public void SetSpline(SplineContainer newSpline)
+    {
+        splineContainer = newSpline;
+    }
+
+    public float WalkAlongSpline()
+    {
+        if (splineContainer == null)
         {
-            // Calculate the new position on the spline based on the speed
-            splinePosition += (speed * Time.deltaTime) / splineContainer.Spline.GetLength();
-            splinePosition = Mathf.Clamp01(splinePosition);  // Ensure the position stays between 0 and 1
-
-            // Get the position along the spline at the current splinePosition
-            Vector3 position = splineContainer.Spline.EvaluatePosition(splinePosition);
-
-            // Move the unit to the spline's position
-            transform.position = position;
-
-            // Get the tangent (direction of the curve) at the current position and align the unit's forward vector
-            Vector3 tangent = splineContainer.Spline.EvaluateTangent(splinePosition);
-            transform.forward = tangent.normalized;
+            Debug.LogWarning($"Spline is not set on {name}");
+            return splinePosition;
         }
+
+        MoveUnit();
+        RotateUnit();
+
+        return splinePosition;
+    }
+
+    void RotateUnit()
+    {
+        Vector3 tangent = splineContainer.Spline.EvaluateTangent(splinePosition);
+        transform.forward = tangent.normalized;
+    }
+
+    void MoveUnit()
+    {
+        splinePosition += (config.walkSpeed * Time.deltaTime) / splineContainer.Spline.GetLength();
+        splinePosition = Mathf.Clamp01(splinePosition);
+        Vector3 position = splineContainer.Spline.EvaluatePosition(splinePosition);
+        transform.position = position + splineContainer.transform.position;
     }
 }
