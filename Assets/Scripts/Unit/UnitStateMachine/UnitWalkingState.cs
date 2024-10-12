@@ -13,7 +13,7 @@ public class UnitWalkingState : UnitState
 
     public override void Enter()
     {
-        Debug.Log("Entering Walking State");
+        //Debug.Log("Entering Walking State");
     }
 
     public override void LogicUpdate()
@@ -23,6 +23,6 @@ public class UnitWalkingState : UnitState
 
     public override void Exit()
     {
-        Debug.Log("Exiting Walking State");
+        //Debug.Log("Exiting Walking State");
     }
 }

@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class UnitHealth : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    HealthDisplay healthDisplay;
+    UnitConfig config;
+
+    float maxHealth;
+    float currentHealth;
+
+    private void Awake()
     {
-        
+        healthDisplay = GetComponentInChildren<HealthDisplay>();
+        config = GetComponent<Unit>().Config;
+        maxHealth = currentHealth = config.health;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DealDamage(float damage)
     {
-        
+        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        healthDisplay.UpdateHealth(currentHealth, maxHealth);
     }
 }
