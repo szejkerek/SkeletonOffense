@@ -43,6 +43,6 @@ public class UnitWalkManager : MonoBehaviour
         splinePosition += (config.walkSpeed * Time.deltaTime) / splineContainer.Spline.GetLength();
         splinePosition = Mathf.Clamp01(splinePosition);
         Vector3 position = splineContainer.Spline.EvaluatePosition(splinePosition);
-        transform.position = position + splineContainer.transform.position;
+        transform.position = position.Add(y: config.height / 2) + splineContainer.transform.position;
     }
 }
