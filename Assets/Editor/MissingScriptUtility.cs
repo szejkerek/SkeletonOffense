@@ -4,8 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace PlaceHolders.Utility
-{
+
     public class MissingScriptUtility : MonoBehaviour
     {
         [MenuItem("Tools/Search for missing scripts")]
@@ -46,4 +45,3 @@ namespace PlaceHolders.Utility
             }
         }
     }
-}
