@@ -4,10 +4,10 @@ using DG.Tweening;
 
 public class HealthDisplay : MonoBehaviour
 {
-    [SerializeField] private Image mainHealth; // Red health bar
-    [SerializeField] private Image secondHealth; // Orange health bar
-    [SerializeField] private float updateDelay = 0.2f; // Delay before the second bar starts moving
-    [SerializeField] private float updateDuration = 0.4f; // Duration for the second bar to catch up
+    [SerializeField] private Image mainHealth;
+    [SerializeField] private Image secondHealth;
+    [SerializeField] private float updateDelay = 0.2f;
+    [SerializeField] private float updateDuration = 0.4f;
 
 
     [SerializeField] private bool autoRotateTowardsCamera = true;
