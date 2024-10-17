@@ -535,7 +535,7 @@ MonoBehaviour:
     m_DataPoints: []
   m_Spline: {fileID: 140456523}
   m_SegmentsPerMeter: 1
-  m_Mesh: {fileID: 317835082}
+  m_Mesh: {fileID: 202329909}
   m_TextureScale: 25.36
 --- !u!33 &140456526
 MeshFilter:
@@ -544,7 +544,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140456522}
-  m_Mesh: {fileID: 317835082}
+  m_Mesh: {fileID: 202329909}
 --- !u!23 &140456527
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -662,12 +662,7 @@ MonoBehaviour:
   m_DeprecatedInstances: []
   m_AutoRefresh: 1
   m_Seed: -54506
---- !u!4 &230627495 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4272988599558401819, guid: 0709b23bdb4b5e546b39fa9b59feb13b, type: 3}
-  m_PrefabInstance: {fileID: 5674932197376622265}
-  m_PrefabAsset: {fileID: 0}
---- !u!43 &317835082
+--- !u!43 &202329909
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -832,6 +827,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &230627495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4272988599558401819, guid: 0709b23bdb4b5e546b39fa9b59feb13b, type: 3}
+  m_PrefabInstance: {fileID: 5674932197376622265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &361889567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7494027583803585407, guid: 96146e3e06b909e4eb75d00d8a7002d9, type: 3}

@@ -60,7 +60,7 @@ public class DraggableUnit : MonoBehaviour
             {
                 if (validSlot is CampArmySlot)
                 {
-                    if (!(validSlot as CampArmySlot).IsUnlocked()) 
+                    if (!(validSlot as CampArmySlot).IsSlotUnLocked()) 
                     {
                         MoveToSlotPosition();
                         return;
