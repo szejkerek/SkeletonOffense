@@ -7,10 +7,9 @@ public class DraggableUnit : MonoBehaviour
     private bool isDragging = false;
     private Vector3 originalPosition;
     
-
+    public UnitBlueprint unitBlueprint;
     public CampBasicSlot currentSlot;    
     public float fixedHeight = 0.5f;
-    public int updateCost = 50;
 
     void Start()
     {
@@ -59,8 +58,33 @@ public class DraggableUnit : MonoBehaviour
             CampBasicSlot validSlot = GetSlotUnderUnit();
             if (validSlot != null)
             {
-                if(!validSlot.IsSlotOccupied())
+                if (validSlot is CampArmySlot)
                 {
+                    if (!(validSlot as CampArmySlot).IsUnlocked()) 
+                    {
+                        MoveToSlotPosition();
+                        return;
+                    } 
+                }
+
+                if(validSlot.IsSlotOccupied())
+                {
+                    //zamiana
+                    DraggableUnit unitToChangeWith = validSlot.unitOnSlot;
+                    currentSlot.SetUnitOnSlot(unitToChangeWith);
+                    unitToChangeWith.originalPosition = currentSlot.snapPoint.position;
+                    unitToChangeWith.MoveToSlotPosition();
+
+                    currentSlot = validSlot;
+                    currentSlot.SetUnitOnSlot(this);
+
+                    originalPosition = currentSlot.snapPoint.position;
+                    MoveToSlotPosition();
+
+                }
+                else
+                {
+                    //umieszczenie nowego
                     originalPosition = validSlot.snapPoint.position;
                     MoveToSlotPosition();
 
@@ -74,27 +98,12 @@ public class DraggableUnit : MonoBehaviour
                     currentSlot = validSlot;
                     currentSlot.SetUnitOnSlot(this);
                 }
-                else
-                {
-                    //zamiana
-                    DraggableUnit unitToChangeWith = validSlot.unitOnSlot;
-                    currentSlot.SetUnitOnSlot(unitToChangeWith);
-                    unitToChangeWith.originalPosition = currentSlot.snapPoint.position;
-                    unitToChangeWith.MoveToSlotPosition();
-
-                    currentSlot = validSlot;
-                    currentSlot.SetUnitOnSlot(this);
-
-                    originalPosition = currentSlot.snapPoint.position;
-                    MoveToSlotPosition();
-                }
 
                 
             }
             else
             {
                 MoveToSlotPosition();
-
             }
         }
     }
