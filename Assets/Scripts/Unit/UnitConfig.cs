@@ -8,6 +8,11 @@ public class UnitConfig : ScriptableObject
     public float walkSpeed = 5f;
     [Header("Attack")]
     public float damage = 5f;
-   [Header("Health")]
+    [Header("Health")]
     public float health = 100f;
+    [Header("NavMesh")]
+    [Tooltip("Time in seconds to consider being stuck")]
+    public float stuckThreshold = 2f; 
+    [Tooltip("Speed below which the unit is considered stuck")]
+    public float minStuckSpeed = 0.1f;
 }

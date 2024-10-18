@@ -21,19 +21,19 @@ public class UnitStateMachine : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(new UnitWalkingState(this));
+        ChangeState(new UnitComeBackToPath(this));
     }
 
     private void Update()
     {
-        currentState.LogicUpdate();
+        currentState.UpdateState();
     }
 
     public void ChangeState(UnitState newState)
     {
-        currentState?.Exit();   
+        currentState?.ExitState();   
         currentState = newState; 
-        currentState.Enter();
+        currentState.EnterState();
 
         UnitDebugText?.SetText(currentState.StateName, currentState.StateColor);
     }
