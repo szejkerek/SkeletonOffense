@@ -159,7 +159,8 @@ PrefabInstance:
       propertyPath: unlockPrice
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6819621917316697954, guid: f70c44f6576f77440a1c3838b45d0e07, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

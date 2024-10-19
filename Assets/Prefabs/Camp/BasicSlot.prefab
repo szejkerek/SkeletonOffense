@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2860882483563321114}
+  - component: {fileID: 973673255141269808}
+  - component: {fileID: 8539216880919698661}
   m_Layer: 0
   m_Name: BasicSlot
   m_TagString: Untagged
@@ -34,6 +36,46 @@ Transform:
   - {fileID: 2063306375017443867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &973673255141269808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672267711163730882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8383276fd4efdcd489eaaa5c1dfd57c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapPoint: {fileID: 2063306375017443867}
+  unitOnSlot: {fileID: 0}
+  slotEmptyMaterial: {fileID: 2100000, guid: 9e1f96a64aadc8440b9eddaddf57fe1e, type: 2}
+  slotFullMaterial: {fileID: 2100000, guid: 07c4080b7a529fc47a62f3049d071ed4, type: 2}
+  slotHoverEmptyMaterial: {fileID: 2100000, guid: bc2bfbe78cadb1b4ab765cabadf254c9, type: 2}
+  slotHoverFullMaterial: {fileID: 2100000, guid: 9ca8958693d6a7340b64552537231e17, type: 2}
+  visualMeshRendere: {fileID: 6536507312937752222}
+--- !u!65 &8539216880919698661
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672267711163730882}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 1.5, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3446303156012429141
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,8 +87,6 @@ GameObject:
   - component: {fileID: 3624662383586584431}
   - component: {fileID: 9102958606896347911}
   - component: {fileID: 4659474795556621702}
-  - component: {fileID: 7108622449266263332}
-  - component: {fileID: 6086690782690858992}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -122,46 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7108622449266263332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3446303156012429141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8383276fd4efdcd489eaaa5c1dfd57c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snapPoint: {fileID: 2063306375017443867}
-  unitOnSlot: {fileID: 0}
-  slotEmptyMaterial: {fileID: 2100000, guid: 9e1f96a64aadc8440b9eddaddf57fe1e, type: 2}
-  slotFullMaterial: {fileID: 2100000, guid: 07c4080b7a529fc47a62f3049d071ed4, type: 2}
-  slotHoverEmptyMaterial: {fileID: 2100000, guid: bc2bfbe78cadb1b4ab765cabadf254c9, type: 2}
-  slotHoverFullMaterial: {fileID: 2100000, guid: 9ca8958693d6a7340b64552537231e17, type: 2}
-  visualMeshRendere: {fileID: 6536507312937752222}
---- !u!65 &6086690782690858992
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3446303156012429141}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 6, z: 1}
-  m_Center: {x: 0, y: 1.5366191, z: 0}
 --- !u!1 &3942379055227747868
 GameObject:
   m_ObjectHideFlags: 0

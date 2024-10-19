@@ -8,8 +8,7 @@ public class CampGoldPile : MonoBehaviour
     void Start()
     {
         CampManager.Instance.OnMoneyChange += OnMoneyChange;
-        amountOfGold = CampManager.Instance.money;
-        debugText.SetText($"{amountOfGold} Gold", Color.yellow);
+        OnMoneyChange(CampManager.Instance.money);
     }
 
     // Update is called once per frame
