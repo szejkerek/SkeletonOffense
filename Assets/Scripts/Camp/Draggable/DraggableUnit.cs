@@ -55,6 +55,28 @@ public class DraggableUnit : MonoBehaviour
 
             UnityDraggingManager.Instance.StopDragging();
 
+            CampSellHole sellHole = CheckForCampSellHole();
+            if(sellHole != null)
+            {
+                int sellPrice = sellHole.CalculateUnitSellPrice(this);
+                CampManager.Instance.AddMoney(sellPrice);
+                Destroy(gameObject);
+                return;
+            }
+
+            CampUpgradeHouse upgradeHouse = CheckForCampUpgradeHouse();
+            if (upgradeHouse != null)
+            {
+                int sellPrice = upgradeHouse.CalculateUnitUpgradePrice(this);
+                if (CampManager.Instance.TryToBuy(sellPrice))
+                    unitBlueprint.LevelUp();
+
+                MoveToSlotPosition();
+                return;
+            }
+
+
+
             CampBasicSlot validSlot = GetSlotUnderUnit();
             if (validSlot != null)
             {
@@ -136,4 +158,37 @@ public class DraggableUnit : MonoBehaviour
         }
         return null;
     }
+
+    private CampSellHole CheckForCampSellHole()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out hit, 20f))
+        {
+            CampSellHole slot = hit.collider.GetComponent<CampSellHole>();
+            if (slot != null)
+            {
+                return slot;
+            }
+        }
+        return null;
+    }
+
+    private CampUpgradeHouse CheckForCampUpgradeHouse()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out hit, 20f))
+        {
+            CampUpgradeHouse slot = hit.collider.GetComponent<CampUpgradeHouse>();
+            if (slot != null)
+            {
+                return slot;
+            }
+        }
+        return null;
+    }
+
 }
