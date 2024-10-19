@@ -38,9 +38,14 @@ public class CampArmySlot : CampBasicSlot
         if (unlockable)
         {
             //Try to Buy Slot
-            //if bought
-            unlocked = true;
-            SetStateColor(null);
+            if (CampManager.Instance.TryToBuy(unlockPrice))
+            {
+                unlocked = true;
+                ArmyManager.Instance.SetUnlocableToNextSlot();
+                SetStateColor(null);
+            }
+                
+            
         }
 
 
