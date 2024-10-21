@@ -5,7 +5,7 @@ public class UnitStateMachine : MonoBehaviour
 {
     #region Managers
     public UnitWalkManager WalkManager => walkManager;
-    UnitWalkManager walkManager;
+    UnitWalkManager walkManager;    
     #endregion
 
     DebugText UnitDebugText;
@@ -14,12 +14,10 @@ public class UnitStateMachine : MonoBehaviour
     private void Awake()
     {
         walkManager = GetComponent<UnitWalkManager>();
-        walkManager.SetSpline(FindFirstObjectByType<SplineContainer>()); //TODO: Przenieść do StageManagera i ustawiać podczas respu jednostki.
-
         UnitDebugText = GetComponentInChildren<DebugText>();
     }
 
-    private void Start()
+    public void Initialize()
     {
         ChangeState(new UnitComeBackToPath(this));
     }
