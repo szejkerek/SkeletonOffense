@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ArmyManager : MonoBehaviour
 {
     public static ArmyManager Instance;
 
-    public List<CampArmySlot> armyList = new List<CampArmySlot>();
+    public List<CampArmySlot> armySlotsList = new List<CampArmySlot>();
 
     public GameObject armySlots;
 
@@ -20,18 +21,21 @@ public class ArmyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        armySlotsList = armySlots.GetComponentsInChildren<CampArmySlot>().ToList();
+
     }
     private void Start()
     {
 
         for (int i = 0;i< unlockableSlotsAmount;i++)
         {
-            armyList[i].unlockable = true;
+            armySlotsList[i].unlockable = true;
         }
 
-        armyList[0].unlocked = true;
+        armySlotsList[0].unlocked = true;
         
-        foreach (var slot in armyList) 
+        foreach (var slot in armySlotsList) 
         {
             slot.SetStateColor(null);
         }
@@ -39,9 +43,9 @@ public class ArmyManager : MonoBehaviour
 
     public void SetUnlocableToNextSlot()
     {
-        if(armyList.Count > unlockableSlotsAmount)
+        if(armySlotsList.Count > unlockableSlotsAmount)
         {
-            armyList[unlockableSlotsAmount].unlockable = true;
+            armySlotsList[unlockableSlotsAmount].unlockable = true;
             unlockableSlotsAmount++;
         }  
     }
@@ -49,7 +53,7 @@ public class ArmyManager : MonoBehaviour
     public List<UnitBlueprint> GetArmy()
     {
         List<UnitBlueprint> tmpList = new List<UnitBlueprint>();
-        foreach (var slot in armyList)
+        foreach (var slot in armySlotsList)
         {
             if(slot.unlocked && slot.IsSlotOccupied())
             {

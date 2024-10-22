@@ -636,6 +636,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7151649150920968793, guid: adbc46e54582646458f4b54e2504cdc2, type: 3}
   m_PrefabInstance: {fileID: 1208481423711440704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8375113284235624448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277538113214189376, guid: adbc46e54582646458f4b54e2504cdc2, type: 3}
+  m_PrefabInstance: {fileID: 1208481423711440704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3301934035442501859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -684,6 +689,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4161091259893986999, guid: 0089104b74b0d6b4d822c61a6d68a07b, type: 3}
+      propertyPath: armySlots
+      value: 
+      objectReference: {fileID: 8375113284235624448}
     - target: {fileID: 4161091259893986999, guid: 0089104b74b0d6b4d822c61a6d68a07b, type: 3}
       propertyPath: 'armyList.Array.data[0]'
       value: 
