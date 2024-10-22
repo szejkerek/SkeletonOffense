@@ -16,6 +16,7 @@ public class StageManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             SpawnUnit();
+            Debug.Log("Spawned");
         }
     }
 

@@ -1,10 +1,17 @@
+using System;
 using UnityEngine;
 
-public class UnitBlueprint : MonoBehaviour
+[Serializable]
+public class UnitBlueprint 
 {
     public UnitConfig config;
     public int level = 1;
-    public int price = 15;
+
+    public UnitBlueprint(UnitConfig config)
+    { 
+        this.config = config;
+        level = 1;
+    }
 
     public void SpawnUnit()
     {

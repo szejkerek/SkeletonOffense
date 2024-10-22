@@ -135,13 +135,17 @@ public class DraggableUnit : MonoBehaviour
         transform.position = originalPosition;
     }
 
+    public UnitBlueprint GetUnitBlueprint()
+    {
+        return unitBlueprint;
+    }
+
     private Vector3 GetMouseWorldPos()
     {
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = mainCamera.WorldToScreenPoint(gameObject.transform.position).z;
         return mainCamera.ScreenToWorldPoint(mousePoint);
     }
-
 
     private CampBasicSlot GetSlotUnderUnit()
     {

@@ -15,6 +15,7 @@ public class UnitWalkManager : MonoBehaviour
     {
         config = GetComponent<Unit>().Config;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        SetSpline(FindAnyObjectByType<SplineContainer>());
     }
 
     public void SetSpline(SplineContainer newSpline)

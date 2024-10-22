@@ -3,17 +3,15 @@ using UnityEngine;
 
 public class UnityDraggingManager : MonoBehaviour
 {
-    public static UnityDraggingManager Instance;  // Singleton, aby mieæ globalny dostêp
+    public static UnityDraggingManager Instance; 
 
-  
     public event Action<DraggableUnit> OnDragStart;
     public event Action<DraggableUnit> OnDragEnd;
 
-    private DraggableUnit currentDraggedUnit;  // Obiekt, który jest aktualnie przeci¹gany
+    private DraggableUnit currentDraggedUnit; 
 
     private void Awake()
     {
-        // Upewniamy siê, ¿e mamy tylko jedn¹ instancjê UnityDraggingManager
         if (Instance == null)
         {
             Instance = this;
@@ -24,13 +22,11 @@ public class UnityDraggingManager : MonoBehaviour
         }
     }
 
-    // Sprawdza, czy jakiœ obiekt jest aktualnie przeci¹gany
     public bool IsDragging()
     {
         return currentDraggedUnit != null;
     }
 
-    // Zaczyna przeci¹ganie obiektu
     public void StartDragging(DraggableUnit draggable)
     {
         if (!IsDragging())
@@ -40,7 +36,6 @@ public class UnityDraggingManager : MonoBehaviour
         }
     }
 
-    // Koñczy przeci¹ganie obiektu
     public void StopDragging()
     {
         if (IsDragging())
@@ -50,7 +45,6 @@ public class UnityDraggingManager : MonoBehaviour
         }
     }
 
-    // Zwraca obiekt, który jest przeci¹gany
     public DraggableUnit GetCurrentDraggedObject()
     {
         return currentDraggedUnit;
