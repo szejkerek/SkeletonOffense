@@ -7,10 +7,11 @@ public class ArmyManager : MonoBehaviour
 
     public List<CampArmySlot> armyList = new List<CampArmySlot>();
 
+    public GameObject armySlots;
+
     private int unlockableSlotsAmount = 2;
     private void Awake()
     {
-        // Upewniamy siê, ¿e mamy tylko jedn¹ instancjê UnityDraggingManager
         if (Instance == null)
         {
             Instance = this;
@@ -32,8 +33,6 @@ public class ArmyManager : MonoBehaviour
         
         foreach (var slot in armyList) 
         {
-            //Load settings
-
             slot.SetStateColor(null);
         }
     }
@@ -47,14 +46,16 @@ public class ArmyManager : MonoBehaviour
         }  
     }
 
-    public void SpawArmy()
+    public List<UnitBlueprint> GetArmy()
     {
+        List<UnitBlueprint> tmpList = new List<UnitBlueprint>();
         foreach (var slot in armyList)
         {
             if(slot.unlocked && slot.IsSlotOccupied())
             {
-                //Use to spawn unit slot.unitOnSlot.unitBlueprint;
+                tmpList.Add(slot.GetUnitOnSlot().GetUnitBlueprint());
             }
         }
+        return tmpList;
     }
 }
