@@ -13,18 +13,47 @@ public class UnitComeBackToPath : UnitState
 
     public override void EnterState()
     {
-        if (!walkManager.MoveToPoint(walkManager.GetOffsetSplinePositionByLength()))
-            Debug.LogWarning("Unit cannot find path to spline");
+        walkManager.MoveToPoint(walkManager.GetOffsetSplinePositionByLength());      
     }
 
     public override void UpdateState()
     {
         if (walkManager.HasReachedDestination())
+        {
             context.ChangeState(new UnitWalkOnPathState(context));
+            return;
+        }
     }
 
     public override void ExitState()
     {
         walkManager.StopNavMeshMovement();
+    }
+}
+
+public class UnitComeToTower : UnitState
+{
+    UnitWalkManager walkManager;
+    public UnitComeToTower(UnitStateMachine context) : base(context)
+    {
+        StateName = "ComeToTower";
+        StateColor = Color.magenta;
+
+        walkManager = context.WalkManager;
+    }
+
+    public override void EnterState()
+    {
+
+    }
+
+    public override void UpdateState()
+    {
+
+    }
+
+    public override void ExitState()
+    {
+
     }
 }

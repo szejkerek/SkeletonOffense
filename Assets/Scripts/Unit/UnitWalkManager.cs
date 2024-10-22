@@ -63,16 +63,16 @@ public class UnitWalkManager : MonoBehaviour
         transform.position = position.Add(y: config.height / 2) + splineContainer.transform.position;
     }
 
-    public bool MoveToPoint(Vector3 targetPosition)
+    public void MoveToPoint(Vector3 targetPosition)
     {
         if (navMeshAgent == null || !navMeshAgent.isOnNavMesh)
         {
             Debug.LogWarning("Agent is not on navmesh!");
-            return false;
+            return;
         }
 
         navMeshAgent.SetDestination(targetPosition);
-        return true;
+        return;
     }
     public void StopNavMeshMovement()
     {

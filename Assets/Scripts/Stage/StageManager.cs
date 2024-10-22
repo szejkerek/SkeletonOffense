@@ -1,16 +1,28 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public StageConfig config;
+    public EnemyBase EnemyBase;
+    public List<Tower> Towers;
+    public Transform spawnPoint;
+    public SplineManager SplineManager;
+
+    public Unit UnitPrefab;
+
+    private void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnUnit();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnUnit()
     {
-        
+        var spawned = Instantiate(UnitPrefab, spawnPoint.transform.position, Quaternion.identity);
+        spawned.GetComponent<UnitWalkManager>().SetSpline(SplineManager.Spline);
+        spawned.UnitStateMachine.Initialize();
     }
 }
