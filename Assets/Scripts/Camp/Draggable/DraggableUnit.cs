@@ -91,24 +91,26 @@ public class DraggableUnit : MonoBehaviour
 
                 if(validSlot.IsSlotOccupied())
                 {
+                    Debug.Log("zamiana");
                     //zamiana
                     DraggableUnit unitToChangeWith = validSlot.unitOnSlot;
                     currentSlot.SetUnitOnSlot(unitToChangeWith);
-                    unitToChangeWith.originalPosition = currentSlot.snapPoint.position;
+                    //unitToChangeWith.originalPosition = currentSlot.snapPoint.position;
+                    //unitToChangeWith.currentSlot = currentSlot;
                     unitToChangeWith.MoveToSlotPosition();
 
-                    currentSlot = validSlot;
-                    currentSlot.SetUnitOnSlot(this);
+                    //currentSlot = validSlot;
+                    validSlot.SetUnitOnSlot(this);
 
-                    originalPosition = currentSlot.snapPoint.position;
+                    //originalPosition = currentSlot.snapPoint.position;
                     MoveToSlotPosition();
 
                 }
                 else
                 {
+                    Debug.Log("przypisanie");
                     //umieszczenie nowego
-                    originalPosition = validSlot.snapPoint.position;
-                    MoveToSlotPosition();
+                    
 
 
                     if (currentSlot != null)
@@ -117,8 +119,10 @@ public class DraggableUnit : MonoBehaviour
                         currentSlot = null;
                     }
 
-                    currentSlot = validSlot;
-                    currentSlot.SetUnitOnSlot(this);
+                    validSlot.SetUnitOnSlot(this);
+                    //originalPosition = validSlot.snapPoint.position;
+                    //currentSlot = validSlot;
+                    MoveToSlotPosition();
                 }
 
                 
@@ -130,6 +134,11 @@ public class DraggableUnit : MonoBehaviour
         }
     }
 
+    public void SetCurrentSlot(CampBasicSlot slot)
+    {
+        originalPosition = slot.snapPoint.position;
+        currentSlot = slot;
+    }
     public void MoveToSlotPosition()
     {
         transform.position = originalPosition;
