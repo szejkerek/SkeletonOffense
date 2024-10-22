@@ -8,6 +8,7 @@ public class UnitConfig : ScriptableObject
     public float height = 1.5f;
     public float walkSpeed = 5f;
     [Header("Attack")]
+    public float range = 5f;
     public float damage = 5f;
     [Header("Health")]
     public float health = 100f;

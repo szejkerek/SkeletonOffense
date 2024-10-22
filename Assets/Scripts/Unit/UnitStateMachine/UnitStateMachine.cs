@@ -8,12 +8,10 @@ public class UnitStateMachine : MonoBehaviour
 
     [SerializeField] DebugText UnitDebugText;
 
-    bool aggresive;
     UnitState currentState;
 
-    public void Initialize(bool aggresive)
+    public void Initialize()
     {
-        this.aggresive = aggresive;
         unit = GetComponent<Unit>();
         ChangeState(new UnitComeBackToPath(this));
     }

@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 4.36
   walkSpeed: 10
+  range: 15
   damage: 5
   health: 100
+  stuckThreshold: 2
+  minStuckSpeed: 0.1
+  price: 5

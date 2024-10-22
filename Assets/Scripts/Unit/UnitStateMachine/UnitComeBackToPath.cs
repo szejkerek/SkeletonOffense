@@ -12,7 +12,7 @@ public class UnitComeBackToPath : UnitState
     public override void EnterState()
     {
         nextWaypoint = SplineManager.GetNext(WalkManager.splinePosition);
-        WalkManager.MoveToPoint(nextWaypoint);      
+        WalkManager.MoveToPoint(nextWaypoint.position);      
     }
 
     public override void UpdateState()

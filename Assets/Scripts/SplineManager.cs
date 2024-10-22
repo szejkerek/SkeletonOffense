@@ -17,11 +17,8 @@ public class SplineManager : MonoBehaviour
         spline = GetComponent<SplineContainer>();
         for (int i = 0; i < SampleCount; i++)
         {
-            float t = (float)i / SampleCount; 
-            var waypoint = new Waypoint();
-            waypoint.percentage = t;
-            waypoint.position = (Vector3)spline.EvaluatePosition(t);
-            waypoints.Add(waypoint);
+            float t = (float) i / SampleCount; 
+            waypoints.Add(new Waypoint(percentage: t, position: (Vector3)spline.EvaluatePosition(t)));
         }
     }
 
@@ -32,7 +29,7 @@ public class SplineManager : MonoBehaviour
 
         foreach (var waypoint in waypoints)
         {
-            float distanceSqr = (waypoint.position - point).sqrMagnitude;
+            float distanceSqr = Vector3.SqrMagnitude(waypoint.position - point);
             if (distanceSqr < closestDistanceSqr)
             {
                 closestDistanceSqr = distanceSqr;
@@ -68,6 +65,11 @@ public class SplineManager : MonoBehaviour
 [Serializable]
 public class Waypoint
 {
+    public Waypoint(float percentage, Vector3 position)
+    {
+        this.percentage = percentage;
+        this.position = position;
+    }
     public float percentage;
     public Vector3 position;
 }

@@ -50,7 +50,7 @@ public class UnitWalkManager : MonoBehaviour
         transform.position = position.Add(y: config.height / 2) + splineContainer.transform.position;
     }
 
-    public void MoveToPoint(Waypoint waypoint)
+    public void MoveToPoint(Vector3 position)
     {
         if (navMeshAgent == null || !navMeshAgent.isOnNavMesh)
         {
@@ -58,7 +58,7 @@ public class UnitWalkManager : MonoBehaviour
             return;
         }
 
-        navMeshAgent.SetDestination(waypoint.position);
+        navMeshAgent.SetDestination(position);
         return;
     }
     public void StopNavMeshMovement()
