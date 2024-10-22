@@ -11,7 +11,7 @@ public class StageManager : MonoBehaviour
 
     public Unit UnitPrefab;
 
-    private void Update()
+    void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {

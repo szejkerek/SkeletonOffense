@@ -88,12 +88,8 @@ public class UnitWalkManager : MonoBehaviour
         if (navMeshAgent == null || !navMeshAgent.isOnNavMesh || navMeshAgent.pathPending)
             return false;
 
-        if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
-        {
-            return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
-        }
-
-        return false;
+        Debug.Log(navMeshAgent.remainingDistance);
+        return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
     }
 
 
