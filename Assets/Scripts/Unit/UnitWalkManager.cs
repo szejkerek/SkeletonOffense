@@ -15,12 +15,11 @@ public class UnitWalkManager : MonoBehaviour
     {
         config = GetComponent<Unit>().Config;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        SetSpline(FindAnyObjectByType<SplineContainer>());
     }
 
-    public void SetSpline(SplineContainer newSpline)
+    public void SetSpline(SplineManager newSpline)
     {
-        splineContainer = newSpline;
+        splineContainer = newSpline.Spline;
     }
 
     public float WalkAlongSpline()

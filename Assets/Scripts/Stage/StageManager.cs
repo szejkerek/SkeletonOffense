@@ -23,7 +23,6 @@ public class StageManager : MonoBehaviour
     public void SpawnUnit()
     {
         var spawned = Instantiate(UnitPrefab, spawnPoint.transform.position, Quaternion.identity);
-        spawned.GetComponent<UnitWalkManager>().SetSpline(SplineManager.Spline);
-        spawned.UnitStateMachine.Initialize();
+        spawned.Initialize(SplineManager);
     }
 }

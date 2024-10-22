@@ -6,10 +6,19 @@ public class Unit : MonoBehaviour
     [SerializeField] UnitConfig config;
 
     public UnitStateMachine UnitStateMachine => unitStateMachine;
-    UnitStateMachine unitStateMachine;
+    UnitStateMachine unitStateMachine;    
+    public UnitWalkManager UnitWalkManager => unitWalkManager;
+    UnitWalkManager unitWalkManager;
 
     private void Awake()
     {
         unitStateMachine = GetComponent<UnitStateMachine>();
+        unitWalkManager = GetComponent<UnitWalkManager>();
+    }
+
+    public void Initialize(SplineManager stageSpline)
+    {
+        unitWalkManager.SetSpline(stageSpline);
+        unitStateMachine.Initialize();
     }
 }
