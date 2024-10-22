@@ -38,6 +38,7 @@ public class CampBasicSlot : MonoBehaviour, IDragListener
     public void SetUnitOnSlot(DraggableUnit unit)
     {
         unitOnSlot = unit;
+        if(unit!=null) unit.SetCurrentSlot(this);
     }
 
     public bool IsSlotOccupied()
