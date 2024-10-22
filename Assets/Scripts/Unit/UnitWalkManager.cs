@@ -4,12 +4,11 @@ using UnityEngine.Splines;
 
 public class UnitWalkManager : MonoBehaviour
 {
+    public float splinePosition = 0f;           
+    
     SplineContainer splineContainer;
     NavMeshAgent navMeshAgent;
     UnitConfig config;
-
-    float stuckCheckTimer = 0f;
-    float splinePosition = 0f;        
 
     private void Awake()
     {
@@ -36,18 +35,6 @@ public class UnitWalkManager : MonoBehaviour
         return splinePosition;
     }
 
-    public Vector3 GetOffsetSplinePositionByLength(float offsetPercent = 0.05f)
-    {
-        float splineLength = splineContainer.Spline.GetLength();
-        float offsetDistance = splineLength * offsetPercent;
-        float currentDistance = splineLength * splinePosition;
-
-        float newSplinePosition = Mathf.Clamp01(Mathf.Clamp(currentDistance + offsetDistance, 0f, splineLength) / splineLength);
-        splinePosition = newSplinePosition; //It might break game
-
-        return splineContainer.EvaluatePosition(newSplinePosition);
-    }
-
 
     void RotateUnit()
     {
@@ -63,7 +50,7 @@ public class UnitWalkManager : MonoBehaviour
         transform.position = position.Add(y: config.height / 2) + splineContainer.transform.position;
     }
 
-    public void MoveToPoint(Vector3 targetPosition)
+    public void MoveToPoint(Waypoint waypoint)
     {
         if (navMeshAgent == null || !navMeshAgent.isOnNavMesh)
         {
@@ -71,7 +58,7 @@ public class UnitWalkManager : MonoBehaviour
             return;
         }
 
-        navMeshAgent.SetDestination(targetPosition);
+        navMeshAgent.SetDestination(waypoint.position);
         return;
     }
     public void StopNavMeshMovement()
@@ -87,25 +74,7 @@ public class UnitWalkManager : MonoBehaviour
         if (navMeshAgent == null || !navMeshAgent.isOnNavMesh || navMeshAgent.pathPending)
             return false;
 
-        Debug.Log(navMeshAgent.remainingDistance);
         return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
     }
 
-
-    public bool IsStuck()
-    {
-        if (navMeshAgent == null || !navMeshAgent.hasPath)
-            return false;
-
-        if (navMeshAgent.velocity.sqrMagnitude < config.minStuckSpeed * config.minStuckSpeed)
-        {
-            stuckCheckTimer += Time.deltaTime;
-        }
-        else
-        {
-            stuckCheckTimer = 0f;
-        }
-
-        return stuckCheckTimer >= config.stuckThreshold;
-    }
 }

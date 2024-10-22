@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -49,7 +50,7 @@ public class SplineManager : MonoBehaviour
                 return waypoint;
         }
 
-        return waypoints[waypoints.Count - 1];
+        return waypoints.Last();
     }
 
     private void OnDrawGizmos()
