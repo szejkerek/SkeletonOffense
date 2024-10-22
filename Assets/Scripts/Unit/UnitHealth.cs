@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UnitHealth : MonoBehaviour
 {
-    HealthDisplay healthDisplay;
+    [SerializeField] HealthDisplay healthDisplay;
     UnitConfig config;
 
     float maxHealth;
@@ -10,7 +10,6 @@ public class UnitHealth : MonoBehaviour
 
     private void Awake()
     {
-        healthDisplay = GetComponentInChildren<HealthDisplay>();
         config = GetComponent<Unit>().Config;
         maxHealth = currentHealth = config.health;
     }

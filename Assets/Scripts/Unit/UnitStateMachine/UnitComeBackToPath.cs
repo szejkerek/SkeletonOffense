@@ -2,23 +2,22 @@
 
 public class UnitComeBackToPath : UnitState
 {
-    UnitWalkManager walkManager;
+    Waypoint nextWaypoint;
     public UnitComeBackToPath(UnitStateMachine context) : base(context)
     {
         StateName = "ComeBackToPath";
         StateColor = Color.green;
-
-        walkManager = context.WalkManager;
     }
 
     public override void EnterState()
     {
-        walkManager.MoveToPoint(walkManager.GetOffsetSplinePositionByLength());      
+        nextWaypoint = SplineManager.GetNext(WalkManager.splinePosition);
+        WalkManager.MoveToPoint(nextWaypoint);      
     }
 
     public override void UpdateState()
     {
-        if (walkManager.HasReachedDestination())
+        if (WalkManager.HasReachedDestination())
         {
             context.ChangeState(new UnitWalkOnPathState(context));
             return;
@@ -27,33 +26,7 @@ public class UnitComeBackToPath : UnitState
 
     public override void ExitState()
     {
-        walkManager.StopNavMeshMovement();
-    }
-}
-
-public class UnitComeToTower : UnitState
-{
-    UnitWalkManager walkManager;
-    public UnitComeToTower(UnitStateMachine context) : base(context)
-    {
-        StateName = "ComeToTower";
-        StateColor = Color.magenta;
-
-        walkManager = context.WalkManager;
-    }
-
-    public override void EnterState()
-    {
-
-    }
-
-    public override void UpdateState()
-    {
-
-    }
-
-    public override void ExitState()
-    {
-
+        WalkManager.StopNavMeshMovement();
+        WalkManager.splinePosition = nextWaypoint.percentage;
     }
 }

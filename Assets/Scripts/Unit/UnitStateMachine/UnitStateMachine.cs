@@ -3,22 +3,18 @@ using UnityEngine.Splines;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    #region Managers
-    public UnitWalkManager WalkManager => walkManager;
-    UnitWalkManager walkManager;    
-    #endregion
+    public Unit Unit => unit;
+    Unit unit;
 
-    DebugText UnitDebugText;
+    [SerializeField] DebugText UnitDebugText;
+
+    bool aggresive;
     UnitState currentState;
 
-    private void Awake()
+    public void Initialize(bool aggresive)
     {
-        walkManager = GetComponent<UnitWalkManager>();
-        UnitDebugText = GetComponentInChildren<DebugText>();
-    }
-
-    public void Initialize()
-    {
+        this.aggresive = aggresive;
+        unit = GetComponent<Unit>();
         ChangeState(new UnitComeBackToPath(this));
     }
 

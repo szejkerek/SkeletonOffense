@@ -9,6 +9,8 @@ public class Unit : MonoBehaviour
     UnitStateMachine unitStateMachine;    
     public UnitWalkManager UnitWalkManager => unitWalkManager;
     UnitWalkManager unitWalkManager;
+    public SplineManager SplineManager => splineManager;
+    SplineManager splineManager;
 
     private void Awake()
     {
@@ -16,9 +18,10 @@ public class Unit : MonoBehaviour
         unitWalkManager = GetComponent<UnitWalkManager>();
     }
 
-    public void Initialize(SplineManager stageSpline)
+    public void Initialize(SplineManager stageSpline,bool aggresive)
     {
+        this.splineManager = stageSpline;
         unitWalkManager.SetSpline(stageSpline);
-        unitStateMachine.Initialize();
+        unitStateMachine.Initialize(aggresive);
     }
 }

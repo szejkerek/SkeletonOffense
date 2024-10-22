@@ -6,10 +6,16 @@ public abstract class UnitState
     public Color StateColor = Color.gray; 
 
     protected UnitStateMachine context;
+    protected Unit Unit;
+    protected UnitWalkManager WalkManager;
+    protected SplineManager SplineManager;
 
     public UnitState(UnitStateMachine context)
     {
         this.context = context;
+        this.Unit = context.Unit;
+        this.WalkManager = context.Unit.UnitWalkManager;
+        this.SplineManager = context.Unit.SplineManager;
     }
     public abstract void EnterState();     
     public abstract void UpdateState(); 
