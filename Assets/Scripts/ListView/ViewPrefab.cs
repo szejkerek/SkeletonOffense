@@ -1,13 +1,11 @@
 using UnityEngine;
 
-namespace PlaceHolders.ListView
+
+public abstract class ViewPrefab<ModelType> : MonoBehaviour
 {
-    public abstract class ViewPrefab<ModelType> : MonoBehaviour
+    public void Init(ModelType model)
     {
-        public void Init(ModelType model)
-        {
-            SetData(model);
-        }
-        public abstract void SetData(ModelType data);
+        SetData(model);
     }
+    public abstract void SetData(ModelType data);
 }

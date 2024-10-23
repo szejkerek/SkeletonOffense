@@ -88,16 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b61d05643305014f86c47b75e0483aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armyList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  armySlotsList: []
+  armySlots: {fileID: 0}
+  unitPrefab: {fileID: 8147667969499427684, guid: 9527a60b7a357ac409a07779e5622d20, type: 3}
 --- !u!1 &6546388558636410145
 GameObject:
   m_ObjectHideFlags: 0

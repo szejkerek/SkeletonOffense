@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class ArmyManager : MonoBehaviour
     public List<CampArmySlot> armySlotsList = new List<CampArmySlot>();
 
     public GameObject armySlots;
+
+    public GameObject unitPrefab;
 
     private int unlockableSlotsAmount = 2;
     private void Awake()
@@ -23,11 +26,23 @@ public class ArmyManager : MonoBehaviour
         }
 
         armySlotsList = armySlots.GetComponentsInChildren<CampArmySlot>().ToList();
-
+        UnitBuyButton.OnUnitBought += SpawnUnitOnSlot;
     }
+
+    private void SpawnUnitOnSlot(UnitConfig config, CampArmySlot slot)
+    {
+        
+        GameObject newUnit = Instantiate(unitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        DraggableUnit unitDraggable = newUnit.GetComponent<DraggableUnit>();
+        unitDraggable.GetUnitBlueprint().config = config;
+        unitDraggable.GetUnitBlueprint().level = 1;
+        unitDraggable.SetCurrentSlot(slot);
+        unitDraggable.MoveToSlotPosition();
+    }
+
     private void Start()
     {
-
+        
         for (int i = 0;i< unlockableSlotsAmount;i++)
         {
             armySlotsList[i].unlockable = true;
@@ -61,5 +76,9 @@ public class ArmyManager : MonoBehaviour
             }
         }
         return tmpList;
+    }
+    private void OnDestroy()
+    {
+        UnitBuyButton.OnUnitBought -= SpawnUnitOnSlot;
     }
 }

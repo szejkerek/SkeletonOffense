@@ -26,10 +26,12 @@ public class CampArmySlot : CampBasicSlot
             if (IsSlotOccupied())
             {
                 //Display UI Change mode
+                GameplayUI.Instance.campUnitManagmentUI.ShowEditUnitModeUI(this);
             }
             else
             {
                 //Display UI Buy Unit
+                GameplayUI.Instance.campUnitManagmentUI.ShowBuyUI(this);
             }
             return;
         }
@@ -57,12 +59,12 @@ public class CampArmySlot : CampBasicSlot
         {
             if (IsSlotOccupied())
             {
-                //Display text "Click to Change Unit Mode"
+                //Display buttonText "Click to Change Unit Mode"
                 debugText.SetText("Click to Change Unit Mode",Color.blue);
             }
             else 
             {
-                //Display text "Click to buy Unit"
+                //Display buttonText "Click to buy Unit"
                 debugText.SetText("Click to buy Unit", Color.blue);
             }
             return;

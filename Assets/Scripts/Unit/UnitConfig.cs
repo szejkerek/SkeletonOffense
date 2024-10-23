@@ -19,4 +19,7 @@ public class UnitConfig : ScriptableObject
 
     [Header("Price")]
     public int price = 5;
+    [Header("UnlockTime")]
+    public int unlockStage = 1;
+    public int unlockRound = 1;
 }

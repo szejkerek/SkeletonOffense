@@ -6,6 +6,7 @@ public class UnitBlueprint
 {
     public UnitConfig config;
     public int level = 1;
+    public bool agressiveMode = false;
 
     public UnitBlueprint(UnitConfig config)
     { 
