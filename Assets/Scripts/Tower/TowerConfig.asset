@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b5b05564818e44da0520cecd6b2792, type: 3}
   m_Name: TowerConfig
   m_EditorClassIdentifier: 
+  health: 50
+  reloadTime: 2
+  projectile: {fileID: 1411268973528017137, guid: 9798d3046f3f449428ffa2a4899a5422, type: 3}
+  damage: 20
+  range: 24.1

@@ -3,20 +3,26 @@ using UnityEngine;
 public class UnitHealth : MonoBehaviour
 {
     [SerializeField] HealthDisplay healthDisplay;
-    UnitConfig config;
+    Unit unit;
 
-    float maxHealth;
-    float currentHealth;
+    public float maxHealth { get; private set; }
+    public float currentHealth { get; private set; }
 
     private void Awake()
     {
-        config = GetComponent<Unit>().Config;
-        maxHealth = currentHealth = config.health;
+        unit = GetComponent<Unit>();
+        maxHealth = currentHealth = unit.Config.health;
     }
 
-    public void DealDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         healthDisplay.UpdateHealth(currentHealth, maxHealth);
+
+        if(currentHealth <= 0)
+        {
+            unit.isAlive = false;
+            Destroy(unit, 3f);
+        }
     }
 }

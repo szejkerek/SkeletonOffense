@@ -44,7 +44,7 @@ public class HealthDisplay : MonoBehaviour
             .SetEase(Ease.InQuad);
     }
 
-    private void UpdateHealthDisplay(float currentHealth, float maxHealth)
+    void UpdateHealthDisplay(float currentHealth, float maxHealth)
     {
         mainHealth.fillAmount = currentHealth / maxHealth;
         secondHealth.fillAmount = currentHealth / maxHealth;

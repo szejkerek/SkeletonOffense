@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Unit : MonoBehaviour
 {
+    public bool isAlive = true;
     public UnitConfig Config => config;
     [SerializeField] UnitConfig config;
     public UnitStateMachine UnitStateMachine => unitStateMachine;
@@ -16,6 +17,8 @@ public class Unit : MonoBehaviour
     UnitWalkManager unitWalkManager;
     public SplineManager SplineManager => splineManager;
     SplineManager splineManager;
+    public UnitHealth UnitHealth => unitHealth;
+    UnitHealth unitHealth;
 
     public List<TargetInfo> targets = new();
 
@@ -26,6 +29,7 @@ public class Unit : MonoBehaviour
     {
         unitStateMachine = GetComponent<UnitStateMachine>();
         unitWalkManager = GetComponent<UnitWalkManager>();
+        unitHealth = GetComponent<UnitHealth>();
         this.splineManager = stageSpline;
         this.aggresive = aggresive;
         unitWalkManager.SetSpline(stageSpline);

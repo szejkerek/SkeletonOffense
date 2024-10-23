@@ -15,7 +15,7 @@ public class HealthDisplayTool
         {
             foreach (var unitHealth in units)
             {
-                unitHealth.DealDamage(10f);
+                unitHealth.TakeDamage(10f);
             }
         }
         else
