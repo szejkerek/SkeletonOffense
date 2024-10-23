@@ -9,7 +9,7 @@ public class UnitConfig : ScriptableObject
     public float walkSpeed = 5f;
     [Header("Attack")]
     public float range = 5f;
-    public float damage = 5f;
+    public int damage = 5;
     public float cooldown = 2f;
     [Header("Health")]
     public float health = 100f;

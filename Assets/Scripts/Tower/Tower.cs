@@ -3,7 +3,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour, IDamagable
 {
     public bool IsAlive { get => isAlive; set => isAlive = value; }
-    bool isAlive;
+    bool isAlive = true;
 
     public TowerConfig Config;
     public TowerHealth TowerHealth {  get; private set; }

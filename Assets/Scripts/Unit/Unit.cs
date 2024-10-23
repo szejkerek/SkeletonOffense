@@ -19,6 +19,8 @@ public class Unit : MonoBehaviour, IDamagable
     SplineManager splineManager;
     public UnitHealth UnitHealth => unitHealth;
     UnitHealth unitHealth;
+    public Weapon Weapon => weapon;
+    Weapon weapon;
 
     public List<TargetInfo> targets = new();
 
@@ -29,6 +31,7 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void Initialize(SplineManager stageSpline,bool aggresive)
     {
+        weapon = GetComponentInChildren<Weapon>();
         unitStateMachine = GetComponent<UnitStateMachine>();
         unitWalkManager = GetComponent<UnitWalkManager>();
         unitHealth = GetComponent<UnitHealth>();
@@ -36,6 +39,7 @@ public class Unit : MonoBehaviour, IDamagable
         this.aggresive = aggresive;
         unitWalkManager.SetSpline(stageSpline);
         unitStateMachine.Initialize();
+        weapon.Init(this);
         SetUpTargets();
     }
 
