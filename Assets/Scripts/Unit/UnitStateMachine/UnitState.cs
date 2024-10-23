@@ -9,6 +9,7 @@ public abstract class UnitState
     protected Unit Unit;
     protected UnitWalkManager WalkManager;
     protected SplineManager SplineManager;
+    protected Weapon Weapon;
 
     public UnitState(UnitStateMachine context)
     {
@@ -16,6 +17,7 @@ public abstract class UnitState
         this.Unit = context.Unit;
         this.WalkManager = context.Unit.UnitWalkManager;
         this.SplineManager = context.Unit.SplineManager;
+        this.Weapon = context.Unit.GetComponentInChildren<Weapon>();
     }
     public abstract void EnterState();     
     public abstract void UpdateState(); 

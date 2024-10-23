@@ -20,6 +20,7 @@ public class UnitComeToTower : UnitState
     {
         if (WalkManager.HasReachedDestination())
         {
+            context.ChangeState(new UnitAttackTower(context, targetInfo));
             return;
         }
     }

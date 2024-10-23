@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2209180258887598954}
   - component: {fileID: 3542207858218222371}
   - component: {fileID: 2247987392344862881}
+  - component: {fileID: 5655281865909509979}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -139,6 +140,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateInterval: 0.25
   shootingPoint: {fileID: 7791889930253451014}
+--- !u!114 &5655281865909509979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500714680695489697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e7069ed6db37e40b2756c1d77fe317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDisplay: {fileID: 3543493546922326605}
 --- !u!1 &4473826050261408927
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,13 +286,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6711372636584356377, guid: 695f2b2b52b4a78489efff9a473b20f5, type: 3}
       propertyPath: m_Name
-      value: UnitHealthDisplay
+      value: HealthDisplay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 695f2b2b52b4a78489efff9a473b20f5, type: 3}
+--- !u!114 &3543493546922326605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4614039619076272334, guid: 695f2b2b52b4a78489efff9a473b20f5, type: 3}
+  m_PrefabInstance: {fileID: 8153019513461213827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ebd65c3936de3489952d2ec278608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9120452367758950551 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1132377225296579092, guid: 695f2b2b52b4a78489efff9a473b20f5, type: 3}

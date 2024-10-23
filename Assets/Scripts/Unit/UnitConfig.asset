@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: UnitConfig
   m_EditorClassIdentifier: 
   height: 4.36
-  walkSpeed: 10
-  range: 15
-  damage: 5
+  walkSpeed: 10.72
+  range: 16
+  damage: 7.29
+  cooldown: 1.72
   health: 100
   stuckThreshold: 2
-  minStuckSpeed: 0.1
   price: 5
