@@ -5,25 +5,26 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 10f;
-    Unit target;
+    IDamagable target;
     int damage = 0;
-    public void Initialize(Unit targetUnit, int damage)
+    public void Initialize(IDamagable target, int damage)
     {
         this.damage = damage;
-        target = targetUnit;
+        this.target = target;
         StartCoroutine(MoveToTarget());
     }
 
     private IEnumerator MoveToTarget()
     {
-        while (target != null && target.isAlive)
+        while (target != null && target.IsAlive)
         {
             Vector3 direction = (target.transform.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
 
             if (Vector3.Distance(transform.position, target.transform.position) < 0.1f)
             {
-                target.UnitHealth.TakeDamage(damage);
+                target.TakeDamage(damage);
+                Destroy(gameObject);
                 yield break;
             }
 

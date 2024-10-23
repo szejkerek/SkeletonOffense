@@ -1,14 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IDamagable
 {
-    public bool isAlive = true;
+    public bool IsAlive { get => isAlive; set => isAlive = value; }
+    bool isAlive = true;
+
     public UnitConfig Config => config;
     [SerializeField] UnitConfig config;
     public UnitStateMachine UnitStateMachine => unitStateMachine;
@@ -23,6 +23,8 @@ public class Unit : MonoBehaviour
     public List<TargetInfo> targets = new();
 
     public bool Agressive => aggresive;
+
+
     public bool aggresive;
 
     public void Initialize(SplineManager stageSpline,bool aggresive)
@@ -88,5 +90,10 @@ public class Unit : MonoBehaviour
         {
             Gizmos.DrawSphere(target.sampledStandPosition.Add(y: 1), 1f);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        unitHealth.TakeDamage(damage);
     }
 }

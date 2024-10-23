@@ -21,8 +21,8 @@ public class UnitHealth : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            unit.isAlive = false;
-            Destroy(unit, 3f);
+            unit.IsAlive = false;
+            Destroy(unit.gameObject, 3f);
         }
     }
 }

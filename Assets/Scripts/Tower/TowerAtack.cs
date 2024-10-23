@@ -61,7 +61,7 @@ public class TowerAttack : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.TryGetComponent(out Unit unit) && unit.isAlive)
+            if (hitCollider.TryGetComponent(out Unit unit) && unit.IsAlive)
             {
                 unitsInRange.Add(unit);
             }
