@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
         while (target != null && target.IsAlive)
         {
             Vector3 direction = (target.transform.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position += direction * (speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, target.transform.position) < 0.1f)
             {

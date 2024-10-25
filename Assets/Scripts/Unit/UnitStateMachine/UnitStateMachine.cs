@@ -3,16 +3,15 @@ using UnityEngine.Splines;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    public Unit Unit => unit;
-    Unit unit;
+    public Unit Unit { get; private set; }
 
-    [SerializeField] DebugText UnitDebugText;
+    [SerializeField] DebugText unitDebugText;
 
     UnitState currentState;
 
     public void Initialize()
     {
-        unit = GetComponent<Unit>();
+        Unit = GetComponent<Unit>();
         ChangeState(new UnitComeBackToPath(this));
     }
 
@@ -21,13 +20,14 @@ public class UnitStateMachine : MonoBehaviour
         currentState.UpdateState();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void ChangeState(UnitState newState)
     {
         currentState?.ExitState();   
         currentState = newState; 
         currentState.EnterState();
 
-        UnitDebugText?.SetText(currentState.StateName, currentState.StateColor);
+        unitDebugText?.SetText(currentState.StateName, currentState.StateColor);
     }
 
 }

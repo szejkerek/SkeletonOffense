@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public StageConfig config;
+    [SerializeField] StageConfig config;
     public EnemyBase EnemyBase;
     public List<Tower> Towers;
     public Transform spawnPoint;
@@ -14,10 +14,13 @@ public class StageManager : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
+        {
             SpawnUnit();
+            
+        }
     }
 
-    public void SpawnUnit()
+    void SpawnUnit()
     {
         var spawned = Instantiate(UnitPrefab, spawnPoint.transform.position, Quaternion.identity);
         spawned.Initialize(SplineManager, aggresive: true);
