@@ -8,7 +8,9 @@ public class DraggableUnit : MonoBehaviour
     private Vector3 originalPosition;
     
     public UnitBlueprint unitBlueprint;
-    public CampBasicSlot currentSlot;    
+    public CampBasicSlot currentSlot; 
+    
+    //TODO more interesting way of keeping unit in set height
     public float fixedHeight = 0.5f;
 
     void Start()
