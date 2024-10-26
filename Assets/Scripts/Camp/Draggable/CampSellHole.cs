@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CampSellHole : MonoBehaviour, IDragListener
+public class CampSellHole : MonoBehaviour, IDragListener, IDragPutTarget
 {
 
     public DebugText debugText;
@@ -27,5 +27,12 @@ public class CampSellHole : MonoBehaviour, IDragListener
     public int CalculateUnitSellPrice(DraggableUnit unit)
     {
         return (int)(unit.unitBlueprint.config.price * unit.unitBlueprint.level * 0.4f);
+    }
+
+    public bool PutUnit(DraggableUnit unit)
+    {
+        CampManager.Instance.AddMoney(CalculateUnitSellPrice(unit));
+        Destroy(unit.gameObject);
+        return true;
     }
 }

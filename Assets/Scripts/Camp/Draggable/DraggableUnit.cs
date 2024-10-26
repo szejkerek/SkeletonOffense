@@ -54,78 +54,10 @@ public class DraggableUnit : MonoBehaviour
             isDragging = false;
 
             UnityDraggingManager.Instance.StopDragging();
-
-            CampSellHole sellHole = CheckForCampSellHole();
-            if(sellHole != null)
+            IDragPutTarget putTarget = GetPutTargetUnderUnit();
+            if (putTarget != null)
             {
-                int sellPrice = sellHole.CalculateUnitSellPrice(this);
-                CampManager.Instance.AddMoney(sellPrice);
-                Destroy(gameObject);
-                return;
-            }
-
-            CampUpgradeHouse upgradeHouse = CheckForCampUpgradeHouse();
-            if (upgradeHouse != null)
-            {
-                int sellPrice = upgradeHouse.CalculateUnitUpgradePrice(this);
-                if (CampManager.Instance.TryToBuy(sellPrice))
-                    unitBlueprint.LevelUp();
-
-                MoveToSlotPosition();
-                return;
-            }
-
-
-
-            CampBasicSlot validSlot = GetSlotUnderUnit();
-            if (validSlot != null)
-            {
-                if (validSlot is CampArmySlot)
-                {
-                    if (!(validSlot as CampArmySlot).IsSlotUnLocked()) 
-                    {
-                        MoveToSlotPosition();
-                        return;
-                    } 
-                }
-
-                if(validSlot.IsSlotOccupied())
-                {
-                    Debug.Log("zamiana");
-                    //zamiana
-                    DraggableUnit unitToChangeWith = validSlot.unitOnSlot;
-                    currentSlot.SetUnitOnSlot(unitToChangeWith);
-                    //unitToChangeWith.originalPosition = currentSlot.snapPoint.position;
-                    //unitToChangeWith.currentSlot = currentSlot;
-                    unitToChangeWith.MoveToSlotPosition();
-
-                    //currentSlot = validSlot;
-                    validSlot.SetUnitOnSlot(this);
-
-                    //originalPosition = currentSlot.snapPoint.position;
-                    MoveToSlotPosition();
-
-                }
-                else
-                {
-                    Debug.Log("przypisanie");
-                    //umieszczenie nowego
-                    
-
-
-                    if (currentSlot != null)
-                    {
-                        currentSlot.SetUnitOnSlot(null);
-                        currentSlot = null;
-                    }
-
-                    validSlot.SetUnitOnSlot(this);
-                    //originalPosition = validSlot.snapPoint.position;
-                    //currentSlot = validSlot;
-                    MoveToSlotPosition();
-                }
-
-                
+                putTarget.PutUnit(this);
             }
             else
             {
@@ -156,52 +88,19 @@ public class DraggableUnit : MonoBehaviour
         return mainCamera.ScreenToWorldPoint(mousePoint);
     }
 
-    private CampBasicSlot GetSlotUnderUnit()
+    private IDragPutTarget GetPutTargetUnderUnit()
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position , Vector3.down);
 
         if (Physics.Raycast(ray, out hit, 20f))
         {
-            CampBasicSlot slot = hit.collider.GetComponent<CampBasicSlot>();
-            if (slot != null)
+            IDragPutTarget putTarget = hit.collider.GetComponent<IDragPutTarget>();
+            if (putTarget != null)
             {
-                return slot;
+                return putTarget;
             }
         }
         return null;
     }
-
-    private CampSellHole CheckForCampSellHole()
-    {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, Vector3.down);
-
-        if (Physics.Raycast(ray, out hit, 20f))
-        {
-            CampSellHole slot = hit.collider.GetComponent<CampSellHole>();
-            if (slot != null)
-            {
-                return slot;
-            }
-        }
-        return null;
-    }
-
-    private CampUpgradeHouse CheckForCampUpgradeHouse()
-    {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, Vector3.down);
-
-        if (Physics.Raycast(ray, out hit, 20f))
-        {
-            CampUpgradeHouse slot = hit.collider.GetComponent<CampUpgradeHouse>();
-            if (slot != null)
-            {
-                return slot;
-            }
-        }
-        return null;
-    }
-
 }

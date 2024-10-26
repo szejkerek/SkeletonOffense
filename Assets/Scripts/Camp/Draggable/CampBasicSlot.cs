@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CampBasicSlot : MonoBehaviour, IDragListener
+public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
 {
     public Transform snapPoint;
     public DraggableUnit unitOnSlot;
@@ -101,5 +101,36 @@ public class CampBasicSlot : MonoBehaviour, IDragListener
     public void OnDragEnd(DraggableUnit unit)
     {
         SetStateColor(null);
+    }
+
+    public bool PutUnit(DraggableUnit unit)
+    {
+        if (!IsSlotUnLocked()) return false;
+
+        if (unit == null)
+        {
+            SetUnitOnSlot(unit);
+            return true;
+        }
+        
+        if (IsSlotOccupied()) //zamiana
+        {
+            //Move unit form this slot to slot of dragged unit
+            CampBasicSlot otherSlot = unit.currentSlot;
+            otherSlot.SetUnitOnSlot(unitOnSlot);
+            unitOnSlot.MoveToSlotPosition();
+        }
+        else if (unit.currentSlot != null)
+        {
+            //If there is no unit on the slot that we drag to we can clear connection to our previos slot
+            unit.currentSlot.SetUnitOnSlot(null);
+        }
+
+        //Move dragged unit to this slot
+        SetUnitOnSlot(unit);
+        unitOnSlot.MoveToSlotPosition();
+
+        return true;
+
     }
 }

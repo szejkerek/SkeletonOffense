@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CampUpgradeHouse : MonoBehaviour, IDragListener
+public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
 {
 
     public DebugText debugText;
@@ -29,4 +29,16 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener
         return (int)(unit.unitBlueprint.config.price * unit.unitBlueprint.level * 0.5f);
     }
 
+    public bool PutUnit(DraggableUnit unit)
+    {
+        unit.MoveToSlotPosition();
+        
+        // Unable to buy upgrade
+        if (!CampManager.Instance.TryToBuy(CalculateUnitUpgradePrice(unit)))
+            return false;
+
+        //Upgrade unit
+        unit.GetUnitBlueprint().LevelUp();
+        return true;
+    }
 }
