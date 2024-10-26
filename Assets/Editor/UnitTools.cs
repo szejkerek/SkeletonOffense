@@ -9,7 +9,7 @@ public class HealthDisplayTool
     public static void Deal10DamageFromMenu()
     {
         // Find the first HealthDisplay component in the scene
-        IEnumerable<UnitHealth> units = Object.FindObjectsByType<UnitHealth>(FindObjectsSortMode.None);
+        IEnumerable<HealthManager> units = Object.FindObjectsByType<HealthManager>(FindObjectsSortMode.None);
 
         if (units != null)
         {

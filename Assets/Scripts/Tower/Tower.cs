@@ -2,19 +2,29 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour, IDamagable
 {
-    public bool IsAlive { get => isAlive; set => isAlive = value; }
-    bool isAlive = true;
+    public bool IsAlive { get; set; } = true;
 
     public TowerConfig Config;
-    public TowerHealth TowerHealth {  get; private set; }
-
-    public void TakeDamage(float damage)
-    {
-        TowerHealth.TakeDamage(damage);
-    }
+    HealthManager health;
 
     private void Awake()
     {
-        TowerHealth = GetComponent<TowerHealth>();
+        health = GetComponent<HealthManager>();
+        health.Init(Config.health, OnTowerDeath);
     }
+
+    void OnTowerDeath()
+    {
+        Debug.Log($"Tower {name} is dead");
+        IsAlive = false;
+        gameObject.SetActive(false);    
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health.TakeDamage(damage);
+    }
+    
+    
+
 }

@@ -17,8 +17,8 @@ public class Unit : MonoBehaviour, IDamagable
     UnitWalkManager unitWalkManager;
     public SplineManager SplineManager => splineManager;
     SplineManager splineManager;
-    public UnitHealth UnitHealth => unitHealth;
-    UnitHealth unitHealth;
+    public HealthManager HealthManager => healthManager;
+    HealthManager healthManager;
     public Weapon Weapon => weapon;
     Weapon weapon;
 
@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour, IDamagable
         weapon = GetComponentInChildren<Weapon>();
         unitStateMachine = GetComponent<UnitStateMachine>();
         unitWalkManager = GetComponent<UnitWalkManager>();
-        unitHealth = GetComponent<UnitHealth>();
+        healthManager = GetComponent<HealthManager>();
         this.splineManager = stageSpline;
         this.aggresive = aggresive;
         unitWalkManager.SetSpline(stageSpline);
@@ -98,6 +98,6 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        unitHealth.TakeDamage(damage);
+        healthManager.TakeDamage(damage);
     }
 }

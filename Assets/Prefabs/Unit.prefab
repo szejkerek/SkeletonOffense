@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e273266447fc5409c6002fd9d4e46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitDebugText: {fileID: 6462104608020176549}
+  unitDebugText: {fileID: 6462104608020176549}
 --- !u!195 &8061837505517558219
 NavMeshAgent:
   m_ObjectHideFlags: 0

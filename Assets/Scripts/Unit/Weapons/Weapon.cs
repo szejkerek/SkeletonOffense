@@ -1,10 +1,5 @@
+using System;
 using UnityEngine;
-
-public enum WeaponType
-{
-    Melee,
-    Ranged,
-}
 
 public class Weapon : MonoBehaviour
 {
@@ -20,43 +15,51 @@ public class Weapon : MonoBehaviour
         this.config = unit.Config;
     }
 
-    public bool IsReadyToAttack()
+    bool IsReadyToAttack()
     {
         return Time.time >= lastAttackTime + config.cooldown;
     }
 
-    public void Attack(Tower target, int damage)
+    public void Attack(IDamagable target, int damage)
     {
         if (target == null || !IsReadyToAttack() || !IsTargetInRange(target))
+        {
             return;
+        }
 
         lastAttackTime = Time.time;
 
-        if (weaponType == WeaponType.Melee)
+        switch (weaponType)
         {
-            DealDamage(target, damage);
-        }
-        else if (weaponType == WeaponType.Ranged)
-        {
-            ShootProjectile(target, damage);
+            case WeaponType.Melee:
+                DealDamage(target, damage);
+                break;
+            case WeaponType.Ranged:
+                ShootProjectile(target, damage);
+                break;
+            default:
+                Debug.LogError("Type not specified");
+                break;
         }
     }
 
-    bool IsTargetInRange(Tower target)
+    bool IsTargetInRange(IDamagable target)
     {
         float distanceToTarget = Vector3.Distance(shootingPoint.position, target.transform.position);
         return distanceToTarget <= config.range;
     }
 
-    void DealDamage(Tower target, int damage)
+    void DealDamage(IDamagable target, int damage)
     {
-        target.TowerHealth.TakeDamage(damage);
+        target.TakeDamage(damage);
     }
 
-    private void ShootProjectile(Tower target, int damage)
+    private void ShootProjectile(IDamagable target, int damage)
     {
         if (projectilePrefab == null || shootingPoint == null)
+        {
             return;
+        }
 
         Projectile projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
         projectile.Initialize(target, damage);         
