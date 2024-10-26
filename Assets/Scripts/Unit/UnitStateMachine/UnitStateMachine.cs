@@ -9,23 +9,22 @@ public class UnitStateMachine : MonoBehaviour
 
     UnitState currentState;
 
-    public void Initialize()
+    void Start()
     {
         Unit = GetComponent<Unit>();
         ChangeState(new UnitComeBackToPath(this));
     }
 
-    private void Update()
+    void Update()
     {
         currentState.UpdateState();
     }
-
-    // ReSharper disable Unity.PerformanceAnalysis
+    
     public void ChangeState(UnitState newState)
     {
         currentState?.ExitState();   
         currentState = newState; 
-        currentState.EnterState();
+        newState.EnterState();
 
         unitDebugText?.SetText(currentState.StateName, currentState.StateColor);
     }

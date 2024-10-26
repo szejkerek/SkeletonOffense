@@ -11,8 +11,15 @@ public class UnitComeBackToPath : UnitState
 
     public override void EnterState()
     {
+        if(WalkManager == null || WalkManager.UnitOnPath())
+        {
+            context.ChangeState(new UnitIdleState(context));
+            return; 
+        }
+        
         nextWaypoint = SplineManager.GetNext(WalkManager.splinePosition);
         WalkManager.MoveToPoint(nextWaypoint.position);      
+        
     }
 
     public override void UpdateState()
@@ -26,6 +33,11 @@ public class UnitComeBackToPath : UnitState
 
     public override void ExitState()
     {
+        if(WalkManager == null)
+        {
+            return;
+        }
+
         WalkManager.StopNavMeshMovement();
         WalkManager.splinePosition = nextWaypoint.percentage;
     }

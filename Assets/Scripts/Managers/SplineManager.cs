@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,19 +5,18 @@ using UnityEngine.Splines;
 
 public class SplineManager : MonoBehaviour
 {
-    public int SampleCount = 40;
-    public List<Waypoint> waypoints = new();
-
-    public SplineContainer Spline => spline;
-    SplineContainer spline;
+    public SplineContainer Spline { get; private set; }
+    [SerializeField] int SampleCount = 40;
+    
+    List<Waypoint> waypoints = new();
 
     private void Awake()
     {
-        spline = GetComponent<SplineContainer>();
+        Spline = GetComponent<SplineContainer>();
         for (int i = 0; i < SampleCount; i++)
         {
             float t = (float) i / SampleCount; 
-            waypoints.Add(new Waypoint(percentage: t, position: (Vector3)spline.EvaluatePosition(t)));
+            waypoints.Add(new Waypoint(percentage: t, position: (Vector3)Spline.EvaluatePosition(t)));
         }
     }
 
@@ -41,10 +39,9 @@ public class SplineManager : MonoBehaviour
     }
     public Waypoint GetNext(float t)
     {
-        foreach (var waypoint in waypoints)
+        foreach (Waypoint waypoint in waypoints.Where(waypoint => waypoint.percentage > t))
         {
-            if (waypoint.percentage > t)
-                return waypoint;
+            return waypoint;
         }
 
         return waypoints.Last();
@@ -53,23 +50,14 @@ public class SplineManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (waypoints == null || waypoints.Count == 0)
+        {
             return;
+        }
+
         Gizmos.color = Color.green;
         foreach (var waypoint in waypoints)
         {
             Gizmos.DrawSphere(waypoint.position.Add(y: 1) , 0.5f);
         }
     }
-}
-
-[Serializable]
-public class Waypoint
-{
-    public Waypoint(float percentage, Vector3 position)
-    {
-        this.percentage = percentage;
-        this.position = position;
-    }
-    public float percentage;
-    public Vector3 position;
 }

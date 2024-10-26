@@ -50,9 +50,13 @@ public class UnitWalkManager : MonoBehaviour
         transform.position = position.Add(y: config.height / 2) + splineContainer.transform.position;
     }
 
+    public bool UnitOnPath()
+    {
+        return navMeshAgent != null && navMeshAgent.isOnNavMesh && navMeshAgent.isActiveAndEnabled;
+    }
     public void MoveToPoint(Vector3 position)
     {
-        if (navMeshAgent == null || !navMeshAgent.isOnNavMesh)
+        if (!UnitOnPath())
         {
             Debug.LogWarning("Agent is not on navmesh!");
             return;
@@ -63,17 +67,22 @@ public class UnitWalkManager : MonoBehaviour
     }
     public void StopNavMeshMovement()
     {
-        if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+        if (!UnitOnPath())
         {
-            navMeshAgent.ResetPath();
+            Debug.LogWarning("Agent is not on navmesh!");
+            return;
         }
+
+        navMeshAgent.ResetPath();
     }
 
     public bool HasReachedDestination()
     {
-        if (navMeshAgent == null || !navMeshAgent.isOnNavMesh || navMeshAgent.pathPending)
+        if (!UnitOnPath())
+        {
+            Debug.LogWarning("Agent is not on navmesh!");
             return false;
-
+        }
         return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
     }
 
