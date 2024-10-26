@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4227751272752176974}
   - component: {fileID: 771177542633857990}
   - component: {fileID: 8815406662206901900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SellHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
