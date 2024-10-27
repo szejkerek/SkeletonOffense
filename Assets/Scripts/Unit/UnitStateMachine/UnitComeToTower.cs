@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UnitComeToTower : UnitState
 {
-    TargetInfo targetInfo;
+    readonly TargetInfo targetInfo;
     public UnitComeToTower(UnitStateMachine context, TargetInfo targetInfo) : base(context)
     {
         StateName = "Come To Tower";
@@ -20,7 +20,7 @@ public class UnitComeToTower : UnitState
     {
         if (WalkManager.HasReachedDestination())
         {
-            context.ChangeState(new UnitAttackTower(context, targetInfo));
+            Context.ChangeState(new UnitAttackTower(Context, targetInfo));
             return;
         }
     }

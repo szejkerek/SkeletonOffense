@@ -11,9 +11,9 @@ public class UnitComeBackToPath : UnitState
 
     public override void EnterState()
     {
-        if(WalkManager == null || WalkManager.UnitOnPath())
+        if(WalkManager == null || !WalkManager.UnitOnPath())
         {
-            context.ChangeState(new UnitIdleState(context));
+            Context.ChangeState(new UnitIdleState(Context));
             return; 
         }
         
@@ -26,7 +26,7 @@ public class UnitComeBackToPath : UnitState
     {
         if (WalkManager.HasReachedDestination())
         {
-            context.ChangeState(new UnitWalkOnPathState(context));
+            Context.ChangeState(new UnitWalkOnPathState(Context));
             return;
         }
     }

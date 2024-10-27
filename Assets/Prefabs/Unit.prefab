@@ -274,7 +274,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 1209567973405156414}
   weaponType: 1
+  damage: 23
+  speed: 3.09
   projectilePrefab: {fileID: 1411268973528017137, guid: 9798d3046f3f449428ffa2a4899a5422, type: 3}
+  cooldown: 0.21
+  range: 15.3
 --- !u!1 &8614233450755018994
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +532,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: f71278c64e47ecf4aac229cccb443f58, type: 2}
   targets: []
-  aggresive: 0
 --- !u!114 &2694248460360559639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738503c4ff4e0884da11a0addfede910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDisplay: {fileID: 2170764078550572743}
 --- !u!114 &5969553197981910875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,17 +729,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 695f2b2b52b4a78489efff9a473b20f5, type: 3}
---- !u!114 &2170764078550572743 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4614039619076272334, guid: 695f2b2b52b4a78489efff9a473b20f5, type: 3}
-  m_PrefabInstance: {fileID: 6784750886707129865}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0ebd65c3936de3489952d2ec278608b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &5881496525837329437 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1132377225296579092, guid: 695f2b2b52b4a78489efff9a473b20f5, type: 3}

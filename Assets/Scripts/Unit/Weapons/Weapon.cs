@@ -3,39 +3,33 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public float Range => range;
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private WeaponType weaponType;
-    [Header("IF RANGED ASSIGN PROJECTILE")]
-    [SerializeField] private Projectile projectilePrefab; 
 
+    [SerializeField] int damage = 0;
+    [SerializeField] float speed = 0;
+    [SerializeField] Projectile projectilePrefab = null;  
+    [SerializeField] float cooldown = 0;  
+    [SerializeField] float range = 0;  
+    
     float lastAttackTime = 0f;
-    UnitConfig config;
-    public void Init(Unit unit)
-    {
-        this.config = unit.Config;
-    }
-
     bool IsReadyToAttack()
     {
-        return Time.time >= lastAttackTime + config.cooldown;
+        return Time.time >= lastAttackTime + cooldown;
     }
 
-    public void Attack(IDamagable target, int damage)
+    public void Attack(IDamagable target, int additionalDamage = 0)
     {
-        if (target == null || !IsReadyToAttack() || !IsTargetInRange(target))
-        {
-            return;
-        }
-
         lastAttackTime = Time.time;
 
         switch (weaponType)
         {
             case WeaponType.Melee:
-                DealDamage(target, damage);
+                AttackMelee(target, additionalDamage, IsReadyToAttack(), IsTargetInRange(target));
                 break;
             case WeaponType.Ranged:
-                ShootProjectile(target, damage);
+                ShootProjectile(target, damage + additionalDamage, IsReadyToAttack(), IsTargetInRange(target));
                 break;
             default:
                 Debug.LogError("Type not specified");
@@ -43,25 +37,35 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    bool IsTargetInRange(IDamagable target)
+    protected virtual void AttackMelee(IDamagable target, int additionalDamage, bool readyToAttack, bool targetInRange)
     {
-        float distanceToTarget = Vector3.Distance(shootingPoint.position, target.transform.position);
-        return distanceToTarget <= config.range;
+        if (target == null || !readyToAttack || !targetInRange)
+        {
+            return;
+        }
+        
+        target.TakeDamage(damage + additionalDamage);
     }
-
-    void DealDamage(IDamagable target, int damage)
+    
+    protected virtual void ShootProjectile(IDamagable target, int dmg, bool readyToAttack, bool targetInRange)
     {
-        target.TakeDamage(damage);
-    }
-
-    private void ShootProjectile(IDamagable target, int damage)
-    {
-        if (projectilePrefab == null || shootingPoint == null)
+        if (target == null || projectilePrefab == null || !readyToAttack || !targetInRange)
         {
             return;
         }
 
         Projectile projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
-        projectile.Initialize(target, damage);         
+        projectile.Initialize(target, dmg, speed);         
+    }
+    bool IsTargetInRange(IDamagable target)
+    {
+        float distanceToTarget = Vector3.Distance(shootingPoint.position, target.transform.position);
+        return distanceToTarget <= range;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red; 
+        Gizmos.DrawWireSphere(transform.parent.position, range);
     }
 }

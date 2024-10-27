@@ -11,34 +11,25 @@ public class Unit : MonoBehaviour, IDamagable
 
     public UnitConfig Config => config;
     [SerializeField] UnitConfig config;
-    public UnitStateMachine UnitStateMachine => unitStateMachine;
-    UnitStateMachine unitStateMachine;    
-    public UnitWalkManager UnitWalkManager => unitWalkManager;
-    UnitWalkManager unitWalkManager;
-    public SplineManager SplineManager => splineManager;
-    SplineManager splineManager;
-    public HealthManager HealthManager => healthManager;
-    HealthManager healthManager;
-    public Weapon Weapon => weapon;
-    Weapon weapon;
-
+    public UnitStateMachine UnitStateMachine { get; private set; }
+    public UnitWalkManager UnitWalkManager { get; private set; }
+    public SplineManager SplineManager { get; private set; }
+    public HealthManager HealthManager { get; private set; }
+    public Weapon Weapon { get; private set; }
+    public bool Agressive { get; set; }
+    
     public List<TargetInfo> targets = new();
 
-    public bool Agressive => aggresive;
 
-
-    public bool aggresive;
-
-    public void Initialize(SplineManager stageSpline,bool aggresive)
+    public void Initialize(SplineManager stageSpline,bool agressive)
     {
-        weapon = GetComponentInChildren<Weapon>();
-        unitStateMachine = GetComponent<UnitStateMachine>();
-        unitWalkManager = GetComponent<UnitWalkManager>();
-        healthManager = GetComponent<HealthManager>();
-        this.splineManager = stageSpline;
-        this.aggresive = aggresive;
-        unitWalkManager.SetSpline(splineManager);
-        weapon.Init(this);
+        Weapon = GetComponentInChildren<Weapon>();
+        UnitStateMachine = GetComponent<UnitStateMachine>();
+        UnitWalkManager = GetComponent<UnitWalkManager>();
+        HealthManager = GetComponent<HealthManager>();
+        this.SplineManager = stageSpline;
+        this.Agressive = agressive;
+        UnitWalkManager.SetSpline(SplineManager);
         SetUpTargets();
     }
 
@@ -52,10 +43,10 @@ public class Unit : MonoBehaviour, IDamagable
 
             for (int i = 0; i < 200; i++)
             {
-                Vector3 randomPoint = tower.transform.position + Random.insideUnitSphere * config.range;
+                Vector3 randomPoint = tower.transform.position + Random.insideUnitSphere * Weapon.Range;
                 //Large range may produce lag
                 if (!NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, config.height * 2, NavMesh.AllAreas) ||
-                    Vector3.Distance(hit.position, tower.transform.position) >= config.range)
+                    Vector3.Distance(hit.position, tower.transform.position) > Weapon.Range)
                 {
                     continue;
                 }
@@ -78,24 +69,22 @@ public class Unit : MonoBehaviour, IDamagable
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        if (config.range <= 0)
-        {
-            return;
-        }
-
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, config.range);
-
         foreach (var target in targets)
         {
             Gizmos.DrawSphere(target.sampledStandPosition.Add(y: 1), 1f);
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
-        healthManager.TakeDamage(damage);
+        HealthManager.TakeDamage(damage);
+    }
+
+    public int CalculateAdditionalDamage()
+    {
+        return 0;
     }
 }

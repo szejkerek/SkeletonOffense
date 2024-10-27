@@ -7,5 +7,6 @@ public class TowerConfig : ScriptableObject
     public float reloadTime;
     public Projectile projectile;
     public int damage;
+    public float projectileSpeed;
     public float range;
 }

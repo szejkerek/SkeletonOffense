@@ -5,19 +5,19 @@ public abstract class UnitState
     public string StateName = "DefaultName"; 
     public Color StateColor = Color.gray; 
 
-    protected UnitStateMachine context;
-    protected Unit Unit;
-    protected UnitWalkManager WalkManager;
-    protected SplineManager SplineManager;
-    protected Weapon Weapon;
+    protected readonly UnitStateMachine Context;
+    protected readonly Unit Unit;
+    protected readonly UnitWalkManager WalkManager;
+    protected readonly SplineManager SplineManager;
+    protected readonly Weapon Weapon;
 
-    public UnitState(UnitStateMachine context)
+    protected UnitState(UnitStateMachine context)
     {
-        this.context = context;
+        this.Context = context;
         this.Unit = context.Unit;
         this.WalkManager = context.Unit.UnitWalkManager;
         this.SplineManager = context.Unit.SplineManager;
-        this.Weapon = context.Unit.GetComponentInChildren<Weapon>();
+        this.Weapon = context.Unit.Weapon;
     }
     public abstract void EnterState();     
     public abstract void UpdateState(); 

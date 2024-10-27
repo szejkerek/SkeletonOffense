@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    public float MaxHealth { get; private set; }
-    public float CurrentHealth { get; private set; }
+    public int MaxHealth { get; private set; }
+    public int CurrentHealth { get; private set; }
     
     Unit unit;
     Action onDeath;
@@ -20,7 +20,7 @@ public class HealthManager : MonoBehaviour
         MaxHealth = CurrentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
         healthDisplay?.UpdateHealth(CurrentHealth, MaxHealth);

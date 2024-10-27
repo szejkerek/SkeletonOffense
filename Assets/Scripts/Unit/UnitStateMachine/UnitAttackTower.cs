@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class UnitAttackTower : UnitState
 {
-    TargetInfo TargetInfo;
+    readonly TargetInfo targetInfo;
     public UnitAttackTower(UnitStateMachine context, TargetInfo target) : base(context)
     {
         StateName = "Attack Tower";
         StateColor = Color.red;
-        this.TargetInfo = target;
+        this.targetInfo = target;
     }
 
     public override void EnterState()
@@ -18,16 +18,15 @@ public class UnitAttackTower : UnitState
 
     public override void UpdateState()
     {
-        if (TargetInfo.target == null || !TargetInfo.target.IsAlive)
+        if (targetInfo.target == null || !targetInfo.target.IsAlive)
         {
-            context.ChangeState(new UnitComeBackToPath(context));
+            Context.ChangeState(new UnitComeBackToPath(Context));
             return;
         }    
        
-        Weapon.Attack(TargetInfo.target, Unit.Config.damage);
-            
+        Weapon.Attack(targetInfo.target, Unit.CalculateAdditionalDamage());
     }
-
+    
     public override void ExitState()
     {
 

@@ -15,9 +15,9 @@ public class UnitWalkOnPathState : UnitState
 
     public override void UpdateState()
     {
-        if(Unit.aggresive && IsOnAggroWaypoint()) 
+        if(Unit.Agressive && IsOnAggroWaypoint()) 
         {
-            context.ChangeState(new UnitComeToTower(context, targetInfo));
+            Context.ChangeState(new UnitComeToTower(Context, targetInfo));
             return;
         }
 

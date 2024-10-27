@@ -6,11 +6,12 @@ public class TowerAttack : MonoBehaviour
 {
     TowerConfig config;
 
-    [SerializeField] float updateInterval = 0.25f;
-    public Transform shootingPoint;
+    [SerializeField] Weapon weapon;
 
     Unit currentTarget;
-    List<Unit> unitsInRange = new();
+    readonly List<Unit> unitsInRange = new();
+    
+    [SerializeField] float updateInterval = 0.25f;
     float timeSinceLastUpdate = 0f;
 
     void Awake()
@@ -18,18 +19,16 @@ public class TowerAttack : MonoBehaviour
         config = GetComponent<Tower>().Config;
         StartCoroutine(AttackRoutine());
     }
-
-
-    private void Update()
+    
+    void Update()
     {
-        timeSinceLastUpdate += Time.deltaTime;
-
         if (timeSinceLastUpdate >= updateInterval)
         {
-            timeSinceLastUpdate = 0f;
             FindUnitsInRange();
             UpdateTarget();
+            timeSinceLastUpdate = 0f;
         }
+        timeSinceLastUpdate += Time.deltaTime;
     }
 
     private IEnumerator AttackRoutine()
@@ -49,9 +48,8 @@ public class TowerAttack : MonoBehaviour
         if (config.projectile == null)
             return;
 
-        var projectile = Instantiate(config.projectile, shootingPoint.position, Quaternion.identity);
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
-        projectileScript.Initialize(currentTarget, config.damage);
+        Projectile projectile = Instantiate(config.projectile, shootingPoint.position, Quaternion.identity);
+        projectile.Initialize(currentTarget, config.damage, config.projectileSpeed);
     }
 
     private void FindUnitsInRange()
@@ -80,7 +78,11 @@ public class TowerAttack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(config == null) return;
+        if(config == null)
+        {
+            return;
+        }
+
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, config.range);
     }

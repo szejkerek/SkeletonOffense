@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour, IDamagable
         gameObject.SetActive(false);    
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         health.TakeDamage(damage);
     }
