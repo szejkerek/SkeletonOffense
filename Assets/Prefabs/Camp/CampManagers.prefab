@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armySlotsList: []
   armySlots: {fileID: 0}
-  unitPrefab: {fileID: 8147667969499427684, guid: 9527a60b7a357ac409a07779e5622d20, type: 3}
+  unitPrefab: {fileID: 52116202148863439, guid: 10e796e0169edf94aac37e0967350d04, type: 3}
 --- !u!1 &6546388558636410145
 GameObject:
   m_ObjectHideFlags: 0

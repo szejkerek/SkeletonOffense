@@ -19,4 +19,8 @@ public class UnitConfig : ScriptableObject
     [Header("UnlockTime")]
     public int unlockStage = 1;
     public int unlockRound = 1;
+
+    [Header("UnitModel")]
+    public GameObject UnitModel;
+
 }
