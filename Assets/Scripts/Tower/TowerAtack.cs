@@ -17,7 +17,6 @@ public class TowerAttack : MonoBehaviour
     void Awake()
     {
         config = GetComponent<Tower>().Config;
-        StartCoroutine(AttackRoutine());
     }
     
     void Update()
@@ -26,31 +25,12 @@ public class TowerAttack : MonoBehaviour
         {
             FindUnitsInRange();
             UpdateTarget();
+            weapon.Attack(currentTarget);
             timeSinceLastUpdate = 0f;
         }
         timeSinceLastUpdate += Time.deltaTime;
     }
-
-    private IEnumerator AttackRoutine()
-    {
-        while (true)
-        {
-            if (currentTarget != null)
-            {
-                ShootProjectile();
-            }
-            yield return new WaitForSeconds(config.reloadTime);
-        }
-    }
-
-    private void ShootProjectile()
-    {
-        if (config.projectile == null)
-            return;
-
-        Projectile projectile = Instantiate(config.projectile, shootingPoint.position, Quaternion.identity);
-        projectile.Initialize(currentTarget, config.damage, config.projectileSpeed);
-    }
+    
 
     private void FindUnitsInRange()
     {
@@ -75,15 +55,5 @@ public class TowerAttack : MonoBehaviour
         }
         currentTarget = unitsInRange.SelectRandomElement();
     }
-
-    private void OnDrawGizmos()
-    {
-        if(config == null)
-        {
-            return;
-        }
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, config.range);
-    }
+    
 }

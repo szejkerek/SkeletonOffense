@@ -30,7 +30,7 @@ public class UnitWalkOnPathState : UnitState
 
     bool IsOnAggroWaypoint()
     {
-        foreach(var targetInfo in Unit.targets)
+        foreach(var targetInfo in UnitAttackManager.targets)
         {
             if (targetInfo.target != null && targetInfo.target.IsAlive)
             {

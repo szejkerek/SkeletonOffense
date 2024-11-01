@@ -21,41 +21,53 @@ public class Weapon : MonoBehaviour
 
     public void Attack(IDamagable target, int additionalDamage = 0)
     {
-        lastAttackTime = Time.time;
+        if(target == null)
+        {
+            return;
+        }
+
+        bool success = false;
 
         switch (weaponType)
         {
             case WeaponType.Melee:
-                AttackMelee(target, additionalDamage, IsReadyToAttack(), IsTargetInRange(target));
+                success = AttackMelee(target, additionalDamage, IsReadyToAttack(), IsTargetInRange(target));
                 break;
             case WeaponType.Ranged:
-                ShootProjectile(target, damage + additionalDamage, IsReadyToAttack(), IsTargetInRange(target));
+                success = ShootProjectile(target, damage + additionalDamage, IsReadyToAttack(), IsTargetInRange(target));
                 break;
             default:
                 Debug.LogError("Type not specified");
                 break;
         }
+        
+        if(success)
+        {
+            lastAttackTime = Time.time;
+        }
     }
 
-    protected virtual void AttackMelee(IDamagable target, int additionalDamage, bool readyToAttack, bool targetInRange)
+    protected virtual bool AttackMelee(IDamagable target, int additionalDamage, bool readyToAttack, bool targetInRange)
     {
-        if (target == null || !readyToAttack || !targetInRange)
+        if (!readyToAttack || !targetInRange)
         {
-            return;
+            return false;
         }
         
         target.TakeDamage(damage + additionalDamage);
+        return true;
     }
     
-    protected virtual void ShootProjectile(IDamagable target, int dmg, bool readyToAttack, bool targetInRange)
+    protected virtual bool ShootProjectile(IDamagable target, int dmg, bool readyToAttack, bool targetInRange)
     {
-        if (target == null || projectilePrefab == null || !readyToAttack || !targetInRange)
+        if (projectilePrefab == null || !readyToAttack || !targetInRange)
         {
-            return;
+            return false;
         }
 
         Projectile projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
-        projectile.Initialize(target, dmg, speed);         
+        projectile.Initialize(target, dmg, speed);
+        return true;
     }
     bool IsTargetInRange(IDamagable target)
     {

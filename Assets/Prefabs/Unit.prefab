@@ -531,7 +531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: f71278c64e47ecf4aac229cccb443f58, type: 2}
-  targets: []
 --- !u!114 &2694248460360559639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239518d55c0e7e44183b8be3e7da9572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets: []
+  weapon: {fileID: 2510094445768628282}
 --- !u!114 &2956378859949425409
 MonoBehaviour:
   m_ObjectHideFlags: 0

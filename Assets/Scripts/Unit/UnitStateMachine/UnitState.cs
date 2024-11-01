@@ -9,6 +9,7 @@ public abstract class UnitState
     protected readonly Unit Unit;
     protected readonly UnitWalkManager WalkManager;
     protected readonly SplineManager SplineManager;
+    protected readonly UnitAttackManager UnitAttackManager;
     protected readonly Weapon Weapon;
 
     protected UnitState(UnitStateMachine context)
@@ -17,7 +18,7 @@ public abstract class UnitState
         this.Unit = context.Unit;
         this.WalkManager = context.Unit.UnitWalkManager;
         this.SplineManager = context.Unit.SplineManager;
-        this.Weapon = context.Unit.Weapon;
+        this.UnitAttackManager = context.Unit.UnitAttackManager;
     }
     public abstract void EnterState();     
     public abstract void UpdateState(); 

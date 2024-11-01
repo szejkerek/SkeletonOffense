@@ -24,7 +24,7 @@ public class UnitAttackTower : UnitState
             return;
         }    
        
-        Weapon.Attack(targetInfo.target, Unit.CalculateAdditionalDamage());
+        UnitAttackManager.Attack(targetInfo.target);
     }
     
     public override void ExitState()
