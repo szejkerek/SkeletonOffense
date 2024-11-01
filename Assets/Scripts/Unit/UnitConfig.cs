@@ -12,7 +12,7 @@ public class UnitConfig : ScriptableObject
     // public float projectileSpeed = 5;
     // public float cooldown = 2f;
     [Header("Health")]
-    public float health = 100f;
+    public int health = 100;
 
     [Header("Price")]
     public int price = 5;

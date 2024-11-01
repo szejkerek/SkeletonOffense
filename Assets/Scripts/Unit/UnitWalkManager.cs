@@ -4,8 +4,8 @@ using UnityEngine.Splines;
 
 public class UnitWalkManager : MonoBehaviour
 {
-    public float splinePosition = 0f;           
-    
+    public float SplinePosition {get; private set;}
+
     SplineContainer splineContainer;
     NavMeshAgent navMeshAgent;
     UnitConfig config;
@@ -16,6 +16,14 @@ public class UnitWalkManager : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
+    public void SetSpliePosition(float splinePosition)
+    {
+        if (splineContainer == null)
+            return;
+
+        splinePosition = Mathf.Clamp01(splinePosition);
+        SplinePosition = splinePosition;
+    }
     public void SetSpline(SplineManager newSpline)
     {
         splineContainer = newSpline.Spline;
@@ -26,27 +34,27 @@ public class UnitWalkManager : MonoBehaviour
         if (splineContainer == null)
         {
             Debug.LogWarning($"Spline is not set on {name}");
-            return splinePosition;
+            return SplinePosition;
         }
 
         MoveUnit();
         RotateUnit();
 
-        return splinePosition;
+        return SplinePosition;
     }
 
 
     void RotateUnit()
     {
-        Vector3 tangent = splineContainer.Spline.EvaluateTangent(splinePosition);
+        Vector3 tangent = splineContainer.Spline.EvaluateTangent(SplinePosition);
         transform.forward = tangent.normalized;
     }
 
     void MoveUnit()
     {
-        splinePosition += (config.walkSpeed * Time.deltaTime) / splineContainer.Spline.GetLength();
-        splinePosition = Mathf.Clamp01(splinePosition);
-        Vector3 position = splineContainer.Spline.EvaluatePosition(splinePosition);
+        SplinePosition += (config.walkSpeed * Time.deltaTime) / splineContainer.Spline.GetLength();
+        SplinePosition = Mathf.Clamp01(SplinePosition);
+        Vector3 position = splineContainer.Spline.EvaluatePosition(SplinePosition);
         transform.position = position.Add(y: config.height / 2) + splineContainer.transform.position;
     }
 

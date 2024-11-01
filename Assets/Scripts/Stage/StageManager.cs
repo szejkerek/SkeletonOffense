@@ -5,11 +5,23 @@ public class StageManager : MonoBehaviour
 {
     [SerializeField] StageConfig config;
     public EnemyBase EnemyBase;
-    public List<Tower> Towers;
+    public Tower[] Towers;
     public Transform spawnPoint;
     public SplineManager SplineManager;
 
     public Unit UnitPrefab;
+
+    public List<Unit> UnitsToBeSpawned;
+    public List<Unit> SpawnedUnits;
+    
+    
+    void InitializeStage(List<Unit> unitsToBeSpawned)
+    {
+        Towers = GetComponentsInChildren<Tower>();
+        EnemyBase = GetComponentInChildren<EnemyBase>();
+        UnitsToBeSpawned = unitsToBeSpawned;
+    }
+    
 
     void Update()
     {

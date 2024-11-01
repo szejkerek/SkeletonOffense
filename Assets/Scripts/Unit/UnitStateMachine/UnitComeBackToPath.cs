@@ -17,7 +17,7 @@ public class UnitComeBackToPath : UnitState
             return; 
         }
         
-        nextWaypoint = SplineManager.GetNext(WalkManager.splinePosition);
+        nextWaypoint = SplineManager.GetNext(WalkManager.SplinePosition);
         WalkManager.MoveToPoint(nextWaypoint.position);      
         
     }
@@ -39,6 +39,6 @@ public class UnitComeBackToPath : UnitState
         }
 
         WalkManager.StopNavMeshMovement();
-        WalkManager.splinePosition = nextWaypoint.percentage;
+        WalkManager.SetSpliePosition(nextWaypoint.percentage);
     }
 }

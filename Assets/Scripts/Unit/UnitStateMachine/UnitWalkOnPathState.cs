@@ -34,7 +34,7 @@ public class UnitWalkOnPathState : UnitState
         {
             if (targetInfo.target != null && targetInfo.target.IsAlive)
             {
-                if (Mathf.Abs(targetInfo.nearestWaypoint.percentage - WalkManager.splinePosition) <= 0.05f)
+                if (Mathf.Abs(targetInfo.nearestWaypoint.percentage - WalkManager.SplinePosition) <= 0.05f)
                 {
                     this.targetInfo = targetInfo;
                     return true;

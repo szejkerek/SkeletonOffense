@@ -11,25 +11,34 @@ public class TowerAttack : MonoBehaviour
     
     Unit currentTarget;
     readonly List<Unit> unitsInRange = new();
-    readonly Collider[] hitColliders = new Collider[MaxColliders]; 
+    readonly Collider[] hitColliders = new Collider[MaxColliders];
     
-    void Awake()
+    float updateTimer = 0f;
+    
+    void Update()
     {
-        InvokeRepeating(nameof(UpdateTargetAndAttack), 0f, UpdateInterval);
+        updateTimer -= Time.deltaTime;
+        
+        if (updateTimer <= 0f)
+        {
+            updateTimer = UpdateInterval;
+            UpdateTargetAndAttack();
+        }
     }
 
     void UpdateTargetAndAttack()
     {
         currentTarget = null;
         FindUnitsInRange();
+        
         if (unitsInRange.Count <= 0)
         {
             return;
         }
 
-        currentTarget = unitsInRange.OrderBy(unit => (
-            unit.transform.position - transform.position).sqrMagnitude
-        ).FirstOrDefault();
+        currentTarget = unitsInRange
+            .OrderBy(unit => (unit.transform.position - transform.position).sqrMagnitude)
+            .FirstOrDefault();
 
         weapon.Attack(currentTarget);
     }

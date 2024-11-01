@@ -3,6 +3,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour, IDamagable
 {
     public bool IsAlive { get => isAlive; set => isAlive = value; }
+    public bool Agressive { get; set; }
     bool isAlive = true;
 
     public UnitConfig Config => config;
@@ -12,9 +13,7 @@ public class Unit : MonoBehaviour, IDamagable
     public SplineManager SplineManager { get; private set; }
     public HealthManager HealthManager { get; private set; }
     public UnitAttackManager UnitAttackManager { get; private set; }
-    public bool Agressive { get; set; }
-
-
+    
     public void Initialize(SplineManager stageSpline,bool agressive)
     {
         UnitAttackManager = GetComponent<UnitAttackManager>();
@@ -25,12 +24,23 @@ public class Unit : MonoBehaviour, IDamagable
         this.Agressive = agressive;
         UnitWalkManager.SetSpline(SplineManager);
         UnitAttackManager.Init(this);
+        HealthManager.Init(config.health, OnUnitDeath);
+    }
+
+    void OnUnitDeath()
+    {
+        isAlive = false;
+        UnitStateMachine.ChangeState(new UnitDyingState(UnitStateMachine));
+    }
+
+    public void KillUnit(float delay = 0)
+    {
+        Destroy(gameObject, delay);
     }
 
     public void TakeDamage(int damage)
     {
         HealthManager.TakeDamage(damage);
     }
-
 
 }

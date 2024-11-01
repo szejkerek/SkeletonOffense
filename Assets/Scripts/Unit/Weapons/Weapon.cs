@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Projectile projectilePrefab = null;  
     [SerializeField] float cooldown = 0;  
     [SerializeField] float range = 0;  
+    [SerializeField] bool followTarget = false;  
     
     float lastAttackTime = 0f;
     bool IsReadyToAttack()
@@ -66,7 +67,7 @@ public class Weapon : MonoBehaviour
         }
 
         Projectile projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
-        projectile.Initialize(target, dmg, speed);
+        projectile.Initialize(target, dmg, speed, followTarget);
         return true;
     }
     bool IsTargetInRange(IDamagable target)

@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 6888955814860622994}
-  updateInterval: 0.25
 --- !u!114 &4458765251211063385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,11 +242,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 7791889930253451014}
   weaponType: 1
-  damage: 47
-  speed: 0.21
+  damage: 101
+  speed: 16.43
   projectilePrefab: {fileID: 1411268973528017137, guid: 9798d3046f3f449428ffa2a4899a5422, type: 3}
-  cooldown: 1.97
+  cooldown: 0.01
   range: 27.01
+  followTarget: 1
 --- !u!1001 &8153019513461213827
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class HealthDisplay : MonoBehaviour
 
 
     [SerializeField] private bool autoRotateTowardsCamera = true;
-    private Camera targetCamera;
+    Camera targetCamera;
 
     void Start()
     {
@@ -24,8 +24,10 @@ public class HealthDisplay : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
+        if(!transform.parent.gameObject.activeSelf)
+        
         if (autoRotateTowardsCamera && targetCamera != null)
         {
             transform.LookAt(transform.position + targetCamera.transform.rotation * Vector3.forward, targetCamera.transform.rotation * Vector3.up);
@@ -38,15 +40,17 @@ public class HealthDisplay : MonoBehaviour
 
         mainHealth.fillAmount = currentHealth / maxHealth;
 
+        if (health == 0)
+        {
+            secondHealth.DOFillAmount(0, 0.1f)
+                .SetEase(Ease.InQuad)
+                .OnComplete(() => DOTween.Kill(secondHealth));
+            return;
+        }
 
         secondHealth.DOFillAmount(currentHealth / maxHealth, updateDuration)
             .SetDelay(updateDelay)
             .SetEase(Ease.InQuad);
     }
 
-    void UpdateHealthDisplay(float currentHealth, float maxHealth)
-    {
-        mainHealth.fillAmount = currentHealth / maxHealth;
-        secondHealth.fillAmount = currentHealth / maxHealth;
-    }
 }
