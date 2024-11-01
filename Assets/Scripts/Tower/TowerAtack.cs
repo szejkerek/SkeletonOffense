@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TowerAttack : MonoBehaviour
 {
-    [SerializeField] private Weapon weapon;
+    [SerializeField] Weapon weapon;
 
     const float UpdateInterval = 0.25f;
     const int MaxColliders = 50;
@@ -18,7 +18,7 @@ public class TowerAttack : MonoBehaviour
         InvokeRepeating(nameof(UpdateTargetAndAttack), 0f, UpdateInterval);
     }
 
-    private void UpdateTargetAndAttack()
+    void UpdateTargetAndAttack()
     {
         currentTarget = null;
         FindUnitsInRange();
