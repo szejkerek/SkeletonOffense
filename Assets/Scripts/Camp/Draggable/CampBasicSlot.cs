@@ -9,7 +9,7 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
     public Material slotFullMaterial;
     public Material slotHoverEmptyMaterial;
     public Material slotHoverFullMaterial;
-    public MeshRenderer visualMeshRendere;
+    public MeshRenderer visualMeshRenderer;
 
     private void Start()
     {
@@ -63,13 +63,13 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
             {
                 if (unitOnSlot != null && unitOnSlot != unit)
                 {
-                    //naje¿d¿asz innym unitem i coœ innego tu jest
-                    visualMeshRendere.material = slotHoverFullMaterial;
+                    //najeï¿½dï¿½asz innym unitem i coï¿½ innego tu jest
+                    visualMeshRenderer.material = slotHoverFullMaterial;
                 }
                 else
                 {
-                    //naje¿d¿asz unitem a jest pusto
-                    visualMeshRendere.material = slotHoverEmptyMaterial;
+                    //najeï¿½dï¿½asz unitem a jest pusto
+                    visualMeshRenderer.material = slotHoverEmptyMaterial;
                 }
             }
             else
@@ -77,19 +77,19 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
                 if (unit != null)
                 {
                     //podniesiony unit w oddali
-                    visualMeshRendere.material = slotFullMaterial;
+                    visualMeshRenderer.material = slotFullMaterial;
                 }
                 else
                 {
-                    //zakoñczenie nic, nie jest przenoszone
-                    visualMeshRendere.material = slotEmptyMaterial;
+                    //zakoï¿½czenie nic, nie jest przenoszone
+                    visualMeshRenderer.material = slotEmptyMaterial;
                 }
             }
 
         }
         else
         {
-            visualMeshRendere.material = slotHoverFullMaterial;
+            visualMeshRenderer.material = slotHoverFullMaterial;
         }
     }
 

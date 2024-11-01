@@ -26,7 +26,7 @@ public class CampSellHole : MonoBehaviour, IDragListener, IDragPutTarget
 
     public int CalculateUnitSellPrice(DraggableUnit unit)
     {
-        return (int)(unit.unitBlueprint.config.price * unit.unitBlueprint.level * 0.4f);
+        return (int)(unit.unitBlueprint.Config.price * unit.unitBlueprint.Level * 0.4f);
     }
 
     public bool PutUnit(DraggableUnit unit)

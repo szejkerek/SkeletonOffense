@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 4.36
   walkSpeed: 10.72
-  range: 16
-  damage: 7.29
-  cooldown: 1.72
   health: 100
-  stuckThreshold: 2
   price: 5
+  unlockStage: 1
+  unlockRound: 1
+  UnitModel: {fileID: 8794734137529011175, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}

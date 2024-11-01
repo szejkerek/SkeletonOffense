@@ -11,7 +11,7 @@ public class UnitDyingState : UnitState
 
     public override void EnterState()
     {
-        Context.Unit.KillUnit(3f);
+        Context.Unit.DestroyUnit(3f);
     }
 
     public override void UpdateState()

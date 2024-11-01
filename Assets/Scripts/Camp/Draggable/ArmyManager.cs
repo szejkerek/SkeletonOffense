@@ -13,8 +13,8 @@ public class ArmyManager : MonoBehaviour
 
     public GameObject unitPrefab;
 
-    private int unlockableSlotsAmount = 2;
-    private void Awake()
+    int unlockableSlotsAmount = 2;
+    void Awake()
     {
         if (Instance == null)
         {
@@ -29,21 +29,19 @@ public class ArmyManager : MonoBehaviour
         UnitBuyButton.OnUnitBought += SpawnUnitOnSlot;
     }
 
-    private void SpawnUnitOnSlot(UnitConfig config, CampArmySlot slot)
+    void SpawnUnitOnSlot(UnitConfig config, CampArmySlot slot)
     {
-        
         GameObject newUnit = Instantiate(unitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         Instantiate(config.UnitModel, new Vector3(0, 0, 0), Quaternion.identity,newUnit.transform);
         DraggableUnit unitDraggable = newUnit.GetComponent<DraggableUnit>();
-        unitDraggable.GetUnitBlueprint().config = config;
-        unitDraggable.GetUnitBlueprint().level = 1;
+        unitDraggable.GetUnitBlueprint().Config = config;
+        unitDraggable.GetUnitBlueprint().Level = 1;
         unitDraggable.SetCurrentSlot(slot);
         unitDraggable.MoveToSlotPosition();
     }
 
-    private void Start()
+    void Start()
     {
-        
         for (int i = 0;i< unlockableSlotsAmount;i++)
         {
             armySlotsList[i].unlockable = true;

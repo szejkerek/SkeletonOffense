@@ -92,12 +92,11 @@ public class DraggableUnit : MonoBehaviour
 
     private IDragPutTarget GetPutTargetUnderUnit()
     {
-        RaycastHit hit;
         LayerMask dragPutTargetLayer = 1 << 7;
         Vector3 rayOrigin = transform.position + new Vector3(0,50,0);
         Ray ray = new Ray(rayOrigin, Vector3.down);
 
-        if (Physics.Raycast(ray, out hit, 100f, dragPutTargetLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, dragPutTargetLayer))
         {
             IDragPutTarget putTarget = hit.collider.GetComponent<IDragPutTarget>();
             if (putTarget != null)

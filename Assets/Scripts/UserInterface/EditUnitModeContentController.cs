@@ -15,11 +15,11 @@ public class EditUnitModeContentController : MonoBehaviour
     void SetAgressiveMode()
     {
         Debug.Log("ag");
-        GameplayUI.Instance.campUnitManagmentUI.usedArmySlot.GetUnitOnSlot().GetUnitBlueprint().agressiveMode = true;
+        GameplayUI.Instance.campUnitManagmentUI.usedArmySlot.GetUnitOnSlot().GetUnitBlueprint().AgressiveMode = true;
     }
     void SetBasicMode()
     {
         Debug.Log("bs");
-        GameplayUI.Instance.campUnitManagmentUI.usedArmySlot.GetUnitOnSlot().GetUnitBlueprint().agressiveMode = false;
+        GameplayUI.Instance.campUnitManagmentUI.usedArmySlot.GetUnitOnSlot().GetUnitBlueprint().AgressiveMode = false;
     }
 }

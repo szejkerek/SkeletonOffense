@@ -10,10 +10,11 @@ public class UnitWalkManager : MonoBehaviour
     NavMeshAgent navMeshAgent;
     UnitConfig config;
 
-    private void Awake()
+    public void Initialize(Unit unit, SplineManager newSpline)
     {
-        config = GetComponent<Unit>().Config;
+        config = unit.Config;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        splineContainer = newSpline.Spline;
     }
 
     public void SetSpliePosition(float splinePosition)
@@ -23,10 +24,6 @@ public class UnitWalkManager : MonoBehaviour
 
         splinePosition = Mathf.Clamp01(splinePosition);
         SplinePosition = splinePosition;
-    }
-    public void SetSpline(SplineManager newSpline)
-    {
-        splineContainer = newSpline.Spline;
     }
 
     public float WalkAlongSpline()

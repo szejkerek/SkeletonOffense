@@ -2,38 +2,53 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IDamagable
 {
-    public bool IsAlive { get => isAlive; set => isAlive = value; }
-    public bool Agressive { get; set; }
-    bool isAlive = true;
+    public bool IsAlive { get; set; }
+    public bool Agressive { get; private set; }
 
-    public UnitConfig Config => config;
-    [SerializeField] UnitConfig config;
+    public UnitConfig Config { get; private set; }
     public UnitStateMachine UnitStateMachine { get; private set; }
     public UnitWalkManager UnitWalkManager { get; private set; }
     public SplineManager SplineManager { get; private set; }
     public HealthManager HealthManager { get; private set; }
     public UnitAttackManager UnitAttackManager { get; private set; }
     
-    public void Initialize(SplineManager stageSpline,bool agressive)
+    void Initialize()
     {
         UnitAttackManager = GetComponent<UnitAttackManager>();
         UnitStateMachine = GetComponent<UnitStateMachine>();
         UnitWalkManager = GetComponent<UnitWalkManager>();
         HealthManager = GetComponent<HealthManager>();
-        this.SplineManager = stageSpline;
-        this.Agressive = agressive;
-        UnitWalkManager.SetSpline(SplineManager);
-        UnitAttackManager.Init(this);
-        HealthManager.Init(config.health, OnUnitDeath);
     }
-
+    
     void OnUnitDeath()
     {
-        isAlive = false;
+        IsAlive = false;
         UnitStateMachine.ChangeState(new UnitDyingState(UnitStateMachine));
     }
 
-    public void KillUnit(float delay = 0)
+    public void PlaceOnStage(UnitBlueprint blueprint, SplineManager stageSpline)
+    {
+        Initialize();
+        
+        SplineManager = stageSpline;
+        Agressive = blueprint.AgressiveMode;
+        Config = blueprint.Config;
+        UnitWalkManager.Initialize(this, stageSpline);
+
+        UnitAttackManager.Init(this);
+        HealthManager.Init(Config.health, OnUnitDeath);
+        
+        UnitStateMachine.ChangeState(new UnitComeBackToPath(UnitStateMachine));
+    }
+    
+    public void PlaceInCamp(UnitBlueprint blueprint)
+    {
+        Initialize();
+        
+        UnitStateMachine.ChangeState(new UnitDraggableReady(UnitStateMachine));
+    }
+    
+    public void DestroyUnit(float delay = 0)
     {
         Destroy(gameObject, delay);
     }

@@ -4,24 +4,9 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     [SerializeField] StageConfig config;
-    public EnemyBase EnemyBase;
-    public Tower[] Towers;
     public Transform spawnPoint;
     public SplineManager SplineManager;
-
-    public Unit UnitPrefab;
-
-    public List<Unit> UnitsToBeSpawned;
-    public List<Unit> SpawnedUnits;
-    
-    
-    void InitializeStage(List<Unit> unitsToBeSpawned)
-    {
-        Towers = GetComponentsInChildren<Tower>();
-        EnemyBase = GetComponentInChildren<EnemyBase>();
-        UnitsToBeSpawned = unitsToBeSpawned;
-    }
-    
+    public UnitBlueprint UnitBlueprint;
 
     void Update()
     {
@@ -33,7 +18,7 @@ public class StageManager : MonoBehaviour
 
     void SpawnUnit()
     {
-        var spawned = Instantiate(UnitPrefab, spawnPoint.transform.position, Quaternion.identity);
-        spawned.Initialize(SplineManager, true);
+        var spawned = Instantiate(UnitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
+        spawned.GetComponent<Unit>().PlaceOnStage(UnitBlueprint, SplineManager);
     }
 }

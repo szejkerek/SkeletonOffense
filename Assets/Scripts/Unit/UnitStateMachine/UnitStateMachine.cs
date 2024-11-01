@@ -9,10 +9,10 @@ public class UnitStateMachine : MonoBehaviour
 
     UnitState currentState;
 
-    void Start()
+    void Awake()
     {
         Unit = GetComponent<Unit>();
-        ChangeState(new UnitComeBackToPath(this));
+        ChangeState(new UnitIdleState(this));
     }
 
     void Update()
@@ -21,7 +21,10 @@ public class UnitStateMachine : MonoBehaviour
     }
     
     public void ChangeState(UnitState newState)
-    {
+    {   
+        if(Unit == null)
+            return;
+        
         currentState?.ExitState();   
         currentState = newState; 
         newState.EnterState();
