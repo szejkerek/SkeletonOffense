@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplayUI : MonoBehaviour
 {
@@ -19,5 +20,6 @@ public class GameplayUI : MonoBehaviour
     private void Start()
     {
         campUnitManagmentUI = GetComponentInChildren<CampUnitManagmentUI>();
+        
     }
 }
