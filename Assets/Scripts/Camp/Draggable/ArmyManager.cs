@@ -32,7 +32,7 @@ public class ArmyManager : MonoBehaviour
     public void SpawnUnitOnSlot(UnitConfig config, CampArmySlot slot, int tier = 1)
     {
 
-        var modelPrefab = tier == 1 ? config.UnitModel : config.UnitModeltier2;
+        var modelPrefab = tier == 1 ? config.UnitModelTier1 : config.UnitModelTier2;
         var model = Instantiate(modelPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
         if (model.TryGetComponent(out Unit spawnedUnit))
