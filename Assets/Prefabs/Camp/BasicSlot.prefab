@@ -54,7 +54,7 @@ MonoBehaviour:
   slotFullMaterial: {fileID: 2100000, guid: 07c4080b7a529fc47a62f3049d071ed4, type: 2}
   slotHoverEmptyMaterial: {fileID: 2100000, guid: bc2bfbe78cadb1b4ab765cabadf254c9, type: 2}
   slotHoverFullMaterial: {fileID: 2100000, guid: 9ca8958693d6a7340b64552537231e17, type: 2}
-  visualMeshRendere: {fileID: 6536507312937752222}
+  visualMeshRenderer: {fileID: 6536507312937752222}
 --- !u!65 &8539216880919698661
 BoxCollider:
   m_ObjectHideFlags: 0
