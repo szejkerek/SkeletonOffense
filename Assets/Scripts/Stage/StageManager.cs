@@ -1,26 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
     [SerializeField] StageConfig config;
     [SerializeField] Transform spawnPoint;
     [SerializeField] SplineManager SplineManager;
-    [SerializeField] List<UnitBlueprint> UnitBlueprints;
     [Header("Spawning times")]
     [SerializeField] float initialWaitTime;
     [SerializeField] float waitBetweenUnit;
     [SerializeField] float bulkWait;
-
+    [SerializeField] Button NextRoundButton;
+    [Space]
+    [SerializeField] List<UnitBlueprint> UnitBlueprints;
+    
+    List<Unit> SpawnedUnits = new();
+    bool allSpawned = false;
+    
     void Start()
     {
-        Initialize(UnitBlueprints: null);
+        Initialize();
     }
 
-    public void Initialize(List<UnitBlueprint> UnitBlueprints)
+    public void StartRound(List<UnitBlueprint> UnitBlueprints)
     {
+        NextRoundButton.interactable = false;
+        allSpawned = false;
         StartCoroutine(SpawningRoutine());
+    }
+
+    public void OnRoundEnded()
+    {
+        StopAllCoroutines();
+        NextRoundButton.interactable = true;
+    }
+
+    void Initialize()
+    {
+        NextRoundButton.onClick.AddListener(() => StartRound(UnitBlueprints: null));
+        Unit.OnDeath += CheckForRoundEnd;
+    }
+
+    void OnStageCompleted()
+    {
+        NextRoundButton.onClick.RemoveAllListeners();
+        Unit.OnDeath -= CheckForRoundEnd;
+    }
+    
+    
+    void CheckForRoundEnd(Unit _)
+    {
+        if (!allSpawned)
+        {
+            return;
+        }
+
+        bool allUnitsDead = SpawnedUnits.All(unit => !unit.IsAlive);
+
+        if (allUnitsDead)
+        {
+            OnRoundEnded();
+        }
+        
     }
 
     IEnumerator SpawningRoutine()
@@ -44,11 +88,18 @@ public class StageManager : MonoBehaviour
             }
             yield return new WaitForSeconds(waitBetweenUnit);
         }
+
+        allSpawned = true;
     }
 
     void SpawnUnit(UnitBlueprint unitBlueprint)
     {
-        var spawned = Instantiate(unitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
-        spawned.GetComponent<Unit>().PlaceOnStage(unitBlueprint, SplineManager);
+        var model = Instantiate(unitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
+
+        if (model.TryGetComponent(out Unit spawnedUnit))
+        {
+            spawnedUnit.PlaceOnStage(unitBlueprint, SplineManager);
+            SpawnedUnits.Add(spawnedUnit);
+        }
     }
 }

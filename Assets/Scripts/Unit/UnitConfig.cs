@@ -6,11 +6,6 @@ public class UnitConfig : ScriptableObject
     [Header("Walk")]
     public float height = 1.5f;
     public float walkSpeed = 5f;
-    // [Header("Attack")]
-    // public float range = 5f;
-    // public int damage = 5;
-    // public float projectileSpeed = 5;
-    // public float cooldown = 2f;
     [Header("Health")]
     public int health = 100;
 
@@ -18,7 +13,7 @@ public class UnitConfig : ScriptableObject
     public int price = 5;
     [Header("UnlockTime")]
     public int unlockStage = 1;
-    public int unlockRound = 1;
+    public int unlockRound = 1; // Modify to percentage, because stages will have diferent num of rounds
 
     [Header("UnitModel")]
     public GameObject UnitModel;
