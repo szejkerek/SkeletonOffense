@@ -12,8 +12,6 @@ public class StageManager : MonoBehaviour
     [SerializeField] float initialWaitTime;
     [SerializeField] float waitBetweenUnit;
     [SerializeField] float bulkWait;
-    
-    List<Unit> SpawnedUnits = new List<Unit>();
 
     void Start()
     {
@@ -22,7 +20,6 @@ public class StageManager : MonoBehaviour
 
     public void Initialize(List<UnitBlueprint> UnitBlueprints)
     {
-        SpawnedUnits.Clear();
         StartCoroutine(SpawningRoutine());
     }
 
@@ -51,13 +48,7 @@ public class StageManager : MonoBehaviour
 
     void SpawnUnit(UnitBlueprint unitBlueprint)
     {
-        var model = Instantiate(unitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
-        model.GetComponent<Unit>().PlaceOnStage(unitBlueprint, SplineManager);
-        
-        if(model.TryGetComponent(out Unit spawnedUnit))
-        {
-            spawnedUnit.PlaceOnStage(unitBlueprint, SplineManager);
-            SpawnedUnits.Add(spawnedUnit);
-        }
+        var spawned = Instantiate(unitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
+        spawned.GetComponent<Unit>().PlaceOnStage(unitBlueprint, SplineManager);
     }
 }
