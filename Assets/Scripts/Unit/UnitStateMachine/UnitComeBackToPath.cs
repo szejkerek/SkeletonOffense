@@ -26,7 +26,7 @@ public class UnitComeBackToPath : UnitState
     {
         if (WalkManager.HasReachedDestination())
         {
-            Context.ChangeState(new UnitWalkOnPathState(Context));
+            //Context.ChangeState(new UnitWalkOnPathState(Context));
             return;
         }
     }
@@ -39,6 +39,6 @@ public class UnitComeBackToPath : UnitState
         }
 
         WalkManager.StopNavMeshMovement();
-        WalkManager.SetSpliePosition(nextWaypoint.percentage);
+        WalkManager.SetSplinePosition(nextWaypoint.percentage);
     }
 }

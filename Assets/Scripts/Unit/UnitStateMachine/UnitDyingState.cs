@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class UnitDyingState : UnitState
 {
 
@@ -11,7 +12,7 @@ public class UnitDyingState : UnitState
 
     public override void EnterState()
     {
-        Context.Unit.DestroyUnit(3f);
+        Object.Destroy(Context.Unit.gameObject, 3f);
     }
 
     public override void UpdateState()

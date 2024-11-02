@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Unit : MonoBehaviour, IDamagable
 {
+    public static Action<Unit> OnDeath;
     public bool IsAlive { get; set; }
     public bool Agressive { get; private set; }
 
@@ -24,6 +26,7 @@ public class Unit : MonoBehaviour, IDamagable
     {
         IsAlive = false;
         UnitStateMachine.ChangeState(new UnitDyingState(UnitStateMachine));
+        OnDeath?.Invoke(this);
     }
 
     public void PlaceOnStage(UnitBlueprint blueprint, SplineManager stageSpline)
@@ -48,11 +51,6 @@ public class Unit : MonoBehaviour, IDamagable
         Initialize();
         
         UnitStateMachine.ChangeState(new UnitDraggableReady(UnitStateMachine));
-    }
-    
-    public void DestroyUnit(float delay = 0)
-    {
-        Destroy(gameObject, delay);
     }
 
     public void TakeDamage(int damage)

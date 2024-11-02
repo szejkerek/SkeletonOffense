@@ -17,7 +17,7 @@ public class UnitWalkManager : MonoBehaviour
         splineContainer = newSpline.Spline;
     }
 
-    public void SetSpliePosition(float splinePosition)
+    public void SetSplinePosition(float splinePosition)
     {
         if (splineContainer == null)
             return;
