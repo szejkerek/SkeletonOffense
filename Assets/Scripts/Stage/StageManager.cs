@@ -94,6 +94,7 @@ public class StageManager : MonoBehaviour
 
     void SpawnUnit(UnitBlueprint unitBlueprint)
     {
+        //Choose model/prefab based on tier/lvl in blueprint
         var model = Instantiate(unitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
 
         if (model.TryGetComponent(out Unit spawnedUnit))

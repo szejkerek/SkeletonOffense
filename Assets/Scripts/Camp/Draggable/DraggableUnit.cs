@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class DraggableUnit : MonoBehaviour
 {
+    public UnitBlueprint unitBlueprint;
+    public CampBasicSlot currentSlot; 
+    
     private Camera mainCamera;  
     private Vector3 offset;     
     private bool isDragging = false;
     private Vector3 originalPosition;
-    
-    public UnitBlueprint unitBlueprint;
-    public CampBasicSlot currentSlot; 
     
     //TODO more interesting way of keeping unit in set height
     public float fixedHeight = 0.5f;

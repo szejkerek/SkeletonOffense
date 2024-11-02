@@ -26,7 +26,7 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
 
     public int CalculateUnitUpgradePrice(DraggableUnit unit)
     {
-        return (int)(unit.unitBlueprint.Config.price * unit.unitBlueprint.Level * 0.5f);
+        return (int)(unit.unitBlueprint.Config.price * unit.unitBlueprint.Tier * 0.5f);
     }
 
     public bool PutUnit(DraggableUnit unit)
@@ -38,7 +38,7 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
             return false;
 
         //Upgrade unit
-        unit.GetUnitBlueprint().LevelUp();
+        unit.GetUnitBlueprint().TierUp();
         return true;
     }
 }

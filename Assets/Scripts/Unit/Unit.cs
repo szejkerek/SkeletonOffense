@@ -51,11 +51,12 @@ public class Unit : MonoBehaviour, IDamagable
         UnitStateMachine.ChangeState(new UnitComeBackToPath(UnitStateMachine));
     }
     
-    public void PlaceInCamp(UnitConfig config, CampBasicSlot slot)
+    public void PlaceInCamp(UnitConfig config, CampBasicSlot slot, int tier = 1)
     {
         Initialize();
+        Config = config;
         UnitDraggingManager.GetUnitBlueprint().Config = config;
-        UnitDraggingManager.GetUnitBlueprint().Level = 1;
+        UnitDraggingManager.GetUnitBlueprint().Tier = tier;
         UnitDraggingManager.SetCurrentSlot(slot);
         UnitDraggingManager.MoveToSlotPosition();
 

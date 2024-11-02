@@ -26,13 +26,13 @@ public class CampSellHole : MonoBehaviour, IDragListener, IDragPutTarget
 
     public int CalculateUnitSellPrice(DraggableUnit unit)
     {
-        return (int)(unit.unitBlueprint.Config.price * unit.unitBlueprint.Level * 0.4f);
+        return (int)(unit.unitBlueprint.Config.price * unit.unitBlueprint.Tier * 0.4f);
     }
 
     public bool PutUnit(DraggableUnit unit)
     {
         CampManager.Instance.AddMoney(CalculateUnitSellPrice(unit));
-        Destroy(unit.gameObject);
+        CampManager.Instance.RemoveUnitFromCamp(unit.GetComponent<Unit>());
         return true;
     }
 }

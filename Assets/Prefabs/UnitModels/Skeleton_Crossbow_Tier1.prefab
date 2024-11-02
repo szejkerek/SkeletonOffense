@@ -72,15 +72,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 844d31bedf05ce347923ab5ee7f9f170, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 844d31bedf05ce347923ab5ee7f9f170, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 844d31bedf05ce347923ab5ee7f9f170, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 844d31bedf05ce347923ab5ee7f9f170, type: 3}
       propertyPath: m_LocalRotation.w
@@ -112,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 844d31bedf05ce347923ab5ee7f9f170, type: 3}
       propertyPath: m_Name
-      value: Skeleton_Minion_Crossbow_Animator
+      value: Skeleton_Crossbow_Tier1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

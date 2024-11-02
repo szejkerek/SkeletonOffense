@@ -17,6 +17,7 @@ public class UnitConfig : ScriptableObject
 
     [Header("UnitModel")]
     public GameObject UnitModel;
+    public GameObject UnitModeltier2;
     public int BulkSpawnCount = 1; //Count of units spawned on stage at once (later swap to LevelsToAddNextUnit and calculate later)
 
 }

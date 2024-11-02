@@ -19,4 +19,5 @@ MonoBehaviour:
   unlockStage: 1
   unlockRound: 1
   UnitModel: {fileID: 8794734137529011175, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
+  UnitModeltier2: {fileID: 5488137010712296379, guid: f9571971a68747847b9e9cf604edaf3e, type: 3}
   BulkSpawnCount: 2

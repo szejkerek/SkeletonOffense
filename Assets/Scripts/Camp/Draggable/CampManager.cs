@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CampManager : MonoBehaviour
@@ -7,6 +8,8 @@ public class CampManager : MonoBehaviour
     public static CampManager Instance;
     public event Action<int> OnMoneyChange;
     public int money;
+    public List<Unit> inCampUnits = new List<Unit>();
+
     private void Awake()
     {
         // Upewniamy siê, ¿e mamy tylko jedn¹ instancjê UnityDraggingManager
@@ -35,5 +38,46 @@ public class CampManager : MonoBehaviour
     { 
         money += amount;
         OnMoneyChange.Invoke(money);
+    }
+
+    public void AddUnitToCamp(Unit unit)
+    {
+        inCampUnits.Add(unit);
+        CombineUnits();
+    }
+
+    public void RemoveUnitFromCamp(Unit unit, float delay = 0f)
+    {
+        inCampUnits.Remove(unit);
+        unit.DestroyUnit(delay);
+    }
+    public void CombineUnits()
+    {
+        var groupedUnits = inCampUnits
+            .GroupBy(unit => new { unit.Config, unit.UnitDraggingManager.unitBlueprint.Tier})
+            .Where(group => group.Count() == 3)
+            .ToList();
+
+        if (groupedUnits.Any())
+        {
+            foreach (var unit in groupedUnits)
+            {
+                Debug.Log($"We have {unit.Key?.Config.name} to Combine");
+                Debug.Log($"Unit 0 {unit.ElementAt(0)?.name} to Combine");
+
+               
+                CampArmySlot slot = unit.ElementAt(2).UnitDraggingManager.currentSlot as CampArmySlot;
+                UnitBlueprint unitToTierUP = unit.ElementAt(2).UnitDraggingManager.unitBlueprint;
+                unitToTierUP.TierUp();
+
+
+                RemoveUnitFromCamp(unit.ElementAt(0), 0.5f);
+                RemoveUnitFromCamp(unit.ElementAt(1), 0.5f);
+                RemoveUnitFromCamp(unit.ElementAt(2), 0.5f);
+
+                ArmyManager.Instance.SpawnUnitOnSlot(unitToTierUP.Config, slot, unitToTierUP.Tier);
+            }
+            
+        }
     }
 }

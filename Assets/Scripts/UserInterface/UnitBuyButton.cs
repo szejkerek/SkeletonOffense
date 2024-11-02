@@ -9,7 +9,7 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     int unlockRound;
     public TMP_Text buttonText;
     public Button button;
-    public static Action<UnitConfig, CampArmySlot> OnUnitBought;
+    public static Action<UnitConfig, CampArmySlot,int> OnUnitBought;
 
     private void Start()
     {
@@ -28,7 +28,8 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     {
         if (CampManager.Instance.TryToBuy(config.price))
         {
-            OnUnitBought?.Invoke(config, GameplayUI.Instance.campUnitManagmentUI.usedArmySlot);
+            //TODO tier add to buy
+            OnUnitBought?.Invoke(config, GameplayUI.Instance.campUnitManagmentUI.usedArmySlot,1);
         }
     }
 }
