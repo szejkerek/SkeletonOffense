@@ -7,7 +7,8 @@ public class Unit : MonoBehaviour, IDamagable
 
     public UnitConfig Config { get; private set; }
     public UnitStateMachine UnitStateMachine { get; private set; }
-    public UnitWalkManager UnitWalkManager { get; private set; }
+    public UnitSplineWalker UnitSplineWalker { get; private set; }
+    public UnitNavMeshWalker UnitNavMeshWalker { get; private set; }
     public SplineManager SplineManager { get; private set; }
     public HealthManager HealthManager { get; private set; }
     public UnitAttackManager UnitAttackManager { get; private set; }
@@ -16,7 +17,8 @@ public class Unit : MonoBehaviour, IDamagable
     {
         UnitAttackManager = GetComponent<UnitAttackManager>();
         UnitStateMachine = GetComponent<UnitStateMachine>();
-        UnitWalkManager = GetComponent<UnitWalkManager>();
+        UnitSplineWalker = GetComponent<UnitSplineWalker>();
+        UnitNavMeshWalker = GetComponent<UnitNavMeshWalker>();
         HealthManager = GetComponent<HealthManager>();
     }
     
@@ -33,7 +35,8 @@ public class Unit : MonoBehaviour, IDamagable
         SplineManager = stageSpline;
         Agressive = blueprint.AgressiveMode;
         Config = blueprint.Config;
-        UnitWalkManager.Initialize(this, stageSpline);
+        UnitSplineWalker.Initialize(stageSpline, Config);
+        UnitNavMeshWalker.Initialize(Config);
         
         IsAlive = true;
 

@@ -13,12 +13,12 @@ public class UnitComeToTower : UnitState
 
     public override void EnterState()
     {
-        WalkManager.MoveToPoint(targetInfo.sampledStandPosition);
+        UnitNavMeshWalker.MoveToPoint(targetInfo.sampledStandPosition);
     }
 
     public override void UpdateState()
     {
-        if (WalkManager.HasReachedDestination())
+        if (UnitNavMeshWalker.HasReachedDestination())
         {
             Context.ChangeState(new UnitAttackTower(Context, targetInfo));
             return;

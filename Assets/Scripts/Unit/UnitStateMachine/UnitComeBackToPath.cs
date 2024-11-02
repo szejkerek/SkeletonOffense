@@ -11,20 +11,20 @@ public class UnitComeBackToPath : UnitState
 
     public override void EnterState()
     {
-        if(WalkManager == null || !WalkManager.UnitOnPath())
+        if(UnitNavMeshWalker == null || !UnitNavMeshWalker.UnitOnPath())
         {
             Context.ChangeState(new UnitIdleState(Context));
             return; 
         }
         
-        nextWaypoint = SplineManager.GetNext(WalkManager.SplinePosition);
-        WalkManager.MoveToPoint(nextWaypoint.position);      
+        nextWaypoint = SplineManager.GetNext(UnitSplineWalker.SplinePosition);
+        UnitNavMeshWalker.MoveToPoint(nextWaypoint.position);      
         
     }
 
     public override void UpdateState()
     {
-        if (WalkManager.HasReachedDestination())
+        if (UnitNavMeshWalker.HasReachedDestination())
         {
             Context.ChangeState(new UnitWalkOnPathState(Context));
             return;
@@ -33,12 +33,12 @@ public class UnitComeBackToPath : UnitState
 
     public override void ExitState()
     {
-        if(WalkManager == null)
+        if(UnitNavMeshWalker == null)
         {
             return;
         }
 
-        WalkManager.StopNavMeshMovement();
-        WalkManager.SetSpliePosition(nextWaypoint.percentage);
+        UnitNavMeshWalker.StopNavMeshMovement();
+        UnitSplineWalker.SetSplinePosition(nextWaypoint.percentage);
     }
 }

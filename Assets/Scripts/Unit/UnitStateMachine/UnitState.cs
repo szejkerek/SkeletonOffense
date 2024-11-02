@@ -7,16 +7,17 @@ public abstract class UnitState
 
     protected readonly UnitStateMachine Context;
     protected readonly Unit Unit;
-    protected readonly UnitWalkManager WalkManager;
+    protected readonly UnitNavMeshWalker UnitNavMeshWalker;
+    protected readonly UnitSplineWalker UnitSplineWalker;
     protected readonly SplineManager SplineManager;
     protected readonly UnitAttackManager UnitAttackManager;
-    protected readonly Weapon Weapon;
 
     protected UnitState(UnitStateMachine context)
     {
         this.Context = context;
         this.Unit = context.Unit;
-        this.WalkManager = context.Unit.UnitWalkManager;
+        this.UnitNavMeshWalker = context.Unit.UnitNavMeshWalker;
+        this.UnitSplineWalker = context.Unit.UnitSplineWalker;
         this.SplineManager = context.Unit.SplineManager;
         this.UnitAttackManager = context.Unit.UnitAttackManager;
     }

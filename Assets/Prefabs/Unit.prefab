@@ -279,6 +279,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1411268973528017137, guid: 9798d3046f3f449428ffa2a4899a5422, type: 3}
   cooldown: 0.21
   range: 15.3
+  followTarget: 0
 --- !u!1 &8614233450755018994
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +413,7 @@ GameObject:
   - component: {fileID: 2694248460360559639}
   - component: {fileID: 5969553197981910875}
   - component: {fileID: 2956378859949425409}
+  - component: {fileID: 4455691465683913601}
   - component: {fileID: 640310546142152484}
   - component: {fileID: 8061837505517558219}
   m_Layer: 6
@@ -530,7 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5736fd133cb095a4a9164491967a3a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: f71278c64e47ecf4aac229cccb443f58, type: 2}
 --- !u!114 &2694248460360559639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +570,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f3250d5b0dd6e428db83b32ad2269f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splinePosition: 0
+--- !u!114 &4455691465683913601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8794734137529011175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313ce869218e44bcb73390e2a987473d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &640310546142152484
 MonoBehaviour:
   m_ObjectHideFlags: 0
