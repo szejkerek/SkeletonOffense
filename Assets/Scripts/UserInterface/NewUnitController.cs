@@ -5,9 +5,10 @@ public class NewUnitController : ListView<UnitDataUI>
 {
     private UnitConfig[] unitConfigs;
     public Button rerollBtn;
+    public int rerollPrice = 4;
     private void Start()
     {
-        rerollBtn.onClick.AddListener(RebuildShop);
+        rerollBtn.onClick.AddListener(RerollShop);
         RebuildShop();
     }
 
@@ -15,6 +16,13 @@ public class NewUnitController : ListView<UnitDataUI>
     {
         Items.Remove(item);
     }
+    
+    private void RerollShop()
+    {
+        if(CampManager.Instance.TryToBuy(rerollPrice)) RebuildShop();
+        //else TODO info not enought gold 
+    }
+
 
     private void RebuildShop()
     {
@@ -44,6 +52,6 @@ public class NewUnitController : ListView<UnitDataUI>
 
     private void OnDestroy()
     {
-        rerollBtn.onClick.RemoveListener(RebuildShop);
+        rerollBtn.onClick.RemoveListener(RerollShop);
     }
 }
