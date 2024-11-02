@@ -2293,10 +2293,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 487290218277702920, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.0000076293945
-      objectReference: {fileID: 0}
     - target: {fileID: 2480283544861044991, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
       propertyPath: m_Name
       value: GameplayUI
@@ -2379,38 +2375,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6294358426565528654, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937079806491221158, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937079806491221158, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937079806491221158, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937079806491221158, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783959470842957762, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783959470842957762, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783959470842957762, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783959470842957762, guid: d52bc2bfa32d9744aab906c39e48af58, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

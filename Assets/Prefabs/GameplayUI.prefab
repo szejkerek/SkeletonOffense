@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95ffeca9f1ef7946bc1a42f78adcfef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newUnitContent: {fileID: 4698235750033942105}
+  newUnitContent: {fileID: 8847253370485875694}
   editUnitModeContent: {fileID: 7643900516821538322}
   usedArmySlot: {fileID: 0}
 --- !u!1 &2480283544861044991
