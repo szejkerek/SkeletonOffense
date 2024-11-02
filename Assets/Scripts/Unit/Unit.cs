@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour, IDamagable
     public SplineManager SplineManager { get; private set; }
     public HealthManager HealthManager { get; private set; }
     public UnitAttackManager UnitAttackManager { get; private set; }
+    public DraggableUnit UnitDraggingManager { get; private set; }
     
     void Initialize()
     {
@@ -22,6 +23,7 @@ public class Unit : MonoBehaviour, IDamagable
         UnitSplineWalker = GetComponent<UnitSplineWalker>();
         UnitNavMeshWalker = GetComponent<UnitNavMeshWalker>();
         HealthManager = GetComponent<HealthManager>();
+        UnitDraggingManager = GetComponent<DraggableUnit>();
     }
     
     void OnUnitDeath()
@@ -49,10 +51,14 @@ public class Unit : MonoBehaviour, IDamagable
         UnitStateMachine.ChangeState(new UnitComeBackToPath(UnitStateMachine));
     }
     
-    public void PlaceInCamp(UnitBlueprint blueprint)
+    public void PlaceInCamp(UnitConfig config, CampBasicSlot slot)
     {
         Initialize();
-        
+        UnitDraggingManager.GetUnitBlueprint().Config = config;
+        UnitDraggingManager.GetUnitBlueprint().Level = 1;
+        UnitDraggingManager.SetCurrentSlot(slot);
+        UnitDraggingManager.MoveToSlotPosition();
+
         UnitStateMachine.ChangeState(new UnitDraggableReady(UnitStateMachine));
     }
     

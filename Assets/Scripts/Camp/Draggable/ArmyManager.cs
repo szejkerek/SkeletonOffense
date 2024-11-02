@@ -31,13 +31,21 @@ public class ArmyManager : MonoBehaviour
 
     void SpawnUnitOnSlot(UnitConfig config, CampArmySlot slot)
     {
-        GameObject newUnit = Instantiate(unitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Instantiate(config.UnitModel, new Vector3(0, 0, 0), Quaternion.identity,newUnit.transform);
-        DraggableUnit unitDraggable = newUnit.GetComponent<DraggableUnit>();
-        unitDraggable.GetUnitBlueprint().Config = config;
-        unitDraggable.GetUnitBlueprint().Level = 1;
-        unitDraggable.SetCurrentSlot(slot);
-        unitDraggable.MoveToSlotPosition();
+        //GameObject newUnit = Instantiate(unitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        //Instantiate(config.UnitModel, new Vector3(0, 0, 0), Quaternion.identity,newUnit.transform);
+        //DraggableUnit unitDraggable = newUnit.GetComponent<DraggableUnit>();
+        
+
+        var model = Instantiate(config.UnitModel, new Vector3(0, 0, 0), Quaternion.identity);
+
+        if (model.TryGetComponent(out Unit spawnedUnit))
+        {
+            spawnedUnit.PlaceInCamp(config, slot);
+            //SpawnedUnits.Add(spawnedUnit);
+        }
+
+
+
     }
 
     void Start()
