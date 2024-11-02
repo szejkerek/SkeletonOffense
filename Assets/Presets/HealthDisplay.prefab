@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 4009771227406906817}
   - component: {fileID: 4614039619076272334}
   m_Layer: 5
-  m_Name: UnitHealthDisplay
+  m_Name: HealthDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

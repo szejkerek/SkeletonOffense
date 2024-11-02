@@ -1,16 +1,14 @@
+using System;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Action OnBaseDeath;
+    public HealthManager HealthManager { get; private set; }
+    public void Initialize(int health)
     {
-        
+        HealthManager = GetComponent<HealthManager>();
+        HealthManager.Init(health, OnBaseDeath);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
