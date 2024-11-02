@@ -1,59 +1,58 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class TowerAttack : MonoBehaviour
 {
+    TowerConfig config;
+
     [SerializeField] Weapon weapon;
 
-    const float UpdateInterval = 0.25f;
-    const int MaxColliders = 50;
-    
     Unit currentTarget;
     readonly List<Unit> unitsInRange = new();
-    readonly Collider[] hitColliders = new Collider[MaxColliders];
     
-    float updateTimer = 0f;
+    [SerializeField] float updateInterval = 0.25f;
+    float timeSinceLastUpdate = 0f;
+
+    void Awake()
+    {
+        config = GetComponent<Tower>().Config;
+    }
     
     void Update()
     {
-        updateTimer -= Time.deltaTime;
-        
-        if (updateTimer <= 0f)
+        if (timeSinceLastUpdate >= updateInterval)
         {
-            updateTimer = UpdateInterval;
-            UpdateTargetAndAttack();
+            FindUnitsInRange();
+            UpdateTarget();
+            weapon.Attack(currentTarget);
+            timeSinceLastUpdate = 0f;
         }
+        timeSinceLastUpdate += Time.deltaTime;
     }
+    
 
-    void UpdateTargetAndAttack()
-    {
-        currentTarget = null;
-        FindUnitsInRange();
-        
-        if (unitsInRange.Count <= 0)
-        {
-            return;
-        }
-
-        currentTarget = unitsInRange
-            .OrderBy(unit => (unit.transform.position - transform.position).sqrMagnitude)
-            .FirstOrDefault();
-
-        weapon.Attack(currentTarget);
-    }
-
-    void FindUnitsInRange()
+    private void FindUnitsInRange()
     {
         unitsInRange.Clear();
-        int hitCount = Physics.OverlapSphereNonAlloc(transform.position, weapon.Range, hitColliders);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, config.range);
 
-        for (int i = 0; i < hitCount; i++)
+        foreach (var hitCollider in hitColliders)
         {
-            if (hitColliders[i].TryGetComponent(out Unit unit) && unit.IsAlive)
+            if (hitCollider.TryGetComponent(out Unit unit) && unit.IsAlive)
             {
                 unitsInRange.Add(unit);
             }
         }
     }
+
+    private void UpdateTarget()
+    {
+        if (unitsInRange.Count == 0)
+        {
+            currentTarget = null;
+            return;
+        }
+        currentTarget = unitsInRange.SelectRandomElement();
+    }
+    
 }

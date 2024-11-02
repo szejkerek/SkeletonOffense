@@ -34,6 +34,8 @@ public class Unit : MonoBehaviour, IDamagable
         Agressive = blueprint.AgressiveMode;
         Config = blueprint.Config;
         UnitWalkManager.Initialize(this, stageSpline);
+        
+        IsAlive = true;
 
         UnitAttackManager.Init(this);
         HealthManager.Init(Config.health, OnUnitDeath);

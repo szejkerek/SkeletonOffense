@@ -4,21 +4,21 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     [SerializeField] StageConfig config;
-    public Transform spawnPoint;
-    public SplineManager SplineManager;
-    public UnitBlueprint UnitBlueprint;
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] SplineManager SplineManager;
+    [SerializeField] List<UnitBlueprint> UnitBlueprints;
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnUnit();
+            SpawnUnit(UnitBlueprints[0]);
         }
     }
 
-    void SpawnUnit()
+    void SpawnUnit(UnitBlueprint unitBlueprint)
     {
-        var spawned = Instantiate(UnitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
-        spawned.GetComponent<Unit>().PlaceOnStage(UnitBlueprint, SplineManager);
+        var spawned = Instantiate(unitBlueprint.Config.UnitModel, spawnPoint.transform.position, Quaternion.identity);
+        spawned.GetComponent<Unit>().PlaceOnStage(unitBlueprint, SplineManager);
     }
 }
