@@ -50,7 +50,7 @@ public class StageManager : MonoBehaviour
     {
         NextRoundButton.onClick.AddListener(() => StartRound(UnitBlueprints: null));
         Unit.OnDeath += CheckForRoundEnd;
-        //enemyBase.Initialize(config.enemyBaseHP, CheckForRoundEnd);
+        //enemyBase.Initialize(Config.enemyBaseHP, CheckForRoundEnd);
     }
 
     void OnStageCompleted()
@@ -111,7 +111,7 @@ public class StageManager : MonoBehaviour
 
     void SpawnUnit(UnitBlueprint unitBlueprint)
     {
-        //Choose model/prefab based on tier/lvl in blueprint
+        //Choose model/prefab based on Tier/lvl in blueprint
         var model = Instantiate(unitBlueprint.Config.UnitModelTier1, spawnPoint.transform.position, Quaternion.identity);
 
         if (model.TryGetComponent(out Unit spawnedUnit))

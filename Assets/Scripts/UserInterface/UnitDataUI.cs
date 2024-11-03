@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class UnitDataUI
 {
-    public UnitConfig config;
-    public int tier;
-
+    public UnitConfig Config;
+    public int Tier;
     public UnitDataUI(UnitConfig config, int tier)
     {
-        this.config = config;
-        this.tier = tier;
+        this.Config = config;
+        this.Tier = tier;
     }
 
 

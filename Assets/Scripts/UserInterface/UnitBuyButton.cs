@@ -19,20 +19,37 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     public override void SetData(UnitDataUI data)
     {
         this.data = data;
-        buttonText.text = $"{data.config.name} tier: {data.tier} for {data.config.price}";
 
-        //Check if will combine
-        if(CampManager.Instance.CheckIfWillCombine(data.config, data.tier))
+
+        if (data is LootBoxDataUI lootBoxData)
         {
-            buttonText.text += "But to TierUP";
+            buttonText.text = $"Loot Box for {lootBoxData.Price} Gold";
+        }
+        else
+        {
+            buttonText.text = $"{data.Config.name} Tier: {data.Tier} for {data.Config.price}";
+
+            //Check if will combine
+            if (CampManager.Instance.CheckIfWillCombine(data.Config, data.Tier))
+            {
+                buttonText.text += "But to TierUP";
+            }
         }
     }
     
     public void TryToBuyUnit()
     {
-        if (CampManager.Instance.TryToBuy(data.config.price))
+        if (data is LootBoxDataUI lootBoxData)
         {
-            OnUnitBought?.Invoke(data.config, data.tier);
+            if (CampManager.Instance.TryToBuy(lootBoxData.Price))
+            {
+                lootBoxData.OpenLootBox();
+                GetComponentInParent<NewUnitController>()?.RemoveItem(data);
+            }
+        }
+        else if (CampManager.Instance.TryToBuy(data.Config.price))
+        {
+            OnUnitBought?.Invoke(data.Config, data.Tier);
             GetComponentInParent<NewUnitController>()?.RemoveItem(data);
         }
     }

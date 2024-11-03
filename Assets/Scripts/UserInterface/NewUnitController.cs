@@ -6,6 +6,9 @@ public class NewUnitController : ListView<UnitDataUI>
     private UnitConfig[] unitConfigs;
     public Button rerollBtn;
     public int rerollPrice = 4;
+    public float lootBoxProbability = 0.2f;
+    public int lootBoxPrice = 15;
+
     private void Start()
     {
         rerollBtn.onClick.AddListener(RerollShop);
@@ -35,13 +38,22 @@ public class NewUnitController : ListView<UnitDataUI>
 
             for (int i = 0; i < 3; i++)
             {
-                int randomIndex = random.Next(unitConfigs.Length);
-                UnitConfig selectedConfig = unitConfigs[randomIndex];
+                if (random.NextDouble() < lootBoxProbability)
+                {
+                    LootBoxDataUI lootBox = new LootBoxDataUI(lootBoxPrice);
+                    Items.Add(lootBox);
+                }
+                else
+                {
 
-                int tier = random.NextDouble() < 0.7 ? 1 : 2;
+                    int randomIndex = random.Next(unitConfigs.Length);
+                    UnitConfig selectedConfig = unitConfigs[randomIndex];
 
-                UnitDataUI unitData = new UnitDataUI(selectedConfig, tier);
-                Items.Add(unitData);
+                    int tier = random.NextDouble() < 0.7 ? 1 : 2;
+
+                    UnitDataUI unitData = new UnitDataUI(selectedConfig, tier);
+                    Items.Add(unitData);
+                }
             }
         }
     }
