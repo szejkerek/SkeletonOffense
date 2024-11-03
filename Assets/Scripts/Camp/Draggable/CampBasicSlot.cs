@@ -3,7 +3,7 @@ using UnityEngine;
 public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
 {
     public Transform snapPoint;
-    public DraggableUnit unitOnSlot;
+    public UnitDraggingManager unitOnSlot;
 
     public Material slotEmptyMaterial;
     public Material slotFullMaterial;
@@ -21,7 +21,7 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
     {
         if (other.CompareTag("Draggable"))
         {
-            DraggableUnit draggable = other.GetComponent<DraggableUnit>();
+            UnitDraggingManager draggable = other.GetComponent<UnitDraggingManager>();
             if (UnityDraggingManager.Instance.IsDragging()) SetStateColor(draggable, true);
         }
     }
@@ -30,12 +30,12 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
     {
         if (other.CompareTag("Draggable"))
         {
-            DraggableUnit draggable = other.GetComponent<DraggableUnit>();
+            UnitDraggingManager draggable = other.GetComponent<UnitDraggingManager>();
             if(UnityDraggingManager.Instance.IsDragging()) SetStateColor(draggable);
         }
     }
 
-    public void SetUnitOnSlot(DraggableUnit unit)
+    public void SetUnitOnSlot(UnitDraggingManager unit)
     {
         unitOnSlot = unit;
         if(unit!=null) unit.SetCurrentSlot(this);
@@ -49,12 +49,12 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
     {
         return true;
     }
-    public DraggableUnit GetUnitOnSlot()
+    public UnitDraggingManager GetUnitOnSlot()
     {
         return unitOnSlot;
     }
 
-    public void SetStateColor(DraggableUnit unit, bool inRange = false)
+    public void SetStateColor(UnitDraggingManager unit, bool inRange = false)
     {
         if (IsSlotUnLocked())
         {
@@ -93,17 +93,17 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
         }
     }
 
-    public void OnDragStart(DraggableUnit unit)
+    public void OnDragStart(UnitDraggingManager unit)
     {
         SetStateColor(unit);
     }
 
-    public void OnDragEnd(DraggableUnit unit)
+    public void OnDragEnd(UnitDraggingManager unit)
     {
         SetStateColor(null);
     }
 
-    public bool PutUnit(DraggableUnit unit)
+    public bool PutUnit(UnitDraggingManager unit)
     {
         if (!IsSlotUnLocked()) return false;
 

@@ -5,10 +5,10 @@ public class UnityDraggingManager : MonoBehaviour
 {
     public static UnityDraggingManager Instance; 
 
-    public event Action<DraggableUnit> OnDragStart;
-    public event Action<DraggableUnit> OnDragEnd;
+    public event Action<UnitDraggingManager> OnDragStart;
+    public event Action<UnitDraggingManager> OnDragEnd;
 
-    private DraggableUnit currentDraggedUnit; 
+    private UnitDraggingManager currentDraggedUnit; 
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class UnityDraggingManager : MonoBehaviour
         return currentDraggedUnit != null;
     }
 
-    public void StartDragging(DraggableUnit draggable)
+    public void StartDragging(UnitDraggingManager draggable)
     {
         if (!IsDragging())
         {
@@ -45,7 +45,7 @@ public class UnityDraggingManager : MonoBehaviour
         }
     }
 
-    public DraggableUnit GetCurrentDraggedObject()
+    public UnitDraggingManager GetCurrentDraggedObject()
     {
         return currentDraggedUnit;
     }

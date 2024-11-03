@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DraggableUnit : MonoBehaviour
+public class UnitDraggingManager : MonoBehaviour
 {
     public CampBasicSlot currentSlot; 
     

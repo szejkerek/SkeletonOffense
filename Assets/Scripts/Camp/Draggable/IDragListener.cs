@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IDragListener
 {
-    void OnDragStart(DraggableUnit unit);  // Wywo³ywana przy rozpoczêciu przeci¹gania
-    void OnDragEnd(DraggableUnit unit);    // Wywo³ywana przy zakoñczeniu przeci¹gania
+    void OnDragStart(UnitDraggingManager unit);  // Wywo³ywana przy rozpoczêciu przeci¹gania
+    void OnDragEnd(UnitDraggingManager unit);    // Wywo³ywana przy zakoñczeniu przeci¹gania
 }

@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour, IDamagable
     public SplineManager SplineManager { get; private set; }
     public HealthManager HealthManager { get; private set; }
     public UnitAttackManager UnitAttackManager { get; private set; }
-    public DraggableUnit UnitDraggingManager { get; private set; }
+    public UnitDraggingManager UnitDraggingManager { get; private set; }
     
     void Initialize()
     {
@@ -22,7 +22,7 @@ public class Unit : MonoBehaviour, IDamagable
         UnitSplineWalker = GetComponent<UnitSplineWalker>();
         UnitNavMeshWalker = GetComponent<UnitNavMeshWalker>();
         HealthManager = GetComponent<HealthManager>();
-        UnitDraggingManager = GetComponent<DraggableUnit>();
+        UnitDraggingManager = GetComponent<UnitDraggingManager>();
         Blueprint = new UnitBlueprint();
     }
     
