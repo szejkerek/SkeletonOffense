@@ -13,8 +13,9 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
 
     private void Start()
     {
-        UnityDraggingManager.Instance.OnDragStart += OnDragStart;
-        UnityDraggingManager.Instance.OnDragEnd += OnDragEnd;
+        
+        UnitDraggingManager.OnDragStart += OnDragStart;
+        UnitDraggingManager.OnDragEnd += OnDragEnd;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,7 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
         if (other.CompareTag("Draggable"))
         {
             UnitDraggingManager draggable = other.GetComponent<UnitDraggingManager>();
-            if (UnityDraggingManager.Instance.IsDragging()) SetStateColor(draggable, true);
+            if (UnitDraggingManager.IsSthDragged) SetStateColor(draggable, true);
         }
     }
 
@@ -31,7 +32,7 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
         if (other.CompareTag("Draggable"))
         {
             UnitDraggingManager draggable = other.GetComponent<UnitDraggingManager>();
-            if(UnityDraggingManager.Instance.IsDragging()) SetStateColor(draggable);
+            if(UnitDraggingManager.IsSthDragged) SetStateColor(draggable);
         }
     }
 

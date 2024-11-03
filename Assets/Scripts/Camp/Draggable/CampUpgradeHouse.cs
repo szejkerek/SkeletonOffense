@@ -7,8 +7,8 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
 
     private void Start()
     {
-        UnityDraggingManager.Instance.OnDragStart += OnDragStart;
-        UnityDraggingManager.Instance.OnDragEnd += OnDragEnd;
+        UnitDraggingManager.OnDragStart += OnDragStart;
+        UnitDraggingManager.OnDragEnd += OnDragEnd;
         debugText.ResetText();
     }
     public void OnDragEnd(UnitDraggingManager unit)
