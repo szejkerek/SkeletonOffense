@@ -53,15 +53,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce85ebaac6322304e8dd7ce7c715ac72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraConfig:
+    cameraStart: {fileID: 7356028877845948364}
+    cameraEnd: {fileID: 7349399800803451098}
+    xConstrains: 24.8
+    maxZoom: 100
+    minZoom: 40
   config: {fileID: 11400000, guid: f8a0d83f2e40088429981da0cd524920, type: 2}
   spawnPoint: {fileID: 8774612256076827196}
   SplineManager: {fileID: 5947712863772208041}
   enemyBase: {fileID: 591565863058009728}
-  cameraConfig:
-    cameraStart: {fileID: 7356028877845948364}
-    cameraEnd: {fileID: 7349399800803451098}
-    maxZoom: 10
-    minZoom: 100
   initialWaitTime: 0
   waitBetweenUnit: 2
   bulkWait: 0.25

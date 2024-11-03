@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,7 +29,29 @@ public class GameManager : MonoBehaviour
 
         currentStage = stagesOrder.FirstOrDefault();
         
+        ComeToCamp();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ComeToCamp();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ComeToStage();
+        }
+    }
+
+    void ComeToStage()
+    {
+        cameraManager.ApplyConfig(currentStage.CameraConfig);
+    }
+
+    void ComeToCamp()
+    {
         cameraManager.ApplyConfig(campManager.CameraConfig);
-        
     }
 }
