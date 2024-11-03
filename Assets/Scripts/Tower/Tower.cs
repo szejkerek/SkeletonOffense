@@ -15,7 +15,6 @@ public class Tower : MonoBehaviour, IDamagable
 
     void OnTowerDeath()
     {
-        Debug.Log($"Tower {name} is dead");
         IsAlive = false;
         gameObject.SetActive(false);    
     }
@@ -24,7 +23,5 @@ public class Tower : MonoBehaviour, IDamagable
     {
         health.TakeDamage(damage);
     }
-    
-    
 
 }

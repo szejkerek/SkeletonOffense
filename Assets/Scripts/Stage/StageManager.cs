@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ public class StageManager : MonoBehaviour
     [SerializeField] StageConfig config;
     [SerializeField] Transform spawnPoint;
     [SerializeField] SplineManager SplineManager;
+    [SerializeField] EnemyBase enemyBase;
+    [Header("Camera points")]
+    [SerializeField] Transform cameraStart;    
+    [SerializeField] Transform cameraEnd;    
     [Header("Spawning times")]
     [SerializeField] float initialWaitTime;
     [SerializeField] float waitBetweenUnit;
@@ -19,7 +24,7 @@ public class StageManager : MonoBehaviour
     
     List<Unit> SpawnedUnits = new();
     bool allSpawned = false;
-    
+
     void Start()
     {
         Initialize();
@@ -29,37 +34,49 @@ public class StageManager : MonoBehaviour
     {
         NextRoundButton.interactable = false;
         allSpawned = false;
+        SpawnedUnits.Clear();
         StartCoroutine(SpawningRoutine());
     }
 
-    public void OnRoundEnded()
+    void OnRoundEnded()
     {
         StopAllCoroutines();
         NextRoundButton.interactable = true;
+        
+        Debug.Log("Round ended");
     }
 
     void Initialize()
     {
         NextRoundButton.onClick.AddListener(() => StartRound(UnitBlueprints: null));
         Unit.OnDeath += CheckForRoundEnd;
+        enemyBase.Initialize(config.enemyBaseHP, CheckForRoundEnd);
     }
 
     void OnStageCompleted()
     {
+        StopAllCoroutines();
         NextRoundButton.onClick.RemoveAllListeners();
         Unit.OnDeath -= CheckForRoundEnd;
+        
+        Debug.Log("Stage completed");
     }
     
     
-    void CheckForRoundEnd(Unit _)
+    void CheckForRoundEnd()
     {
         if (!allSpawned)
         {
             return;
         }
 
+        if (!enemyBase.IsAlive)
+        {
+            OnStageCompleted();
+            return;
+        }
         bool allUnitsDead = SpawnedUnits.All(unit => !unit.IsAlive);
-
+    
         if (allUnitsDead)
         {
             OnRoundEnded();

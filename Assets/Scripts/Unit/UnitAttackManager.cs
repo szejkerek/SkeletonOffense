@@ -21,18 +21,21 @@ public class UnitAttackManager : MonoBehaviour
     
     void SetUpTargets()
     {
-        Tower[] towers = FindObjectsByType<Tower>(FindObjectsSortMode.None);
-        foreach (var tower in towers)
+        List<IDamagable> damagables = new();
+        damagables.AddRange(FindObjectsByType<Tower>(FindObjectsSortMode.None));
+        damagables.AddRange(FindObjectsByType<EnemyBase>(FindObjectsSortMode.None));
+        //damagables.AddRange(FindObjectsByType<Roadblock>(FindObjectsSortMode.None));
+        foreach (var damagable in damagables)
         {
             TargetInfo targetInfo = new();
             Waypoint nearestWaypoint = new(percentage: Mathf.Infinity, Vector3.zero);
 
             for (int i = 0; i < 200; i++)
             {
-                Vector3 randomPoint = tower.transform.position + Random.insideUnitSphere * weapon.Range;
+                Vector3 randomPoint = damagable.transform.position + Random.insideUnitSphere * weapon.Range;
                 //Large range may produce lag
                 if (!NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, unit.Config.height * 2, NavMesh.AllAreas) ||
-                    Vector3.Distance(hit.position, tower.transform.position) > weapon.Range)
+                    Vector3.Distance(hit.position, damagable.transform.position) > weapon.Range)
                 {
                     continue;
                 }
@@ -47,7 +50,7 @@ public class UnitAttackManager : MonoBehaviour
 
             if (!float.IsPositiveInfinity(nearestWaypoint.percentage))
             {
-                targetInfo.SetTarget(tower);
+                targetInfo.SetTarget(damagable);
                 targetInfo.SetWaypoint(nearestWaypoint);
             }
 

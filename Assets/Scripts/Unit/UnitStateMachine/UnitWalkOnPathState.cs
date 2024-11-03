@@ -17,7 +17,7 @@ public class UnitWalkOnPathState : UnitState
     {
         if(Unit.Agressive && IsOnAggroWaypoint()) 
         {
-            Context.ChangeState(new UnitComeToTower(Context, targetInfo));
+            Context.ChangeState(new UnitComeToTarget(Context, targetInfo));
             return;
         }
 

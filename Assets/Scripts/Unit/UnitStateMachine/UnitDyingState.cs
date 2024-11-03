@@ -11,6 +11,7 @@ public class UnitDyingState : UnitState
 
     public override void EnterState()
     {
+        UnitNavMeshWalker.StopNavMeshMovement();    
         Object.Destroy(Context.Unit.gameObject, 3f);
     }
 

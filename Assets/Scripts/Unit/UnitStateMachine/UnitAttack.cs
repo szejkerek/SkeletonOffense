@@ -1,12 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class UnitAttackTower : UnitState
+public class UnitAttack : UnitState
 {
     readonly TargetInfo targetInfo;
-    public UnitAttackTower(UnitStateMachine context, TargetInfo target) : base(context)
+    public UnitAttack(UnitStateMachine context, TargetInfo target) : base(context)
     {
-        StateName = "Attack Tower";
+        StateName = "Attack target";
         StateColor = Color.red;
         this.targetInfo = target;
     }

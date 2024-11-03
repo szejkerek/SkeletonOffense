@@ -1,12 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class UnitComeToTower : UnitState
+public class UnitComeToTarget : UnitState
 {
     readonly TargetInfo targetInfo;
-    public UnitComeToTower(UnitStateMachine context, TargetInfo targetInfo) : base(context)
+    public UnitComeToTarget(UnitStateMachine context, TargetInfo targetInfo) : base(context)
     {
-        StateName = "Come To Tower";
+        StateName = "Come To target";
         StateColor = Color.magenta;
         this.targetInfo = targetInfo;
     }
@@ -20,7 +20,7 @@ public class UnitComeToTower : UnitState
     {
         if (UnitNavMeshWalker.HasReachedDestination())
         {
-            Context.ChangeState(new UnitAttackTower(Context, targetInfo));
+            Context.ChangeState(new UnitAttack(Context, targetInfo));
             return;
         }
     }

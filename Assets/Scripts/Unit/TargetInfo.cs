@@ -3,11 +3,11 @@ using UnityEngine;
 [System.Serializable]
 public class TargetInfo
 {
-    public Tower target;
+    public IDamagable target;
     public Waypoint nearestWaypoint;
     public Vector3 sampledStandPosition;
 
-    public void SetTarget(Tower target)
+    public void SetTarget(IDamagable target)
     {
         this.target = target;
     }
