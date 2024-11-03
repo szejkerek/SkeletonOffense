@@ -8,6 +8,7 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     UnitDataUI data;
     public TMP_Text buttonText;
     public Button button;
+    public Image bgImage;
     public static Action<UnitConfig, int> OnUnitBought;
 
     private void Start()
@@ -17,9 +18,14 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     }
     public override void SetData(UnitDataUI data)
     {
-        //TO DO check if unlocked based on round
         this.data = data;
         buttonText.text = $"{data.config.name} tier: {data.tier} for {data.config.price}";
+
+        //Check if will combine
+        if(CampManager.Instance.CheckIfWillCombine(data.config, data.tier))
+        {
+            buttonText.text += "But to TierUP";
+        }
     }
     
     public void TryToBuyUnit()

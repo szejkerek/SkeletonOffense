@@ -78,4 +78,14 @@ public class CampManager : MonoBehaviour
             
         }
     }
+
+    public bool CheckIfWillCombine(UnitConfig unitConfig, int tier)
+    {
+        var groupedUnits = inCampUnits
+            .GroupBy(unit => new { unit.Blueprint.Config, unit.Blueprint.Tier })
+            .Where(group => group.Count() == 2 && group.Key.Config == unitConfig && group.Key.Tier == tier)
+            .ToList();
+
+        return groupedUnits.Any();
+    }
 }
