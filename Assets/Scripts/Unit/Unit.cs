@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Unit : MonoBehaviour, IDamagable
 {
@@ -35,6 +36,7 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void PlaceOnStage(UnitBlueprint blueprint, SplineManager stageSpline)
     {
+        GetComponent<NavMeshAgent>().enabled = true;
         Initialize();
         
         SplineManager = stageSpline;
@@ -52,6 +54,7 @@ public class Unit : MonoBehaviour, IDamagable
     
     public void PlaceInCamp(UnitConfig config, CampBasicSlot slot, int tier = 1)
     {
+        
         Initialize();
         Blueprint.Config = config;
         Blueprint.Tier = tier;
