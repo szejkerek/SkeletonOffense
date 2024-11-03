@@ -50,7 +50,7 @@ public class StageManager : MonoBehaviour
     {
         NextRoundButton.onClick.AddListener(() => StartRound(UnitBlueprints: null));
         Unit.OnDeath += CheckForRoundEnd;
-        enemyBase.Initialize(config.enemyBaseHP, CheckForRoundEnd);
+        //enemyBase.Initialize(config.enemyBaseHP, CheckForRoundEnd);
     }
 
     void OnStageCompleted()
