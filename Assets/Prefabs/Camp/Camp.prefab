@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2516712433464583768}
   m_Layer: 0
-  m_Name: CameraStart
+  m_Name: CameraEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5842707808267521623}
   m_Layer: 0
-  m_Name: CameraEnd
+  m_Name: CameraStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,8 +598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraConfig:
-    cameraStart: {fileID: 2516712433464583768}
-    cameraEnd: {fileID: 5842707808267521623}
+    cameraStart: {fileID: 5842707808267521623}
+    cameraEnd: {fileID: 2516712433464583768}
     xConstrains: 24.3
     maxZoom: 100
     minZoom: 40

@@ -4,7 +4,6 @@ public class CameraManager : MonoBehaviour
 {
     CameraConfig currentCameraConfig;
     float targetZoom;
-    float currentZoom;
     public float zoomSpeed = 10f;
     public float panSpeed = 5f;
 
@@ -12,18 +11,17 @@ public class CameraManager : MonoBehaviour
     
     public void ApplyConfig(CameraConfig cameraConfig)
     {
+        changing = true;
         currentCameraConfig = cameraConfig;
         targetZoom = (currentCameraConfig.minZoom + currentCameraConfig.maxZoom) / 2;
-        currentZoom = targetZoom;
         
-        transform.position = new Vector3(
+        Vector3 target = new Vector3(
             currentCameraConfig.cameraStart.position.x,
             targetZoom,
             currentCameraConfig.cameraStart.position.z
         );
         
-        changing = true;
-        transform.DOMove(transform.position, 1f)
+        transform.DOMove(target, 1f)
             .SetEase(Ease.InOutQuad)
             .OnComplete(() => changing = false);
 
@@ -39,6 +37,7 @@ public class CameraManager : MonoBehaviour
         HandleZoom();
         HandlePan();
     }
+    
     void HandleZoom()
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
@@ -46,14 +45,21 @@ public class CameraManager : MonoBehaviour
         transform.position = new Vector3(transform.position.x, newHeight, transform.position.z);
     }
 
-    private void HandlePan()
+    void HandlePan()
     {
         float moveZ = Input.GetAxis("Vertical") * panSpeed * Time.deltaTime;
         float moveX = Input.GetAxis("Horizontal") * panSpeed * Time.deltaTime;
 
         Vector3 newPosition = transform.position;
         newPosition.z += moveZ;
-        newPosition.x = Mathf.Clamp(newPosition.x + moveX, -currentCameraConfig.xConstrains, currentCameraConfig.xConstrains);
+        
+        newPosition.z = Mathf.Clamp(newPosition.z + moveZ, 
+            currentCameraConfig.cameraStart.position.z,
+            currentCameraConfig.cameraEnd.position.z);;
+        
+        newPosition.x = Mathf.Clamp(newPosition.x + moveX, 
+            -currentCameraConfig.xConstrains, 
+            currentCameraConfig.xConstrains);
 
         transform.position = newPosition;
     }
