@@ -8,7 +8,7 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     UnitDataUI data;
     public TMP_Text buttonText;
     public Button button;
-    public static Action<UnitConfig, CampArmySlot,int> OnUnitBought;
+    public static Action<UnitConfig, int> OnUnitBought;
 
     private void Start()
     {
@@ -26,7 +26,7 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     {
         if (CampManager.Instance.TryToBuy(data.config.price))
         {
-            OnUnitBought?.Invoke(data.config, GameplayUI.Instance.campUnitManagmentUI.usedArmySlot, data.tier);
+            OnUnitBought?.Invoke(data.config, data.tier);
             GetComponentInParent<NewUnitController>()?.RemoveItem(data);
         }
     }

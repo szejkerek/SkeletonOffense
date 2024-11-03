@@ -2175,10 +2175,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2527627380710906577, guid: b8e6285ddd764dd4ca9bbca258c61094, type: 3}
-      propertyPath: money
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 8607658907032896968, guid: b8e6285ddd764dd4ca9bbca258c61094, type: 3}
       propertyPath: m_Name
       value: Camp

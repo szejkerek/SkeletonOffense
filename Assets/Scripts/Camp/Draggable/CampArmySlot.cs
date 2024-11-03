@@ -31,7 +31,7 @@ public class CampArmySlot : CampBasicSlot
             else
             {
                 //Display UI Buy Unit
-                GameplayUI.Instance.campUnitManagmentUI.ShowBuyUI(this);
+                GameplayUI.Instance.campUnitManagmentUI.ShowBuyUI();
             }
             return;
         }

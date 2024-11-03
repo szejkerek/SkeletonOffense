@@ -9,7 +9,11 @@ public class ArmyManager : MonoBehaviour
 
     public List<CampArmySlot> armySlotsList = new List<CampArmySlot>();
 
+    public List<CampBasicSlot> benchSlotsList = new List<CampBasicSlot>();
+
     public GameObject armySlots;
+
+    public GameObject benchSlots;
 
     
 
@@ -26,18 +30,22 @@ public class ArmyManager : MonoBehaviour
         }
 
         armySlotsList = armySlots.GetComponentsInChildren<CampArmySlot>().ToList();
+        benchSlotsList = benchSlots.GetComponentsInChildren<CampBasicSlot>().ToList();
         UnitBuyButton.OnUnitBought += SpawnUnitOnSlot;
     }
 
-    public void SpawnUnitOnSlot(UnitConfig config, CampArmySlot slot, int tier = 1)
+    public void SpawnUnitOnSlot(UnitConfig config, int tier = 1)
     {
 
         var modelPrefab = tier == 1 ? config.UnitModelTier1 : config.UnitModelTier2;
         var model = Instantiate(modelPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
-        if (model.TryGetComponent(out Unit spawnedUnit))
+
+        CampBasicSlot slotToPlace = GetUnOccupiedSlot();
+        if (slotToPlace != null && model.TryGetComponent(out Unit spawnedUnit))
         {
-            spawnedUnit.PlaceInCamp(config, slot, tier);
+            
+            spawnedUnit.PlaceInCamp(config, slotToPlace, tier);
             CampManager.Instance.AddUnitToCamp(spawnedUnit);
         }
 
@@ -82,5 +90,25 @@ public class ArmyManager : MonoBehaviour
     private void OnDestroy()
     {
         UnitBuyButton.OnUnitBought -= SpawnUnitOnSlot;
+    }
+
+    private CampBasicSlot GetUnOccupiedSlot()
+    {
+        foreach (var slot in armySlotsList)
+        {
+            if (slot.unlocked && !slot.IsSlotOccupied())
+            {
+                return slot;
+            }
+        }
+
+        foreach (var slot in benchSlotsList)
+        {
+            if(!slot.IsSlotOccupied())
+            {
+                return slot;
+            }
+        }
+        return null;
     }
 }

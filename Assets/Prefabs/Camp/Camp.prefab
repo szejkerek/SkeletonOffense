@@ -513,6 +513,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9165470099997060643}
     m_Modifications:
+    - target: {fileID: 2362612154797968233, guid: 0089104b74b0d6b4d822c61a6d68a07b, type: 3}
+      propertyPath: money
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 3635326486284350561, guid: 0089104b74b0d6b4d822c61a6d68a07b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -557,6 +561,10 @@ PrefabInstance:
       propertyPath: armySlots
       value: 
       objectReference: {fileID: 5185259284032732298}
+    - target: {fileID: 4161091259893986999, guid: 0089104b74b0d6b4d822c61a6d68a07b, type: 3}
+      propertyPath: benchSlots
+      value: 
+      objectReference: {fileID: 5065178811575130722}
     - target: {fileID: 6546388558636410145, guid: 0089104b74b0d6b4d822c61a6d68a07b, type: 3}
       propertyPath: m_Name
       value: CampManagers
@@ -862,6 +870,11 @@ PrefabInstance:
 --- !u!4 &1913059389370412416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4019591035789548390, guid: 759ee4aec74e5b14786a8601aaf3d6ad, type: 3}
+  m_PrefabInstance: {fileID: 3262006499726243558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5065178811575130722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7714623186326252676, guid: 759ee4aec74e5b14786a8601aaf3d6ad, type: 3}
   m_PrefabInstance: {fileID: 3262006499726243558}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7364660773182474322

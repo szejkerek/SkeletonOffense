@@ -65,8 +65,6 @@ public class CampManager : MonoBehaviour
                 Debug.Log($"We have {unit.Key?.Config.name} to Combine");
                 Debug.Log($"Unit 0 {unit.ElementAt(0)?.name} to Combine");
 
-               
-                CampArmySlot slot = unit.ElementAt(2).UnitDraggingManager.currentSlot as CampArmySlot;
                 UnitBlueprint unitToTierUP = unit.ElementAt(2).Blueprint;
                 unitToTierUP.TierUp();
 
@@ -75,7 +73,7 @@ public class CampManager : MonoBehaviour
                 RemoveUnitFromCamp(unit.ElementAt(1), 0.5f);
                 RemoveUnitFromCamp(unit.ElementAt(2), 0.5f);
 
-                ArmyManager.Instance.SpawnUnitOnSlot(unitToTierUP.Config, slot, unitToTierUP.Tier);
+                ArmyManager.Instance.SpawnUnitOnSlot(unitToTierUP.Config, unitToTierUP.Tier);
             }
             
         }
