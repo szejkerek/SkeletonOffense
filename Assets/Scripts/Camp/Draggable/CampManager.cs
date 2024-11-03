@@ -6,6 +6,10 @@ using UnityEngine;
 public class CampManager : MonoBehaviour
 {
     public static CampManager Instance;
+    
+    public CameraConfig CameraConfig => cameraConfig;
+    [SerializeField] CameraConfig cameraConfig;  
+    
     public event Action<int> OnMoneyChange;
     public int money;
     public List<Unit> inCampUnits = new List<Unit>();

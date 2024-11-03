@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
+    public CameraConfig CameraConfig => cameraConfig;
+    [SerializeField] CameraConfig cameraConfig;    
+    
     [SerializeField] StageConfig config;
     [SerializeField] Transform spawnPoint;
     [SerializeField] SplineManager SplineManager;
     [SerializeField] EnemyBase enemyBase;
-    [Header("Camera points")]
-    [SerializeField] Transform cameraStart;    
-    [SerializeField] Transform cameraEnd;    
     [Header("Spawning times")]
     [SerializeField] float initialWaitTime;
     [SerializeField] float waitBetweenUnit;
