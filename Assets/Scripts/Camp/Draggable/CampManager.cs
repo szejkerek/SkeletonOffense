@@ -12,7 +12,6 @@ public class CampManager : MonoBehaviour
 
     private void Awake()
     {
-        // Upewniamy siê, ¿e mamy tylko jedn¹ instancjê UnityDraggingManager
         if (Instance == null)
         {
             Instance = this;
