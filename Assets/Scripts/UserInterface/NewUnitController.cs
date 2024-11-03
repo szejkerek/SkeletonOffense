@@ -33,17 +33,13 @@ public class NewUnitController : ListView<UnitDataUI>
 
             var random = new System.Random();
 
-            // Losowo wybieramy trzy konfiguracje (mog¹ siê powtarzaæ)
             for (int i = 0; i < 3; i++)
             {
-                // Losowanie konfiguracji
                 int randomIndex = random.Next(unitConfigs.Length);
                 UnitConfig selectedConfig = unitConfigs[randomIndex];
 
-                // Losowanie tieru z prawdopodobieñstwem 70% dla 1 i 30% dla 2
                 int tier = random.NextDouble() < 0.7 ? 1 : 2;
 
-                // Tworzymy UnitDataUI z wylosowan¹ konfiguracj¹ i tierem
                 UnitDataUI unitData = new UnitDataUI(selectedConfig, tier);
                 Items.Add(unitData);
             }

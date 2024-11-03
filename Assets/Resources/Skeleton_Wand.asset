@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34d00476e7dbcb842914c45c025e7fa2, type: 3}
-  m_Name: Skeleton_Minion_Crossbow
+  m_Name: Skeleton_Wand
   m_EditorClassIdentifier: 
   height: 1.5
   walkSpeed: 5
@@ -18,7 +18,7 @@ MonoBehaviour:
   price: 5
   unlockStage: 1
   unlockRound: 1
-  UnitModelTier1: {fileID: 8794734137529011175, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
-  UnitModelTier2: {fileID: 5488137010712296379, guid: f9571971a68747847b9e9cf604edaf3e, type: 3}
-  UnitModelTier3: {fileID: 5488137010712296379, guid: f9571971a68747847b9e9cf604edaf3e, type: 3}
+  UnitModelTier1: {fileID: 2352185669470567769, guid: 580fbf142c0fbd143b54bf7ec0d2b6d4, type: 3}
+  UnitModelTier2: {fileID: 99669584293331169, guid: ade323cc22bcec04398203059c1ba2a1, type: 3}
+  UnitModelTier3: {fileID: 99669584293331169, guid: ade323cc22bcec04398203059c1ba2a1, type: 3}
   BulkSpawnCount: 1
