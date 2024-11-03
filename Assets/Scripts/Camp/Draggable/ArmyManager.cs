@@ -9,9 +9,13 @@ public class ArmyManager : MonoBehaviour
 
     public List<CampArmySlot> armySlotsList = new List<CampArmySlot>();
 
+    public List<CampBasicSlot> benchSlotsList = new List<CampBasicSlot>();
+
     public GameObject armySlots;
 
-    public GameObject unitPrefab;
+    public GameObject benchSlots;
+
+    
 
     int unlockableSlotsAmount = 2;
     void Awake()
@@ -26,18 +30,25 @@ public class ArmyManager : MonoBehaviour
         }
 
         armySlotsList = armySlots.GetComponentsInChildren<CampArmySlot>().ToList();
+        benchSlotsList = benchSlots.GetComponentsInChildren<CampBasicSlot>().ToList();
         UnitBuyButton.OnUnitBought += SpawnUnitOnSlot;
     }
 
-    void SpawnUnitOnSlot(UnitConfig config, CampArmySlot slot)
+    public void SpawnUnitOnSlot(UnitConfig config, int tier = 1)
     {
-        GameObject newUnit = Instantiate(unitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Instantiate(config.UnitModel, new Vector3(0, 0, 0), Quaternion.identity,newUnit.transform);
-        DraggableUnit unitDraggable = newUnit.GetComponent<DraggableUnit>();
-        unitDraggable.GetUnitBlueprint().Config = config;
-        unitDraggable.GetUnitBlueprint().Level = 1;
-        unitDraggable.SetCurrentSlot(slot);
-        unitDraggable.MoveToSlotPosition();
+
+        var modelPrefab = tier == 1 ? config.UnitModelTier1 : config.UnitModelTier2;
+        var model = Instantiate(modelPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+
+        CampBasicSlot slotToPlace = GetUnOccupiedSlot();
+        if (slotToPlace != null && model.TryGetComponent(out Unit spawnedUnit))
+        {
+            
+            spawnedUnit.PlaceInCamp(config, slotToPlace, tier);
+            CampManager.Instance.AddUnitToCamp(spawnedUnit);
+        }
+
     }
 
     void Start()
@@ -79,5 +90,25 @@ public class ArmyManager : MonoBehaviour
     private void OnDestroy()
     {
         UnitBuyButton.OnUnitBought -= SpawnUnitOnSlot;
+    }
+
+    private CampBasicSlot GetUnOccupiedSlot()
+    {
+        foreach (var slot in armySlotsList)
+        {
+            if (slot.unlocked && !slot.IsSlotOccupied())
+            {
+                return slot;
+            }
+        }
+
+        foreach (var slot in benchSlotsList)
+        {
+            if(!slot.IsSlotOccupied())
+            {
+                return slot;
+            }
+        }
+        return null;
     }
 }

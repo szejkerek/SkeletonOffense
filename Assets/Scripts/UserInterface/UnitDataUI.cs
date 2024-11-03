@@ -3,17 +3,13 @@ using UnityEngine;
 public class UnitDataUI
 {
     public UnitConfig config;
-    public int unlockRound;
+    public int tier;
 
-    public UnitDataUI(UnitConfig config)
+    public UnitDataUI(UnitConfig config, int tier)
     {
         this.config = config;
-        this.unlockRound = config.unlockRound;
+        this.tier = tier;
     }
 
-    void DecreaseUnlockRound()
-    {
-        if(unlockRound > 1)this.unlockRound--; 
-    }
 
 }

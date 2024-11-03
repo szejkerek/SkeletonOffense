@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34d00476e7dbcb842914c45c025e7fa2, type: 3}
-  m_Name: Skeleton_Rouge_Crossbow
+  m_Name: Skeleton_Crossbow
   m_EditorClassIdentifier: 
   height: 1.5
   walkSpeed: 5
-  range: 5
-  damage: 5
-  cooldown: 2
   health: 100
-  stuckThreshold: 2
-  price: 5
+  price: 3
   unlockStage: 1
   unlockRound: 1
-  UnitModel: {fileID: 117776341711669633, guid: 7145622282e2ad542bf034a070a45557, type: 3}
+  UnitModelTier1: {fileID: 8794734137529011175, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
+  UnitModelTier2: {fileID: 5488137010712296379, guid: f9571971a68747847b9e9cf604edaf3e, type: 3}
+  UnitModelTier3: {fileID: 5488137010712296379, guid: f9571971a68747847b9e9cf604edaf3e, type: 3}
+  BulkSpawnCount: 1

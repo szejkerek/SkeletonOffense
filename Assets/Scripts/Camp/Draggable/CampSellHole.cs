@@ -7,16 +7,16 @@ public class CampSellHole : MonoBehaviour, IDragListener, IDragPutTarget
 
     private void Start()
     {
-        UnityDraggingManager.Instance.OnDragStart += OnDragStart;
-        UnityDraggingManager.Instance.OnDragEnd += OnDragEnd;
+        UnitDraggingManager.OnDragStart += OnDragStart;
+        UnitDraggingManager.OnDragEnd += OnDragEnd;
         debugText.ResetText();
     }
-    public void OnDragEnd(DraggableUnit unit)
+    public void OnDragEnd(UnitDraggingManager unit)
     {
         debugText.ResetText();
     }
 
-    public void OnDragStart(DraggableUnit unit)
+    public void OnDragStart(UnitDraggingManager unit)
     {
         //TODO add math/balance to sell price
         int sellPrice = CalculateUnitSellPrice(unit);
@@ -24,15 +24,15 @@ public class CampSellHole : MonoBehaviour, IDragListener, IDragPutTarget
         debugText.SetText($"Sell for {sellPrice} gold",Color.yellow);
     }
 
-    public int CalculateUnitSellPrice(DraggableUnit unit)
+    public int CalculateUnitSellPrice(UnitDraggingManager unit)
     {
-        return (int)(unit.unitBlueprint.Config.price * unit.unitBlueprint.Level * 0.4f);
+        return (int)(unit.GetUnitBlueprint().Config.price * unit.GetUnitBlueprint().Tier * 0.4f);
     }
 
-    public bool PutUnit(DraggableUnit unit)
+    public bool PutUnit(UnitDraggingManager unit)
     {
         CampManager.Instance.AddMoney(CalculateUnitSellPrice(unit));
-        Destroy(unit.gameObject);
+        CampManager.Instance.RemoveUnitFromCamp(unit.GetComponent<Unit>());
         return true;
     }
 }

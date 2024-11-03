@@ -5,15 +5,15 @@ public class Unit : MonoBehaviour, IDamagable
 {
     public static Action OnDeath;
     public bool IsAlive { get; set; }
-    public bool Agressive { get; private set; }
 
-    public UnitConfig Config { get; private set; }
+    public UnitBlueprint Blueprint { get; private set; }
     public UnitStateMachine UnitStateMachine { get; private set; }
     public UnitSplineWalker UnitSplineWalker { get; private set; }
     public UnitNavMeshWalker UnitNavMeshWalker { get; private set; }
     public SplineManager SplineManager { get; private set; }
     public HealthManager HealthManager { get; private set; }
     public UnitAttackManager UnitAttackManager { get; private set; }
+    public UnitDraggingManager UnitDraggingManager { get; private set; }
     
     void Initialize()
     {
@@ -22,6 +22,8 @@ public class Unit : MonoBehaviour, IDamagable
         UnitSplineWalker = GetComponent<UnitSplineWalker>();
         UnitNavMeshWalker = GetComponent<UnitNavMeshWalker>();
         HealthManager = GetComponent<HealthManager>();
+        UnitDraggingManager = GetComponent<UnitDraggingManager>();
+        Blueprint = new UnitBlueprint();
     }
     
     void OnUnitDeath()
@@ -36,23 +38,28 @@ public class Unit : MonoBehaviour, IDamagable
         Initialize();
         
         SplineManager = stageSpline;
-        Agressive = blueprint.AgressiveMode;
-        Config = blueprint.Config;
-        UnitSplineWalker.Initialize(stageSpline, Config);
-        UnitNavMeshWalker.Initialize(Config);
+        Blueprint = blueprint;
+        UnitSplineWalker.Initialize(stageSpline, Blueprint.Config);
+        UnitNavMeshWalker.Initialize(Blueprint.Config);
         
         IsAlive = true;
 
         UnitAttackManager.Init(this);
-        HealthManager.Init(Config.health, OnUnitDeath);
+        HealthManager.Init(Blueprint.Config.health, OnUnitDeath);
         
         UnitStateMachine.ChangeState(new UnitComeBackToPath(UnitStateMachine));
     }
     
-    public void PlaceInCamp(UnitBlueprint blueprint)
+    public void PlaceInCamp(UnitConfig config, CampBasicSlot slot, int tier = 1)
     {
         Initialize();
-        
+        Blueprint.Config = config;
+        Blueprint.Tier = tier;
+        UnitDraggingManager.GetUnitBlueprint().Config = config;
+        UnitDraggingManager.GetUnitBlueprint().Tier = tier;
+        UnitDraggingManager.SetCurrentSlot(slot);
+        UnitDraggingManager.MoveToSlotPosition();
+
         UnitStateMachine.ChangeState(new UnitDraggableReady(UnitStateMachine));
     }
     

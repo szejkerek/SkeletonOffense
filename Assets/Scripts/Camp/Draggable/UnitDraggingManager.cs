@@ -1,14 +1,18 @@
+using System;
 using UnityEngine;
 
-public class DraggableUnit : MonoBehaviour
+public class UnitDraggingManager : MonoBehaviour
 {
+    public static event Action<UnitDraggingManager> OnDragStart;
+    public static event Action<UnitDraggingManager> OnDragEnd;
+    public static bool IsSthDragged = false;
+
+    public CampBasicSlot currentSlot; 
+    
     private Camera mainCamera;  
     private Vector3 offset;     
-    private bool isDragging = false;
+    private bool isDragged = false;
     private Vector3 originalPosition;
-    
-    public UnitBlueprint unitBlueprint;
-    public CampBasicSlot currentSlot; 
     
     //TODO more interesting way of keeping unit in set height
     public float fixedHeight = 0.5f;
@@ -30,18 +34,18 @@ public class DraggableUnit : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!UnityDraggingManager.Instance.IsDragging())
+        if (!IsSthDragged)
         {
-            UnityDraggingManager.Instance.StartDragging(this);
-
+            IsSthDragged = true;
+            isDragged = true;
+            OnDragStart?.Invoke(this);
             offset = gameObject.transform.position - GetMouseWorldPos();
-            isDragging = true;
         }
     }
 
     void OnMouseDrag()
     {
-        if (isDragging)
+        if (isDragged)
         {
             Vector3 newPosition = GetMouseWorldPos() + offset;
             newPosition.y = fixedHeight;
@@ -51,11 +55,11 @@ public class DraggableUnit : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (isDragging)
+        if (isDragged)
         {
-            isDragging = false;
-
-            UnityDraggingManager.Instance.StopDragging();
+            isDragged = false;
+            IsSthDragged = false;
+            OnDragEnd?.Invoke(this);
             IDragPutTarget putTarget = GetPutTargetUnderUnit();
             if (putTarget != null)
             {
@@ -80,7 +84,7 @@ public class DraggableUnit : MonoBehaviour
 
     public UnitBlueprint GetUnitBlueprint()
     {
-        return unitBlueprint;
+        return GetComponent<Unit>().Blueprint;
     }
 
     private Vector3 GetMouseWorldPos()

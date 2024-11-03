@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34d00476e7dbcb842914c45c025e7fa2, type: 3}
-  m_Name: Skeleton_Minion_Blade
+  m_Name: Skeleton_Blade
   m_EditorClassIdentifier: 
   height: 1.5
   walkSpeed: 5
-  range: 5
-  damage: 5
-  cooldown: 2
   health: 100
-  stuckThreshold: 2
-  price: 5
+  price: 1
   unlockStage: 1
   unlockRound: 1
-  UnitModel: {fileID: 5501739762523279166, guid: 00c55f6d8d7c7d3449b552d03f4e9abb, type: 3}
+  UnitModelTier1: {fileID: 7655988358736954155, guid: eb939e544a8bf22419897ae3142a71d9, type: 3}
+  UnitModelTier2: {fileID: 4039119748560762500, guid: d2bb0ccad12efe746952d08dd152f4ac, type: 3}
+  UnitModelTier3: {fileID: 4039119748560762500, guid: d2bb0ccad12efe746952d08dd152f4ac, type: 3}
+  BulkSpawnCount: 1

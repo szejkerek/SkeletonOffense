@@ -15,10 +15,9 @@ public class CampUnitManagmentUI : MonoBehaviour
         HideUI();
     }
 
-    public void ShowBuyUI(CampArmySlot campArmySlot)
+    public void ShowBuyUI()
     {
         HideUI();
-        usedArmySlot = campArmySlot;
         newUnitContent.SetActive(true);
     }
 

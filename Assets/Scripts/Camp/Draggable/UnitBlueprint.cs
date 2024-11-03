@@ -5,10 +5,10 @@ using UnityEngine;
 public class UnitBlueprint
 {
     public UnitConfig Config;
-    public int Level;
-    public bool AgressiveMode;
-    public void LevelUp()
+    public int Tier;
+    public bool Agressive;
+    public void TierUp()
     {
-        Level++;
+        Tier++;
     }
 }

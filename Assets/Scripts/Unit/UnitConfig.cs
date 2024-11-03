@@ -15,8 +15,10 @@ public class UnitConfig : ScriptableObject
     public int unlockStage = 1;
     public int unlockRound = 1; // Modify to percentage, because stages will have diferent num of rounds
 
-    [Header("UnitModel")]
-    public GameObject UnitModel;
+    [Header("UnitModels")]
+    public GameObject UnitModelTier1;
+    public GameObject UnitModelTier2;
+    public GameObject UnitModelTier3;
     public int BulkSpawnCount = 1; //Count of units spawned on stage at once (later swap to LevelsToAddNextUnit and calculate later)
 
 }

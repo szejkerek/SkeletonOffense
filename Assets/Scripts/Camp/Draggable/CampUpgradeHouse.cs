@@ -7,16 +7,16 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
 
     private void Start()
     {
-        UnityDraggingManager.Instance.OnDragStart += OnDragStart;
-        UnityDraggingManager.Instance.OnDragEnd += OnDragEnd;
+        UnitDraggingManager.OnDragStart += OnDragStart;
+        UnitDraggingManager.OnDragEnd += OnDragEnd;
         debugText.ResetText();
     }
-    public void OnDragEnd(DraggableUnit unit)
+    public void OnDragEnd(UnitDraggingManager unit)
     {
         debugText.ResetText();
     }
 
-    public void OnDragStart(DraggableUnit unit)
+    public void OnDragStart(UnitDraggingManager unit)
     {
         //TODO add math/balance to upgrade price
         int upgradePrice = CalculateUnitUpgradePrice(unit);
@@ -24,12 +24,12 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
         debugText.SetText($"Upgrade for {upgradePrice} gold", Color.yellow);
     }
 
-    public int CalculateUnitUpgradePrice(DraggableUnit unit)
+    public int CalculateUnitUpgradePrice(UnitDraggingManager unit)
     {
-        return (int)(unit.unitBlueprint.Config.price * unit.unitBlueprint.Level * 0.5f);
+        return (int)(unit.GetUnitBlueprint().Config.price * unit.GetUnitBlueprint().Tier * 0.5f);
     }
 
-    public bool PutUnit(DraggableUnit unit)
+    public bool PutUnit(UnitDraggingManager unit)
     {
         unit.MoveToSlotPosition();
         
@@ -38,7 +38,7 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
             return false;
 
         //Upgrade unit
-        unit.GetUnitBlueprint().LevelUp();
+        unit.GetUnitBlueprint().TierUp();
         return true;
     }
 }
