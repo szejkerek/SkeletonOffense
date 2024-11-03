@@ -54,7 +54,7 @@ public class CampManager : MonoBehaviour
     public void CombineUnits()
     {
         var groupedUnits = inCampUnits
-            .GroupBy(unit => new { unit.Config, unit.UnitDraggingManager.unitBlueprint.Tier})
+            .GroupBy(unit => new { unit.Blueprint.Config, unit.Blueprint.Tier})
             .Where(group => group.Count() == 3)
             .ToList();
 
@@ -67,7 +67,7 @@ public class CampManager : MonoBehaviour
 
                
                 CampArmySlot slot = unit.ElementAt(2).UnitDraggingManager.currentSlot as CampArmySlot;
-                UnitBlueprint unitToTierUP = unit.ElementAt(2).UnitDraggingManager.unitBlueprint;
+                UnitBlueprint unitToTierUP = unit.ElementAt(2).Blueprint;
                 unitToTierUP.TierUp();
 
 

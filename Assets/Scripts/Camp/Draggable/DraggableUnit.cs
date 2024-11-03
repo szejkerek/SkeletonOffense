@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class DraggableUnit : MonoBehaviour
 {
-    public UnitBlueprint unitBlueprint;
     public CampBasicSlot currentSlot; 
     
     private Camera mainCamera;  
@@ -80,7 +79,7 @@ public class DraggableUnit : MonoBehaviour
 
     public UnitBlueprint GetUnitBlueprint()
     {
-        return unitBlueprint;
+        return GetComponent<Unit>().Blueprint;
     }
 
     private Vector3 GetMouseWorldPos()

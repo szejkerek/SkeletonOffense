@@ -6,7 +6,7 @@ public class UnitBlueprint
 {
     public UnitConfig Config;
     public int Tier;
-    public bool AgressiveMode;
+    public bool Agressive;
     public void TierUp()
     {
         Tier++;

@@ -5,9 +5,8 @@ public class Unit : MonoBehaviour, IDamagable
 {
     public static Action<Unit> OnDeath;
     public bool IsAlive { get; set; }
-    public bool Agressive { get; private set; }
 
-    public UnitConfig Config { get; private set; }
+    public UnitBlueprint Blueprint { get; private set; }
     public UnitStateMachine UnitStateMachine { get; private set; }
     public UnitSplineWalker UnitSplineWalker { get; private set; }
     public UnitNavMeshWalker UnitNavMeshWalker { get; private set; }
@@ -24,6 +23,7 @@ public class Unit : MonoBehaviour, IDamagable
         UnitNavMeshWalker = GetComponent<UnitNavMeshWalker>();
         HealthManager = GetComponent<HealthManager>();
         UnitDraggingManager = GetComponent<DraggableUnit>();
+        Blueprint = new UnitBlueprint();
     }
     
     void OnUnitDeath()
@@ -38,15 +38,14 @@ public class Unit : MonoBehaviour, IDamagable
         Initialize();
         
         SplineManager = stageSpline;
-        Agressive = blueprint.AgressiveMode;
-        Config = blueprint.Config;
-        UnitSplineWalker.Initialize(stageSpline, Config);
-        UnitNavMeshWalker.Initialize(Config);
+        Blueprint = blueprint;
+        UnitSplineWalker.Initialize(stageSpline, Blueprint.Config);
+        UnitNavMeshWalker.Initialize(Blueprint.Config);
         
         IsAlive = true;
 
         UnitAttackManager.Init(this);
-        HealthManager.Init(Config.health, OnUnitDeath);
+        HealthManager.Init(Blueprint.Config.health, OnUnitDeath);
         
         UnitStateMachine.ChangeState(new UnitComeBackToPath(UnitStateMachine));
     }
@@ -54,7 +53,8 @@ public class Unit : MonoBehaviour, IDamagable
     public void PlaceInCamp(UnitConfig config, CampBasicSlot slot, int tier = 1)
     {
         Initialize();
-        Config = config;
+        Blueprint.Config = config;
+        Blueprint.Tier = tier;
         UnitDraggingManager.GetUnitBlueprint().Config = config;
         UnitDraggingManager.GetUnitBlueprint().Tier = tier;
         UnitDraggingManager.SetCurrentSlot(slot);

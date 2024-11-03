@@ -31,7 +31,7 @@ public class UnitAttackManager : MonoBehaviour
             {
                 Vector3 randomPoint = tower.transform.position + Random.insideUnitSphere * weapon.Range;
                 //Large range may produce lag
-                if (!NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, unit.Config.height * 2, NavMesh.AllAreas) ||
+                if (!NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, unit.Blueprint.Config.height * 2, NavMesh.AllAreas) ||
                     Vector3.Distance(hit.position, tower.transform.position) > weapon.Range)
                 {
                     continue;
