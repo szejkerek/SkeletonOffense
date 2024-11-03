@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour, IDamagable
     public HealthManager HealthManager { get; private set; }
     public UnitAttackManager UnitAttackManager { get; private set; }
     public UnitDraggingManager UnitDraggingManager { get; private set; }
+    public Animator Animator { get; private set; }
     
     void Initialize()
     {
@@ -24,6 +25,7 @@ public class Unit : MonoBehaviour, IDamagable
         UnitNavMeshWalker = GetComponent<UnitNavMeshWalker>();
         HealthManager = GetComponent<HealthManager>();
         UnitDraggingManager = GetComponent<UnitDraggingManager>();
+        Animator = GetComponentInChildren<Animator>();
         Blueprint = new UnitBlueprint();
     }
     
@@ -58,10 +60,7 @@ public class Unit : MonoBehaviour, IDamagable
         Initialize();
         Blueprint.Config = config;
         Blueprint.Tier = tier;
-        UnitDraggingManager.GetUnitBlueprint().Config = config;
-        UnitDraggingManager.GetUnitBlueprint().Tier = tier;
-        UnitDraggingManager.SetCurrentSlot(slot);
-        UnitDraggingManager.MoveToSlotPosition();
+        UnitDraggingManager.Init(config,tier,slot,Animator);
 
         UnitStateMachine.ChangeState(new UnitDraggableReady(UnitStateMachine));
     }

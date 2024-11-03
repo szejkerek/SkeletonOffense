@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 
 public class UnitDraggingManager : MonoBehaviour
@@ -13,9 +14,22 @@ public class UnitDraggingManager : MonoBehaviour
     private Vector3 offset;     
     private bool isDragged = false;
     private Vector3 originalPosition;
-    
+
+    private Animator animator;
+    private const string DRAGGING = "Dragging";
     //TODO more interesting way of keeping unit in set height
     public float fixedHeight = 0.5f;
+
+    public void Init(UnitConfig config,int tier, CampBasicSlot slot,Animator animator)
+    {
+        GetUnitBlueprint().Config = config;
+        GetUnitBlueprint().Tier = tier;
+        SetCurrentSlot(slot);
+        MoveToSlotPosition();
+        this.animator = animator;
+    }
+
+
 
     void Start()
     {
@@ -40,6 +54,7 @@ public class UnitDraggingManager : MonoBehaviour
             isDragged = true;
             OnDragStart?.Invoke(this);
             offset = gameObject.transform.position - GetMouseWorldPos();
+            animator.SetBool(DRAGGING, true);
         }
     }
 
@@ -69,6 +84,7 @@ public class UnitDraggingManager : MonoBehaviour
             {
                 MoveToSlotPosition();
             }
+            animator.SetBool(DRAGGING, false);
         }
     }
 
