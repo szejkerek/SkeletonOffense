@@ -111,4 +111,24 @@ public class ArmyManager : MonoBehaviour
         }
         return null;
     }
+
+    public bool IsFreeSlotToSpawn()
+    {
+        foreach (var slot in armySlotsList)
+        {
+            if (slot.unlocked && !slot.IsSlotOccupied())
+            {
+                return true;
+            }
+        }
+
+        foreach (var slot in benchSlotsList)
+        {
+            if (!slot.IsSlotOccupied())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -39,6 +39,8 @@ public class UnitBuyButton : ViewPrefab<UnitDataUI>
     
     public void TryToBuyUnit()
     {
+        if (!ArmyManager.Instance.IsFreeSlotToSpawn()) return;
+
         if (data is LootBoxDataUI lootBoxData)
         {
             if (CampManager.Instance.TryToBuy(lootBoxData.Price))
