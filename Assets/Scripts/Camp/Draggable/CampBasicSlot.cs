@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
@@ -5,17 +7,23 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
     public Transform snapPoint;
     public UnitDraggingManager unitOnSlot;
 
-    public Material slotEmptyMaterial;
-    public Material slotFullMaterial;
-    public Material slotHoverEmptyMaterial;
-    public Material slotHoverFullMaterial;
+
     public MeshRenderer visualMeshRenderer;
+    public List<ParticleSystem> ViusalEffects = new List<ParticleSystem>();
+
 
     private void Start()
     {
         
         UnitDraggingManager.OnDragStart += OnDragStart;
         UnitDraggingManager.OnDragEnd += OnDragEnd;
+        ViusalEffects = GetComponentsInChildren<ParticleSystem>().ToList();
+
+        foreach (ParticleSystem p in ViusalEffects)
+        {
+            p.Pause();
+            p.Clear();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,38 +67,64 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
     {
         if (IsSlotUnLocked())
         {
-            
+            foreach (ParticleSystem p in ViusalEffects)
+            {
+                p.Pause();
+                p.Clear();
+            }
+
             if (inRange)
             {
                 if (unitOnSlot != null && unitOnSlot != unit)
                 {
                     //naje�d�asz innym unitem i co� innego tu jest
-                    visualMeshRenderer.material = slotHoverFullMaterial;
+                    //visualMeshRenderer.material = slotHoverFullMaterial;
+                    foreach (ParticleSystem p in ViusalEffects)
+                    {
+                        var main = p.main;
+                        main.startColor = new Color(255, 255, 0);
+                        p.Emit(1);
+                        p.Play();
+                    }
                 }
                 else
                 {
                     //naje�d�asz unitem a jest pusto
-                    visualMeshRenderer.material = slotHoverEmptyMaterial;
+                    //visualMeshRenderer.material = slotHoverEmptyMaterial;
+                    foreach (ParticleSystem p in ViusalEffects)
+                    {
+                        var main = p.main;
+                        main.startColor = new Color(0, 255, 255);
+                        p.Emit(1);
+                        p.Play();
+                    }
                 }
             }
             else
             {
-                if (unit != null)
+                if (unit != null && !IsSlotOccupied())
                 {
                     //podniesiony unit w oddali
-                    visualMeshRenderer.material = slotFullMaterial;
+                    //visualMeshRenderer.material = slotFullMaterial;
+                    foreach (ParticleSystem p in ViusalEffects)
+                    {
+                        var main = p.main;
+                        main.startColor = new Color(0, 255, 0);
+                        p.Emit(1);
+                        p.Play();
+                    }
                 }
                 else
                 {
                     //zako�czenie nic, nie jest przenoszone
-                    visualMeshRenderer.material = slotEmptyMaterial;
+                    //visualMeshRenderer.material = slotEmptyMaterial;
                 }
             }
 
         }
         else
         {
-            visualMeshRenderer.material = slotHoverFullMaterial;
+            //visualMeshRenderer.material = slotHoverFullMaterial;
         }
     }
 
