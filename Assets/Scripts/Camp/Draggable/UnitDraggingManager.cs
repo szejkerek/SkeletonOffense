@@ -23,26 +23,9 @@ public class UnitDraggingManager : MonoBehaviour
     {
         GetUnitBlueprint().Config = config;
         GetUnitBlueprint().Tier = tier;
-        SetCurrentSlot(slot);
-        MoveToSlotPosition();
+        slot?.PutUnit(this);
         this.animator = animator;
-    }
-
-
-
-    void Start()
-    {
         mainCamera = Camera.main;
-        if (currentSlot != null)
-        {
-            originalPosition = currentSlot.snapPoint.position;
-            currentSlot.SetUnitOnSlot(this);
-            MoveToSlotPosition();
-        }
-        else
-        {
-            originalPosition = transform.position;
-        }
     }
 
     void OnMouseDown()

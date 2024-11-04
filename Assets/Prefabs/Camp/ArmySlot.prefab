@@ -73,6 +73,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6018650817459707786}
   m_SourcePrefab: {fileID: 100100000, guid: 631294d9b1fd70d44a6ea8db55da8bb4, type: 3}
+--- !u!23 &1542923019186511232 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1519561609224709304, guid: 631294d9b1fd70d44a6ea8db55da8bb4, type: 3}
+  m_PrefabInstance: {fileID: 35748920412502328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1678180112103600890 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1672267711163730882, guid: 631294d9b1fd70d44a6ea8db55da8bb4, type: 3}
@@ -90,30 +95,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cd0adbda7784045b4bafcae24df6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapPoint: {fileID: 2079914550336736035}
+  snapPoint: {fileID: 5410346603794276655}
   unitOnSlot: {fileID: 0}
-  slotEmptyMaterial: {fileID: 2100000, guid: 9e1f96a64aadc8440b9eddaddf57fe1e, type: 2}
-  slotFullMaterial: {fileID: 2100000, guid: 07c4080b7a529fc47a62f3049d071ed4, type: 2}
-  slotHoverEmptyMaterial: {fileID: 2100000, guid: bc2bfbe78cadb1b4ab765cabadf254c9, type: 2}
-  slotHoverFullMaterial: {fileID: 2100000, guid: 9ca8958693d6a7340b64552537231e17, type: 2}
-  visualMeshRenderer: {fileID: 6541856350600671142}
+  visualMeshRenderer: {fileID: 1542923019186511232}
+  ViusalEffects: []
   unlockPrice: 15
   unlocked: 0
   unlockable: 0
   debugText: {fileID: 600359785335977421}
---- !u!4 &2079914550336736035 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2063306375017443867, guid: 631294d9b1fd70d44a6ea8db55da8bb4, type: 3}
-  m_PrefabInstance: {fileID: 35748920412502328}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2867917760886189602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2860882483563321114, guid: 631294d9b1fd70d44a6ea8db55da8bb4, type: 3}
   m_PrefabInstance: {fileID: 35748920412502328}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &6541856350600671142 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6536507312937752222, guid: 631294d9b1fd70d44a6ea8db55da8bb4, type: 3}
+--- !u!4 &5410346603794276655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5434271237438986263, guid: 631294d9b1fd70d44a6ea8db55da8bb4, type: 3}
   m_PrefabInstance: {fileID: 35748920412502328}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2595218677153911920

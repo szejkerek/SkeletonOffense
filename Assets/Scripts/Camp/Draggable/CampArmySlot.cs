@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class CampArmySlot : CampBasicSlot
@@ -13,6 +14,12 @@ public class CampArmySlot : CampBasicSlot
         UnitDraggingManager.OnDragStart += OnDragStart;
         UnitDraggingManager.OnDragEnd += OnDragEnd;
         debugText.ResetText();
+        ViusalEffects = GetComponentsInChildren<ParticleSystem>().ToList();
+        foreach (ParticleSystem p in ViusalEffects)
+        {
+            p.Pause();
+            p.Clear();
+        }
     }
     public override bool IsSlotUnLocked()
     {

@@ -41,4 +41,10 @@ public class CampUpgradeHouse : MonoBehaviour, IDragListener, IDragPutTarget
         unit.GetUnitBlueprint().TierUp();
         return true;
     }
+
+    private void OnDestroy()
+    {
+        UnitDraggingManager.OnDragStart -= OnDragStart;
+        UnitDraggingManager.OnDragEnd -= OnDragEnd;
+    }
 }

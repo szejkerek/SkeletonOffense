@@ -35,4 +35,9 @@ public class CampSellHole : MonoBehaviour, IDragListener, IDragPutTarget
         CampManager.Instance.RemoveUnitFromCamp(unit.GetComponent<Unit>());
         return true;
     }
+    private void OnDestroy()
+    {
+        UnitDraggingManager.OnDragStart -= OnDragStart;
+        UnitDraggingManager.OnDragEnd -= OnDragEnd;
+    }
 }
