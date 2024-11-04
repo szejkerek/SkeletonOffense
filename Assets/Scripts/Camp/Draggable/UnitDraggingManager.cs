@@ -24,8 +24,7 @@ public class UnitDraggingManager : MonoBehaviour
     {
         GetUnitBlueprint().Config = config;
         GetUnitBlueprint().Tier = tier;
-        SetCurrentSlot(slot);
-        MoveToSlotPosition();
+        slot?.PutUnit(this);
         this.animator = animator;
         mainCamera = Camera.main;
     }
