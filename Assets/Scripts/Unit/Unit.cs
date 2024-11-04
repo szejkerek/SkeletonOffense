@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour, IDamagable
     public UnitAttackManager UnitAttackManager { get; private set; }
     public UnitDraggingManager UnitDraggingManager { get; private set; }
     public Animator Animator { get; private set; }
+    public NavMeshAgent NavMeshAgent { get; private set; }
     
     void Initialize()
     {
@@ -26,6 +27,7 @@ public class Unit : MonoBehaviour, IDamagable
         HealthManager = GetComponent<HealthManager>();
         UnitDraggingManager = GetComponent<UnitDraggingManager>();
         Animator = GetComponentInChildren<Animator>();
+        NavMeshAgent = GetComponent<NavMeshAgent>();
         Blueprint = new UnitBlueprint();
     }
     
@@ -38,9 +40,8 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void PlaceOnStage(UnitBlueprint blueprint, SplineManager stageSpline)
     {
-        GetComponent<NavMeshAgent>().enabled = true;
         Initialize();
-        
+        NavMeshAgent.enabled = true;
         SplineManager = stageSpline;
         Blueprint = blueprint;
         UnitSplineWalker.Initialize(stageSpline, Blueprint.Config);

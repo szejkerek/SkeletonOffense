@@ -27,23 +27,7 @@ public class UnitDraggingManager : MonoBehaviour
         SetCurrentSlot(slot);
         MoveToSlotPosition();
         this.animator = animator;
-    }
-
-
-
-    void Start()
-    {
         mainCamera = Camera.main;
-        if (currentSlot != null)
-        {
-            originalPosition = currentSlot.snapPoint.position;
-            currentSlot.SetUnitOnSlot(this);
-            MoveToSlotPosition();
-        }
-        else
-        {
-            originalPosition = transform.position;
-        }
     }
 
     void OnMouseDown()
