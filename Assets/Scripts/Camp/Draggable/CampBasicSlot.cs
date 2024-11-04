@@ -134,4 +134,10 @@ public class CampBasicSlot : MonoBehaviour, IDragListener, IDragPutTarget
         return true;
 
     }
+
+    private void OnDestroy()
+    {
+        UnitDraggingManager.OnDragStart -= OnDragStart;
+        UnitDraggingManager.OnDragEnd -= OnDragEnd;
+    }
 }
