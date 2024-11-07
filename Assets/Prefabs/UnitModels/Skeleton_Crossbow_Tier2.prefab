@@ -109,7 +109,7 @@ Animator:
   m_GameObject: {fileID: 117776341711669633}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7fc2a5b0e19a9b34fa851b718add80ed, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7b7396f24e9750346a2eee2f96dd42e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -196,36 +196,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: df36af277da45a0469e29188a725f26c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5984263877564269247}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: df36af277da45a0469e29188a725f26c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5337894505468765360}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df36af277da45a0469e29188a725f26c, type: 3}
---- !u!1 &2506975842411931097 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: df36af277da45a0469e29188a725f26c, type: 3}
-  m_PrefabInstance: {fileID: 3318019255458322568}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5337894505468765360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2506975842411931097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98cdec502d4c0344fa007acba8108519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootingPoint: {fileID: 5984263877564269247}
-  weaponType: 1
-  damage: 23
-  speed: 3.09
-  projectilePrefab: {fileID: 1411268973528017137, guid: 9798d3046f3f449428ffa2a4899a5422, type: 3}
-  cooldown: 0.21
-  range: 15.3
-  followTarget: 0
 --- !u!4 &2990743729746394979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df36af277da45a0469e29188a725f26c, type: 3}

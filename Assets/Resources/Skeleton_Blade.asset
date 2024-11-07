@@ -20,5 +20,5 @@ MonoBehaviour:
   unlockRound: 1
   UnitModelTier1: {fileID: 7655988358736954155, guid: eb939e544a8bf22419897ae3142a71d9, type: 3}
   UnitModelTier2: {fileID: 4039119748560762500, guid: d2bb0ccad12efe746952d08dd152f4ac, type: 3}
-  UnitModelTier3: {fileID: 4039119748560762500, guid: d2bb0ccad12efe746952d08dd152f4ac, type: 3}
+  UnitModelTier3: {fileID: 2068700792113156565, guid: 3ea806aa537f59b4084937a44a45149b, type: 3}
   BulkSpawnCount: 1

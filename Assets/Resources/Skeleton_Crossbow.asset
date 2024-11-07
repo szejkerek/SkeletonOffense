@@ -18,7 +18,7 @@ MonoBehaviour:
   price: 3
   unlockStage: 1
   unlockRound: 1
-  UnitModelTier1: {fileID: 8794734137529011175, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
+  UnitModelTier1: {fileID: 1290056134407982385, guid: 849b9145b51c4214e92eac91c5db6e62, type: 3}
   UnitModelTier2: {fileID: 5488137010712296379, guid: f9571971a68747847b9e9cf604edaf3e, type: 3}
-  UnitModelTier3: {fileID: 5488137010712296379, guid: f9571971a68747847b9e9cf604edaf3e, type: 3}
+  UnitModelTier3: {fileID: 6892347162508433987, guid: 45fbd7d7fdd5d434bb5c3dbdf0085a2d, type: 3}
   BulkSpawnCount: 1

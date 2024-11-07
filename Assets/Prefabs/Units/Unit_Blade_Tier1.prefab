@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 952907925974809658}
     - target: {fileID: 8012124513375114340, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.35564
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012124513375114340, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012124513375114340, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.797022
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012124513375114340, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8794734137529011175, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: m_Name
-      value: Unit Variant
+      value: Unit_Blade_Tier1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -158,5 +158,5 @@ MonoBehaviour:
   speed: 3.09
   projectilePrefab: {fileID: 1411268973528017137, guid: 9798d3046f3f449428ffa2a4899a5422, type: 3}
   cooldown: 0.21
-  range: 15.3
+  range: 5
   followTarget: 0

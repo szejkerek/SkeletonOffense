@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 5969553197981910875, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: weapon
       value: 
-      objectReference: {fileID: 2483527116918103543}
+      objectReference: {fileID: 5062995534174350142}
     - target: {fileID: 6687788882647367354, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: m_Controller
       value: 
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8794734137529011175, guid: 4e1481db02a5eb246a956abc5bf274d9, type: 3}
       propertyPath: m_Name
-      value: Unit_Tier2 Variant
+      value: Unit_Crossbow_Tier2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -129,19 +129,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2506975842411931097, guid: 7145622282e2ad542bf034a070a45557, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5062995534174350142}
   m_SourcePrefab: {fileID: 100100000, guid: 7145622282e2ad542bf034a070a45557, type: 3}
---- !u!114 &2483527116918103543 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5337894505468765360, guid: 7145622282e2ad542bf034a070a45557, type: 3}
+--- !u!4 &4282677290961615864 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5984263877564269247, guid: 7145622282e2ad542bf034a070a45557, type: 3}
   m_PrefabInstance: {fileID: 7521926190157642055}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!1 &5380061282755894430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2506975842411931097, guid: 7145622282e2ad542bf034a070a45557, type: 3}
+  m_PrefabInstance: {fileID: 7521926190157642055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5062995534174350142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380061282755894430}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98cdec502d4c0344fa007acba8108519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootingPoint: {fileID: 4282677290961615864}
+  weaponType: 1
+  damage: 23
+  speed: 3.09
+  projectilePrefab: {fileID: 1411268973528017137, guid: 9798d3046f3f449428ffa2a4899a5422, type: 3}
+  cooldown: 0.21
+  range: 15.3
+  followTarget: 0
 --- !u!4 &7100765241936882300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 786366704285061947, guid: 7145622282e2ad542bf034a070a45557, type: 3}
