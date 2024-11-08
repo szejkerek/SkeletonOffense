@@ -19,6 +19,9 @@ MonoBehaviour:
   unlockStage: 1
   unlockRound: 1
   UnitModelTier1: {fileID: 7655988358736954155, guid: eb939e544a8bf22419897ae3142a71d9, type: 3}
+  IconTier1: {fileID: 21300000, guid: eabb39718a25db04bbdb0fabfd2d55be, type: 3}
   UnitModelTier2: {fileID: 4039119748560762500, guid: d2bb0ccad12efe746952d08dd152f4ac, type: 3}
+  IconTier2: {fileID: 21300000, guid: c0343b89874247f48a6c922a9d183236, type: 3}
   UnitModelTier3: {fileID: 2068700792113156565, guid: 3ea806aa537f59b4084937a44a45149b, type: 3}
+  IconTier3: {fileID: 21300000, guid: f74f673df77537940ad9e6b47a27ec3e, type: 3}
   BulkSpawnCount: 1
