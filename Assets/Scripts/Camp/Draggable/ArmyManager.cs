@@ -40,14 +40,16 @@ public class ArmyManager : MonoBehaviour
         var modelPrefab = tier == 1 ? config.UnitModelTier1 : tier == 2 ? config.UnitModelTier2 : config.UnitModelTier3;
         var model = Instantiate(modelPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
+        if (!model.TryGetComponent(out Unit spawnedUnit))
+        {
+            Destroy(model);
+            return;
+        }
 
         CampBasicSlot slotToPlace = GetUnOccupiedSlot();
-        if (slotToPlace != null && model.TryGetComponent(out Unit spawnedUnit))
-        {
-            
-            spawnedUnit.PlaceInCamp(config, slotToPlace, tier);
-            CampManager.Instance.AddUnitToCamp(spawnedUnit);
-        }
+        spawnedUnit.PlaceInCamp(config, slotToPlace, tier);
+        CampManager.Instance.AddUnitToCamp(spawnedUnit);
+
 
     }
 

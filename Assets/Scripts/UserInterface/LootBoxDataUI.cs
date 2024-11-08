@@ -27,6 +27,10 @@ public class LootBoxDataUI : UnitDataUI
             List<UnitConfig> unitConfigs = Resources.LoadAll<UnitConfig>("").ToList();
             int randomIndex = random.Next(unitConfigs.Count);
             UnitConfig selectedConfig = unitConfigs[randomIndex];
+
+            //TODO what if there is no where to spawn unit???
+            if (!ArmyManager.Instance.IsFreeSlotToSpawn() && !CampManager.Instance.CheckIfWillCombine(selectedConfig, tier)) return;
+
             ArmyManager.Instance.SpawnUnitOnSlot(selectedConfig, tier);
 
             Debug.Log($"Some Unit {selectedConfig.name} with tier {tier}");

@@ -52,6 +52,7 @@ public class CampManager : MonoBehaviour
     public void RemoveUnitFromCamp(Unit unit, float delay = 0f)
     {
         inCampUnits.Remove(unit);
+        unit.UnitDraggingManager.currentSlot?.SetUnitOnSlot(null);
         unit.DestroyUnit(delay);
     }
     public void CombineUnits()
@@ -72,9 +73,9 @@ public class CampManager : MonoBehaviour
                 unitToTierUP.TierUp();
 
 
-                RemoveUnitFromCamp(unit.ElementAt(0), 0.5f);
-                RemoveUnitFromCamp(unit.ElementAt(1), 0.5f);
-                RemoveUnitFromCamp(unit.ElementAt(2), 0.5f);
+                RemoveUnitFromCamp(unit.ElementAt(0));
+                RemoveUnitFromCamp(unit.ElementAt(1));
+                RemoveUnitFromCamp(unit.ElementAt(2));
 
                 ArmyManager.Instance.SpawnUnitOnSlot(unitToTierUP.Config, unitToTierUP.Tier);
             }
