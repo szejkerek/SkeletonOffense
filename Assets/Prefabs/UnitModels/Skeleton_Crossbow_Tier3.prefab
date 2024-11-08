@@ -13,6 +13,18 @@ PrefabInstance:
       value: Skeleton_Crossbow_Tier3
       objectReference: {fileID: 0}
     - target: {fileID: 786366704285061947, guid: 7145622282e2ad542bf034a070a45557, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 786366704285061947, guid: 7145622282e2ad542bf034a070a45557, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 786366704285061947, guid: 7145622282e2ad542bf034a070a45557, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 786366704285061947, guid: 7145622282e2ad542bf034a070a45557, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
